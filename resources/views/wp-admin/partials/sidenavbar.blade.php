@@ -3,7 +3,8 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 {{-- <div class="sb-sidenav-menu-heading">Core</div> --}}
-                <a class="nav-link" href="{{ ('/dashboard') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                    href="{{ ('/admin-dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Dashboard
                 </a>
@@ -60,51 +61,62 @@
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Pages</div>
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link {{ request()->routeIs('manage-beranda') ? 'active' : '' }}"
+                    href="{{ route('manage-beranda') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Beranda
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-profil') ? 'active' : '' }}"
+                    href="{{ route('manage-profil') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Profil
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-publikasi') ? 'active' : '' }}"
+                    href="{{ route('manage-publikasi') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Publikasi
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-fasilitas') ? 'active' : '' }}"
+                    href="{{ route('manage-fasilitas') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Fasilitas
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-gtk') ? 'active' : '' }}"
+                    href="{{ route('manage-gtk') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     GTK
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-siswa') ? 'active' : '' }}"
+                    href="{{ route('manage-siswa') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Siswa
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-galeri') ? 'active' : '' }}"
+                    href="{{ route('manage-galeri') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Galeri
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-pengumuman') ? 'active' : '' }}"
+                    href="{{ route('manage-pengumuman') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Pengumuman
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link {{ request()->routeIs('manage-ppdb') ? 'active' : '' }}"
+                    href="{{ route('manage-ppdb') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     PPDB
                 </a>
+
                 <div class="sb-sidenav-menu-heading">Pengaturan</div>
-                <a class="nav-link" href="charts.html">
+
+                {{-- <a class="nav-link" href="{{ route('pengelola-website') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Pengelola Website
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{ route('role') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Role
-                </a>
+                </a> --}}
             </div>
         </div>
         <div class="sb-sidenav-footer">
