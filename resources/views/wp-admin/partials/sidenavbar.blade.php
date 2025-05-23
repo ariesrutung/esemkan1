@@ -61,12 +61,12 @@
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Pages</div>
-                <a class="nav-link {{ request()->routeIs('manage-beranda') ? 'active' : '' }}"
-                    href="{{ route('manage-beranda') }}">
+                <a class="nav-link {{ request()->routeIs('home-settings.index') ? 'active' : '' }}"
+                    href="{{ route('home-settings.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Beranda
                 </a>
-                <a class="nav-link {{ request()->routeIs('manage-profil') ? 'active' : '' }}"
+                {{-- <a class="nav-link {{ request()->routeIs('manage-profil') ? 'active' : '' }}"
                     href="{{ route('manage-profil') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Profil
@@ -105,7 +105,7 @@
                     href="{{ route('manage-ppdb') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     PPDB
-                </a>
+                </a> --}}
 
                 <div class="sb-sidenav-menu-heading">Pengaturan</div>
 

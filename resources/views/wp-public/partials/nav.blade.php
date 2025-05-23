@@ -1,48 +1,64 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="{{ ('/') }}"><img
-                src="{{ asset('themes/frontend/assets/img/logos/logo-smk1.png')}}" alt="..." /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav fw-bold text-dark ms-auto py-4 py-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('/') ? 'active text-primary' : '' }}"
-                        href="{{ url('/') }}">Beranda</a>
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+        <a href="{{ ('/') }}" class="logo d-flex align-items-center">
+            <img src="{{ asset('themes/frontend/assets/img/logos/logo-smk1.png') }}" alt="">
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li>
+                    <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">Beranda</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('profil') ? 'active text-primary' : '' }}"
-                        href="{{ url('/profil') }}">Profil</a>
+                <li class="dropdown">
+                    <a href="#" class="{{ Request::is('profil', 'gtk', 'fasilitas') ? 'active' : '' }}">
+                        <span>Tentang Kami</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+                    </a>
+                    <ul>
+                        <li><a href="{{ url('/profil') }}"
+                                class="{{ Request::is('profil') ? 'active' : '' }}">Profil</a></li>
+                        <li><a href="{{ url('/gtk') }}" class="{{ Request::is('gtk') ? 'active' : '' }}">GTK</a></li>
+                        <li><a href="{{ url('/fasilitas') }}"
+                                class="{{ Request::is('fasilitas') ? 'active' : '' }}">Fasilitas</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('publikasi') ? 'active text-primary' : '' }}"
-                        href="{{ url('/publikasi') }}">Publikasi</a>
+                <li>
+                    <a href="{{ url('/program-keahlian') }}"
+                        class="{{ Request::is('program-keahlian') ? 'active' : '' }}">
+                        Program Keahlian
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('fasilitas') ? 'active text-primary' : '' }}"
-                        href="{{ url('/fasilitas') }}">Fasilitas</a>
+                <li class="dropdown">
+                    <a href="#" class="{{ Request::is('ppl', 'bk') ? 'active' : '' }}">
+                        <span>Program</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+                    </a>
+                    <ul>
+                        <li><a href="{{ url('/ppl') }}" class="{{ Request::is('ppl') ? 'active' : '' }}">PPL</a></li>
+                        <li><a href="{{ url('/bk') }}" class="{{ Request::is('bk') ? 'active' : '' }}">BK</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('gtk') ? 'active text-primary' : '' }}"
-                        href="{{ url('/gtk') }}">GTK</a>
+                <li class="dropdown">
+                    <a href="#" class="{{ Request::is('pengumuman', 'berita', 'event') ? 'active' : '' }}">
+                        <span>Informasi</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+                    </a>
+                    <ul>
+                        <li><a href="{{ url('/pengumuman') }}"
+                                class="{{ Request::is('pengumuman') ? 'active' : '' }}">Pengumuman</a></li>
+                        <li><a href="{{ url('/berita') }}"
+                                class="{{ Request::is('berita') ? 'active' : '' }}">Berita</a></li>
+                        <li><a href="{{ url('/event') }}"
+                                class="{{ Request::is('event') ? 'active' : '' }}">Kegiatan</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('siswa') ? 'active text-primary' : '' }}"
-                        href="{{ url('/siswa') }}">Siswa</a>
+                <li>
+                    <a href="{{ url('/spmb') }}" class="{{ Request::is('spmb') ? 'active' : '' }}">SPMB</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('galeri') ? 'active text-primary' : '' }}"
-                        href="{{ url('/galeri') }}">Galeri</a>
+                <li>
+                    <a href="{{ url('/galeri') }}" class="{{ Request::is('galeri') ? 'active' : '' }}">Galeri</a>
                 </li>
-                @auth
-                <li class="nav-item">
-                    <a class="nav-link btn btn-info text-normal" href="{{ url('/dashboard') }}">Panel Admin</a>
-                </li>
-                @endauth
             </ul>
-        </div>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
     </div>
-</nav>
+</header>
