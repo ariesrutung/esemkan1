@@ -311,6 +311,11 @@ ul > li > ul > li a.active {
     color: var(--nav-dropdown-hover-color) !important;
 }
 
+.navmenu a.active > span,
+.navmenu a.active {
+    font-weight: bold;
+}
+
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
     .mobile-nav-toggle {

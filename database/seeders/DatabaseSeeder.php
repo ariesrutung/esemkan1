@@ -10,6 +10,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             JurusanSeeder::class,
+            GtkSeeder::class,
+            FasilitasSeeder::class,
         ]);
     }
 }

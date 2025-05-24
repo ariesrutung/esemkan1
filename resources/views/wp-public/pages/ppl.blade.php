@@ -3,90 +3,105 @@
 <section id="terms-of-service" class="terms-of-service section mt-5">
     <div class="container mt-5" data-aos="fade-up">
         <div class="terms-hero" data-aos="fade-up">
-            <span class="badge">Last Updated: February 27, 2025</span>
-            <h2>Terms &amp; Conditions</h2>
-            <p>These terms and conditions outline your rights and responsibilities when using our services</p>
-            <div class="terms-highlights">
-                <div class="highlight-item">
-                    <i class="bi bi-shield-check"></i>
-                    <span>Secure Service</span>
-                </div>
-                <div class="highlight-item">
-                    <i class="bi bi-lock"></i>
-                    <span>Data Protection</span>
-                </div>
-                <div class="highlight-item">
-                    <i class="bi bi-hand-thumbs-up"></i>
-                    <span>Fair Terms</span>
-                </div>
-            </div>
+            <h2>Praktik Kerja Lapangan</h2>
+            <p>Praktik Kerja Lapangan (PKL) adalah kegiatan Pendidikan, pelatihan, dan pembelajaran yang dilaksanakan di
+                dunia usaha atau dunia industri yang relevan dengan kompetensi (kemampuan) peserta didik sesuai
+                bidangnya.</p>
         </div>
 
         <div class="terms-grid" data-aos="fade-up">
             <div class="terms-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-header">
-                    <div class="header-icon">
-                        <i class="bi bi-file-text"></i>
-                    </div>
-                    <h3>Agreement Terms</h3>
+                <div class="card-header p-0">
+                    <img class="img-fluid" src="{{ asset('themes/frontend/assets/img/education/students-3.webp') }}"
+                        alt="">
                 </div>
                 <div class="card-content">
+                    <h5 class="fw-bold">Dokumentasi Kegiatan PKL</h5>
                     <p>By accessing our service, you confirm that you are agreeing to be bound by these terms of
                         service. These terms apply to all users and visitors.</p>
                     <ul class="check-list">
-                        <li>Acceptance of terms</li>
-                        <li>Compliance with laws</li>
-                        <li>Service availability</li>
-                        <li>User obligations</li>
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary">Secondary</button>
                     </ul>
                 </div>
             </div>
 
             <div class="terms-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-header">
-                    <div class="header-icon">
-                        <i class="bi bi-person-check"></i>
-                    </div>
-                    <h3>User Rights</h3>
+                <div class="card-header p-0">
+                    <img class="img-fluid" src="{{ asset('themes/frontend/assets/img/education/students-4.webp') }}"
+                        alt="">
                 </div>
                 <div class="card-content">
+                    <h5 class="fw-bold">Dokumentasi Pembekalan PKL</h5>
                     <p>As a user, you have specific rights when using our service, including data privacy and access to
                         features.</p>
                     <ul class="check-list">
-                        <li>Account control</li>
-                        <li>Data privacy</li>
-                        <li>Service access</li>
-                        <li>Content ownership</li>
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary">Secondary</button>
                     </ul>
                 </div>
             </div>
 
             <div class="terms-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="card-header">
-                    <div class="header-icon">
-                        <i class="bi bi-shield-x"></i>
-                    </div>
-                    <h3>Restrictions</h3>
+                <div class="card-header p-0">
+                    <img class="img-fluid" src="{{ asset('themes/frontend/assets/img/education/students-4.webp') }}"
+                        alt="">
                 </div>
                 <div class="card-content">
-                    <div class="restrictions-list">
-                        <div class="restriction-item">
-                            <i class="bi bi-x-circle"></i>
-                            <span>No unauthorized data collection</span>
-                        </div>
-                        <div class="restriction-item">
-                            <i class="bi bi-x-circle"></i>
-                            <span>No service misuse</span>
-                        </div>
-                        <div class="restriction-item">
-                            <i class="bi bi-x-circle"></i>
-                            <span>No intellectual property violation</span>
-                        </div>
-                        <div class="restriction-item">
-                            <i class="bi bi-x-circle"></i>
-                            <span>No harmful activities</span>
-                        </div>
-                    </div>
+                    <h5 class="fw-bold">Jurnal PKL SMK YP 17 Pare</h5>
+                    <p>As a user, you have specific rights when using our service, including data privacy and access to
+                        features.</p>
+                    <ul class="check-list">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                    </ul>
+                </div>
+            </div>
+            <div class="terms-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-header p-0">
+                    <img class="img-fluid" src="{{ asset('themes/frontend/assets/img/education/students-5.webp') }}"
+                        alt="">
+                </div>
+                <div class="card-content">
+                    <h5 class="fw-bold">Dokumen Monitoring PKL</h5>
+                    <p>As a user, you have specific rights when using our service, including data privacy and access to
+                        features.</p>
+                    <ul class="check-list">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="terms-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-header p-0">
+                    <img class="img-fluid" src="{{ asset('themes/frontend/assets/img/education/students-4.webp') }}"
+                        alt="">
+                </div>
+                <div class="card-content">
+                    <h5 class="fw-bold">Pembagian tempat PKL 2021-2022</h5>
+                    <p>As a user, you have specific rights when using our service, including data privacy and access to
+                        features.</p>
+                    <ul class="check-list">
+                        <button type="button" class="btn btn-outline-primary">Primary</button>
+                        <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="terms-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-header p-0">
+                    <img class="img-fluid" src="{{ asset('themes/frontend/assets/img/education/students-4.webp') }}"
+                        alt="">
+                </div>
+                <div class="card-content">
+                    <h5 class="fw-bold">Pembagian tempat PKL 2022-2023</h5>
+                    <<p>As a user, you have specific rights when using our service, including data privacy and access to
+                        features.</p>
+                        <ul class="check-list">
+                            <button type="button" class="btn btn-outline-primary">Primary</button>
+                            <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                        </ul>
                 </div>
             </div>
         </div>

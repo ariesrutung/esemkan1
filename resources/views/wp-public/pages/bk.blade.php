@@ -3,8 +3,7 @@
 <section id="terms-of-service" class="terms-of-service section mt-5">
     <div class="container mt-5" data-aos="fade-up">
         <div class="terms-hero" data-aos="fade-up">
-            <span class="badge">Last Updated: February 27, 2025</span>
-            <h2>Terms &amp; Conditions</h2>
+            <h2>Bimbingan Konseling</h2>
             <p>These terms and conditions outline your rights and responsibilities when using our services</p>
             <div class="terms-highlights">
                 <div class="highlight-item">

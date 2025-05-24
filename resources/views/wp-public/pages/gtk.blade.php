@@ -1,45 +1,25 @@
 @extends('wp-public.layouts.app')
 @section('content')
 
-<section id="students-life" class="students-life section mt-5 pb-0">
-    <div class="container mt-5" data-aos="fade-up" data-aos-delay="100">
-        <div class="students-life-banner" data-aos="zoom-in" data-aos-delay="200">
-            <div class="banner-content" data-aos="fade-right" data-aos-delay="300">
-                <h2>Struktur Organisasi</h2>
-            </div>
-            <img src="{{ asset ('themes/frontend/assets/img/education/strukturOrganisasi.jpg') }}" alt="Campus Life"
-                class="card-img">
-        </div>
-    </div>
-</section>
-
-<section id="faculty--staff" class="faculty--staff section pt-2">
-    <div class="container" data-aos="fade-down" data-aos-delay="100">
+<section id="faculty--staff" class="faculty--staff section pt-5 mt-5">
+    <div class="container mt-5" data-aos="fade-down" data-aos-delay="100">
         <div class="row">
             <div class="col-lg-3" data-aos="fade-up" data-aos-delay="300">
                 <div class="departments-nav">
                     <h4 class="departments-title">Jurusan</h4>
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab"
-                                data-bs-target="#faculty--staff-tab-1">Computer Science</button>
+                            <a class="nav-link {{ request('jabatan') == null ? 'active' : '' }}" href="/gtk">Semua</a>
                         </li>
+
+                        @foreach($daftarJabatan as $item)
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#faculty--staff-tab-2">Mathematics</button>
+                            <a class="nav-link {{ request('jabatan') == $item ? 'active' : '' }}"
+                                href="{{ url('/gtk?jabatan=' . urlencode($item)) }}">
+                                {{ $item }}
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#faculty--staff-tab-3">Physics</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#faculty--staff-tab-4">Biology</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#faculty--staff-tab-5">Chemistry</button>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -48,281 +28,25 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="faculty--staff-tab-1">
                         <div class="department-info mb-4">
-                            <h3>Computer Science Department</h3>
+                            <h3 class="mt-3">{{ $jabatan ?? 'Semua GTK' }}</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dapibus, eros vel
                                 vestibulum laoreet, lacus mi efficitur velit, id pharetra odio magna nec augue.</p>
                         </div>
                         <div class="row g-4">
+                            @foreach($gtk as $item)
                             <div class="col-md-6 col-lg-4">
                                 <div class="faculty-card">
                                     <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-m-3.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
+                                        <img src="{{ asset('themes/frontend/assets/img/person/' . $item->foto) }}"
+                                            class="img-fluid" alt="{{ $item->nama }}">
                                     </div>
                                     <div class="faculty-info">
-                                        <h4>Dr. Jonathan Baker</h4>
-                                        <p class="faculty-title">Department Chair, Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Artificial Intelligence</span>
-                                            <span>Machine Learning</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:jbaker@example.com"><i class="bi bi-envelope"></i> Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
+                                        <h4>{{ $item->nama }}</h4>
+                                        <p class="faculty-title">{{ $item->jabatan }}</p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-f-5.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Sarah Wilson</h4>
-                                        <p class="faculty-title">Associate Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Data Science</span>
-                                            <span>Neural Networks</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:swilson@example.com"><i class="bi bi-envelope"></i>
-                                                Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-m-7.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Michael Chen</h4>
-                                        <p class="faculty-title">Assistant Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Cybersecurity</span>
-                                            <span>Blockchain Technology</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:mchen@example.com"><i class="bi bi-envelope"></i> Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-f-9.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Emily Rodriguez</h4>
-                                        <p class="faculty-title">Associate Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Software Engineering</span>
-                                            <span>Human-Computer Interaction</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:erodriguez@example.com"><i class="bi bi-envelope"></i>
-                                                Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-m-11.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Robert Williams</h4>
-                                        <p class="faculty-title">Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Algorithms</span>
-                                            <span>Computational Theory</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:rwilliams@example.com"><i class="bi bi-envelope"></i>
-                                                Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-f-2.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Angela Davis</h4>
-                                        <p class="faculty-title">Department Administrator</p>
-                                        <div class="faculty-specialties">
-                                            <span>Administration</span>
-                                            <span>Student Services</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:adavis@example.com"><i class="bi bi-envelope"></i> Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="faculty--staff-tab-2">
-                        <div class="department-info mb-4">
-                            <h3>Mathematics Department</h3>
-                            <p>Curabitur a felis in nunc fringilla tristique. Fusce egestas elit eget lorem. Etiam vitae
-                                tortor. Nam at tortor in tellus interdum sagittis.</p>
-                        </div>
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-f-8.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Patricia Lee</h4>
-                                        <p class="faculty-title">Department Chair, Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Algebraic Topology</span>
-                                            <span>Number Theory</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:plee@example.com"><i class="bi bi-envelope"></i> Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-m-6.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Thomas Grant</h4>
-                                        <p class="faculty-title">Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Analysis</span>
-                                            <span>Differential Equations</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:tgrant@example.com"><i class="bi bi-envelope"></i> Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="faculty--staff-tab-3">
-                        <div class="department-info mb-4">
-                            <h3>Physics Department</h3>
-                            <p>Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Phasellus nec sem in
-                                justo pellentesque facilisis. Etiam imperdiet imperdiet orci.</p>
-                        </div>
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-m-9.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Neil Armstrong</h4>
-                                        <p class="faculty-title">Department Chair, Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Quantum Physics</span>
-                                            <span>Astrophysics</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:narmstrong@example.com"><i class="bi bi-envelope"></i>
-                                                Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="faculty--staff-tab-4">
-                        <div class="department-info mb-4">
-                            <h3>Biology Department</h3>
-                            <p>Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh. In auctor lobortis
-                                lacus. Suspendisse non nisl sit amet velit hendrerit rutrum.</p>
-                        </div>
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-f-12.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Lisa Wong</h4>
-                                        <p class="faculty-title">Department Chair, Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Molecular Biology</span>
-                                            <span>Genetics</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:lwong@example.com"><i class="bi bi-envelope"></i> Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="faculty--staff-tab-5">
-                        <div class="department-info mb-4">
-                            <h3>Chemistry Department</h3>
-                            <p>Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan
-                                nisi mauris ac eros. Fusce neque. Suspendisse faucibus.</p>
-                        </div>
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="faculty-card">
-                                    <div class="faculty-image">
-                                        <img src="{{ asset ('themes/frontend/assets/img/person/person-m-2.webp') }}"
-                                            class="img-fluid" alt="Faculty Member">
-                                    </div>
-                                    <div class="faculty-info">
-                                        <h4>Dr. Daniel Smith</h4>
-                                        <p class="faculty-title">Department Chair, Professor</p>
-                                        <div class="faculty-specialties">
-                                            <span>Organic Chemistry</span>
-                                            <span>Biochemistry</span>
-                                        </div>
-                                        <div class="faculty-contact">
-                                            <a href="mailto:dsmith@example.com"><i class="bi bi-envelope"></i> Email</a>
-                                            <a href="#" class="profile-link"><i class="bi bi-person"></i> Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

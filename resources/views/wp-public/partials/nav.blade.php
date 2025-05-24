@@ -28,7 +28,8 @@
                         Program Keahlian
                     </a>
                 </li>
-                <li class="dropdown">
+                <li><a href="{{ url('/ppl') }}" class="{{ Request::is('ppl') ? 'active' : '' }}">PPL</a></li>
+                {{-- <li class="dropdown">
                     <a href="#" class="{{ Request::is('ppl', 'bk') ? 'active' : '' }}">
                         <span>Program</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
@@ -36,7 +37,7 @@
                         <li><a href="{{ url('/ppl') }}" class="{{ Request::is('ppl') ? 'active' : '' }}">PPL</a></li>
                         <li><a href="{{ url('/bk') }}" class="{{ Request::is('bk') ? 'active' : '' }}">BK</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="dropdown">
                     <a href="#" class="{{ Request::is('pengumuman', 'berita', 'event') ? 'active' : '' }}">
                         <span>Informasi</span> <i class="bi bi-chevron-down toggle-dropdown"></i>

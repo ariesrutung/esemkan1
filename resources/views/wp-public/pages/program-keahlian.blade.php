@@ -9,68 +9,23 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                @foreach ($prt_jurusan as $index => $item)
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ 300 + $index * 100 }}">
                     <div class="alumni-profile">
                         <div class="profile-header">
                             <div class="profile-img">
-                                <img src="{{ asset ('themes/frontend/assets/img/person/person-f-3.webp') }}"
+                                <img src="{{ asset('themes/frontend/assets/img/program-studi/' . $item->gambar) }}"
                                     alt="Alumni" class="img-fluid">
                             </div>
                         </div>
                         <div class="profile-body">
-                            <h4>Perhotelan dan Jasa Pariwisata</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis velit a enim
-                                tincidunt, sed tincidunt nulla feugiat. Cras efficitur magna in metus lacinia.</p>
+                            <h4>{{ $item->nama }}</h4>
+                            <p>{{ $item->deskripsi }}</p>
                             <a href="#" class="btn-view-profile">View Profile <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                        <div class="achievement-badge">
-                            <i class="bi bi-award"></i>
-                            <span>Environmental Leadership Award</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="alumni-profile">
-                        <div class="profile-header">
-                            <div class="profile-img">
-                                <img src="{{ asset ('themes/frontend/assets/img/person/person-m-7.webp') }}"
-                                    alt="Alumni" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="profile-body">
-                            <h4>Akuntansi dan Keuangan</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis velit a enim
-                                tincidunt, sed tincidunt nulla feugiat. Cras efficitur magna in metus.</p>
-                            <a href="#" class="btn-view-profile">View Profile <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                        <div class="achievement-badge">
-                            <i class="bi bi-stars"></i>
-                            <span>Medical Innovation Excellence</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="alumni-profile">
-                        <div class="profile-header">
-                            <div class="profile-img">
-                                <img src="{{ asset ('themes/frontend/assets/img/person/person-f-9.webp') }}"
-                                    alt="Alumni" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="profile-body">
-                            <h4>Bisnis dan Pemasaran</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis velit a enim
-                                tincidunt, sed tincidunt nulla feugiat. Cras efficitur magna in metus.</p>
-                            <a href="#" class="btn-view-profile">View Profile <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                        <div class="achievement-badge">
-                            <i class="bi bi-lightning"></i>
-                            <span>Tech Visionary of the Year</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="600">

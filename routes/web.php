@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeSettingController;
 use App\Http\Controllers\Public\ProfilController;
 use App\Http\Controllers\Public\BerandaController;
+use App\Http\Controllers\Public\JurusanController;
+use App\Http\Controllers\Public\GtkController;
+use App\Http\Controllers\Public\FasilitasController;
 
 Route::get('/', function () {
     return view('wp-public.pages.home');
@@ -13,23 +16,18 @@ Route::get('/', function () {
 
 Route::get('/', [BerandaController::class, 'index']);
 Route::get('/profil', [ProfilController::class, 'index']);
+Route::get('/program-keahlian', [JurusanController::class, 'index']);
+Route::get('/gtk', [GtkController::class, 'index']);
+Route::get('/fasilitas', [FasilitasController::class, 'index']);
 
 
 Route::get('/publikasi', function () {
     return view('wp-public.pages.publikasi');
 });
 
-Route::get('/fasilitas', function () {
-    return view('wp-public.pages.fasilitas');
-});
-
-Route::get('/program-keahlian', function () {
-    return view('wp-public.pages.program-keahlian');
-});
-
-Route::get('/gtk', function () {
-    return view('wp-public.pages.gtk');
-});
+// Route::get('/fasilitas', function () {
+//     return view('wp-public.pages.fasilitas');
+// });
 
 Route::get('/siswa', function () {
     return view('wp-public.pages.siswa');

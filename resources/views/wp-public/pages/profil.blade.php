@@ -64,14 +64,14 @@
                         <div class="mission">
                             <h3>SK Operasional</h3>
                             <p>Unduh file SK Operasional melalui tombol di bawah ini.</p>
-                            <a href="{{ $identities['sk_op'] ?? 'SK Operasional' }}" class="btn btn-primary"
-                                target="_blank">Unduh</a>
+                            <a href="{{ asset('themes/frontend/assets/img/files/' . $identities['sk_op'] ?? 'SK Operasional') }}"
+                                class="btn btn-primary" target="_blank">Unduh</a>
                         </div>
 
                         <div class="vision">
                             <h3>Akreditasi</h3>
                             <p>Unduh file Sertifikat Akreditas melalui tombol di bawah ini.</p>
-                            <a href="{{ $identities['sert_akreditasi'] ?? 'Sertifikat Akreditasi Sekolah' }}"
+                            <a href="{{ asset('themes/frontend/assets/img/files/' . $identities['sert_akreditasi'] ?? 'Sertifikat Akreditasi Sekolah') }}"
                                 class="btn btn-primary" target="_blank">Unduh</a>
                         </div>
                     </div>
