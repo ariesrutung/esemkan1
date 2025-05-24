@@ -13,5 +13,6 @@ class Fasilitas extends Model
         'nama',
         'jumlah',
         'foto',
+        'deskripsi',
     ];
 }

@@ -11,19 +11,40 @@ class JurusanSeeder extends Seeder
     {
         $jurusanList = [
             [
-                'nama' => 'Perhotelan dan Jasa Pariwisata',
-                'deskripsi' => 'Program keahlian yang mempersiapkan peserta didik untuk bekerja di industri perhotelan, pariwisata, dan pelayanan jasa terkait.',
-                'gambar' => "activities-2.webp",
+                'nama' => 'Akuntansi',
+                'kode' => 'AK',
+                'deskripsi' => 'Program keahlian yang membekali peserta didik dengan kompetensi dalam pencatatan transaksi keuangan, penyusunan laporan keuangan, serta dasar-dasar perpajakan dan akuntansi komputer.',
+                'gambar' => 'akuntansi.webp',
             ],
             [
-                'nama' => 'Akuntansi dan Keuangan',
-                'deskripsi' => 'Program keahlian yang berfokus pada pembelajaran akuntansi, pembukuan, perpajakan, dan manajemen keuangan.',
-                'gambar' => "activities-4.webp",
+                'nama' => 'Layanan Perbankan',
+                'kode' => 'LP',
+                'deskripsi' => 'Program keahlian yang mempersiapkan siswa untuk memiliki kemampuan dalam pelayanan nasabah, administrasi produk perbankan, serta memahami sistem dan regulasi keuangan perbankan.',
+                'gambar' => 'perbankan.webp',
             ],
             [
-                'nama' => 'Bisnis dan Pemasaran',
-                'deskripsi' => 'Program keahlian yang mengajarkan konsep dan praktik bisnis, pemasaran, kewirausahaan, serta manajemen usaha.',
-                'gambar' => "activities-6.webp",
+                'nama' => 'Manajemen Perkantoran',
+                'kode' => 'MP',
+                'deskripsi' => 'Program keahlian yang mengajarkan keterampilan administrasi perkantoran, pengelolaan dokumen, layanan informasi, serta penggunaan teknologi perkantoran secara profesional.',
+                'gambar' => 'perkantoran.webp',
+            ],
+            [
+                'nama' => 'Manajemen Logistik',
+                'kode' => 'ML',
+                'deskripsi' => 'Program keahlian yang membekali peserta didik dengan kemampuan dalam pengelolaan gudang, distribusi barang, rantai pasok (supply chain), serta sistem informasi logistik.',
+                'gambar' => 'logistik.webp',
+            ],
+            [
+                'nama' => 'Bisnis Ritel',
+                'kode' => 'BR',
+                'deskripsi' => 'Program keahlian yang fokus pada pengelolaan toko, pemasaran produk, pelayanan pelanggan, serta operasional bisnis ritel modern maupun tradisional.',
+                'gambar' => 'ritel.webp',
+            ],
+            [
+                'nama' => 'Usaha Layanan Pariwisata',
+                'kode' => 'ULP',
+                'deskripsi' => 'Program keahlian yang mengembangkan kompetensi dalam pelayanan wisata, pengelolaan perjalanan, ticketing, serta hospitality untuk mendukung industri pariwisata.',
+                'gambar' => 'pariwisata.webp',
             ],
         ];
 

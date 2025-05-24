@@ -30,11 +30,11 @@
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                     <div class="intro-image-container">
                         <div class="intro-image main-image">
-                            <img src="{{ asset('themes/frontend/assets/img/education/campus-1.webp') }}"
+                            <img src="{{ asset('themes/frontend/assets/img/fasilitas/campus-1.webp') }}"
                                 alt="Main Campus" class="img-fluid rounded">
                         </div>
                         <div class="intro-image accent-image">
-                            <img src="{{ asset('themes/frontend/assets/img/education/campus-2.webp') }}"
+                            <img src="{{ asset('themes/frontend/assets/img/fasilitas/campus-2.webp') }}"
                                 alt="Campus Feature" class="img-fluid rounded">
                         </div>
                         <div class="tour-button">
@@ -55,7 +55,7 @@
                             data-bs-toggle="tab" data-bs-target="#tabcontent-{{ $item->id }}" type="button" role="tab"
                             aria-controls="tabcontent-{{ $item->id }}"
                             aria-selected="{{ $index == 0 ? 'true' : 'false' }}">
-                            <i class="bi bi-building"></i> {{ $item->nama }}
+                            {{ $item->nama }}
                         </button>
                     </li>
                     @endforeach

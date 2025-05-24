@@ -29,8 +29,7 @@
                     <div class="tab-pane fade show active" id="faculty--staff-tab-1">
                         <div class="department-info mb-4">
                             <h3 class="mt-3">{{ $jabatan ?? 'Semua GTK' }}</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dapibus, eros vel
-                                vestibulum laoreet, lacus mi efficitur velit, id pharetra odio magna nec augue.</p>
+                            <p>{{ $deskripsi ?? 'Deskripsi GTK' }}</p>
                         </div>
                         <div class="row g-4">
                             @foreach($gtk as $item)
@@ -41,8 +40,9 @@
                                             class="img-fluid" alt="{{ $item->nama }}">
                                     </div>
                                     <div class="faculty-info">
-                                        <h4>{{ $item->nama }}</h4>
+                                        <h4>{{ $item->nama_lengkap }}</h4>
                                         <p class="faculty-title">{{ $item->jabatan }}</p>
+                                        <p class="faculty-title">NIP: {{ $item->nip }}</p>
                                     </div>
                                 </div>
                             </div>

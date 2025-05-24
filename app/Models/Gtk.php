@@ -15,5 +15,6 @@ class Gtk extends Model
         'no_hp',
         'alamat',
         'foto',
+        'deskripsi',
     ];
 }

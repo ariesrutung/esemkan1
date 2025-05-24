@@ -31,6 +31,7 @@ class GtkSeeder extends Seeder
                 'no_hp' => $faker->phoneNumber,
                 'alamat' => $faker->address,
                 'foto' => 'person-f-8.webp',
+                'deskripsi' => $faker->sentence,
             ]);
         }
     }

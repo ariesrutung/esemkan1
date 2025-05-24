@@ -8,6 +8,8 @@ use App\Http\Controllers\Public\BerandaController;
 use App\Http\Controllers\Public\JurusanController;
 use App\Http\Controllers\Public\GtkController;
 use App\Http\Controllers\Public\FasilitasController;
+use App\Http\Controllers\Public\InformasiController;
+use App\Http\Controllers\Public\SubmissionController;
 
 Route::get('/', function () {
     return view('wp-public.pages.home');
@@ -19,15 +21,15 @@ Route::get('/profil', [ProfilController::class, 'index']);
 Route::get('/program-keahlian', [JurusanController::class, 'index']);
 Route::get('/gtk', [GtkController::class, 'index']);
 Route::get('/fasilitas', [FasilitasController::class, 'index']);
+// Route::get('/informasi', [InformasiController::class, 'index']);
+
+Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
+Route::get('/spmb', [SubmissionController::class, 'index']);
 
 
 Route::get('/publikasi', function () {
     return view('wp-public.pages.publikasi');
 });
-
-// Route::get('/fasilitas', function () {
-//     return view('wp-public.pages.fasilitas');
-// });
 
 Route::get('/siswa', function () {
     return view('wp-public.pages.siswa');
@@ -37,25 +39,10 @@ Route::get('/galeri', function () {
     return view('wp-public.pages.galeri');
 });
 
-Route::get('/event', function () {
-    return view('wp-public.pages.event');
-});
-
-Route::get('/pengumuman', function () {
-    return view('wp-public.pages.pengumuman');
-});
-
 Route::get('/ppl', function () {
     return view('wp-public.pages.ppl');
 });
 
-Route::get('/spmb', function () {
-    return view('wp-public.pages.spmb');
-});
-
-Route::get('/berita', function () {
-    return view('wp-public.pages.berita');
-});
 
 Route::get('/bk', function () {
     return view('wp-public.pages.bk');
