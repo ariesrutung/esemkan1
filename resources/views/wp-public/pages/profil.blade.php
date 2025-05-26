@@ -63,16 +63,21 @@
                     <div class="mission-vision" data-aos="fade-up" data-aos-delay="400">
                         <div class="mission">
                             <h3>SK Operasional</h3>
-                            <p>Unduh file SK Operasional melalui tombol di bawah ini.</p>
+                            <p class="text-muted">Unduh file SK Operasional melalui tombol di bawah ini.</p>
                             <a href="{{ asset('themes/frontend/assets/img/files/' . $identities['sk_op'] ?? 'SK Operasional') }}"
-                                class="btn btn-primary" target="_blank">Unduh</a>
+                                class="btn btn-sm btn-outline-primary" target="_blank">Unduh</a>
                         </div>
 
                         <div class="vision">
                             <h3>Akreditasi</h3>
-                            <p>Unduh file Sertifikat Akreditas melalui tombol di bawah ini.</p>
-                            <a href="{{ asset('themes/frontend/assets/img/files/' . $identities['sert_akreditasi'] ?? 'Sertifikat Akreditasi Sekolah') }}"
-                                class="btn btn-primary" target="_blank">Unduh</a>
+                            <div class="col-md-10">
+                                <p class="text-muted">Unduh file Sertifikat Akreditas melalui tombol di bawah ini.
+                                </p>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ asset('themes/frontend/assets/img/files/' . $identities['sert_akreditasi'] ?? 'Sertifikat Akreditasi Sekolah') }}"
+                                    class="btn btn-sm btn-outline-primary" target="_blank">Unduh</a>
+                            </div>
                         </div>
                     </div>
                 </div>

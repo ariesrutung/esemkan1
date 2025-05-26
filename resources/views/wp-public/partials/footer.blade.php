@@ -7,60 +7,50 @@
                     <img class="sitename" src="{{ asset('themes/frontend/assets/img/logos/logo-smk1.png') }}" alt="">
                 </a>
                 <div class="footer-contact pt-3">
-                    <p>A108 Adam Street</p>
-                    <p>New York, NY 535022</p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                    <p><strong>Email:</strong> <span>info@example.com</span></p>
+                    <p>Jl. Reremi Permai Manokwari</p>
+                    <p>Manokwari Barat, 98316</p>
+                    <p class="mt-3"><strong>Telepon:</strong> <span>0986213107</span></p>
+                    <p><strong>Email:</strong> <span>smkn1manokwari@gmail.com</span></p>
                 </div>
                 <div class="social-links d-flex mt-4">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.youtube.com/@smkn1manokwari160"><i class="bi bi-youtube"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61555754632047"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/smkn1manokwari/"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
 
             <div class="col-lg-2 col-md-3 footer-links">
-                <h4>Useful Links</h4>
+                <h4>Link Terkait</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">Microsoft 365</a></li>
+                    <li><a href="#">Google for Edu</a></li>
+                    <li><a href="#">Canva for Edu</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-2 col-md-3 footer-links">
-                <h4>Our Services</h4>
+                <h4>Program Keahlian</h4>
                 <ul>
-                    <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Product Management</a></li>
-                    <li><a href="#">Marketing</a></li>
-                    <li><a href="#">Graphic Design</a></li>
+                    <li><a href="#">Perhotelan & Jasa Pariwisata</a></li>
+                    <li><a href="#">Akuntansi & Keuangan</a></li>
+                    <li><a href="#">Bisnis & Pemasaran</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-2 col-md-3 footer-links">
-                <h4>Hic solutasetp</h4>
+                <h4>Program</h4>
                 <ul>
-                    <li><a href="#">Molestiae accusamus iure</a></li>
-                    <li><a href="#">Excepturi dignissimos</a></li>
-                    <li><a href="#">Suscipit distinctio</a></li>
-                    <li><a href="#">Dilecta</a></li>
-                    <li><a href="#">Sit quas consectetur</a></li>
+                    <li><a href="#">PKL</a></li>
+                    <li><a href="#">SPMB</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-2 col-md-3 footer-links">
-                <h4>Nobis illum</h4>
+                <h4>Informasi</h4>
                 <ul>
-                    <li><a href="#">Ipsam</a></li>
-                    <li><a href="#">Laudantium dolorum</a></li>
-                    <li><a href="#">Dinera</a></li>
-                    <li><a href="#">Trodelas</a></li>
-                    <li><a href="#">Flexo</a></li>
+                    <li><a href="#">Berita</a></li>
+                    <li><a href="#">Pengumuman</a></li>
+                    <li><a href="#">Event</a></li>
                 </ul>
             </div>
 
@@ -68,11 +58,8 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">MyWebsite</strong> <span>All Rights
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">SMK Negeri 1 Manokwari</strong> | <span>All Rights
                 Reserved</span></p>
-        <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
     </div>
 
 </footer>

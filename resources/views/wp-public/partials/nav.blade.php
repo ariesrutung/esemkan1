@@ -28,14 +28,12 @@
                         Program Keahlian
                     </a>
                 </li>
-                <li><a href="{{ url('/ppl') }}" class="{{ Request::is('ppl') ? 'active' : '' }}">PPL</a></li>
+                <li><a href="{{ url('/pk_lapangan') }}" class="{{ Request::is('pk_lapangan') ? 'active' : '' }}">PKL</a>
+                </li>
                 <li><a href="{{ url('/informasi') }}"
                         class="{{ Request::is('informasi') ? 'active' : '' }}">Informasi</a></li>
                 <li>
                     <a href="{{ url('/spmb') }}" class="{{ Request::is('spmb') ? 'active' : '' }}">SPMB</a>
-                </li>
-                <li>
-                    <a href="{{ url('/galeri') }}" class="{{ Request::is('galeri') ? 'active' : '' }}">Galeri</a>
                 </li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

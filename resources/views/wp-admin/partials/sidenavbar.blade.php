@@ -1,127 +1,206 @@
-<div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
-            <div class="nav">
-                {{-- <div class="sb-sidenav-menu-heading">Core</div> --}}
-                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
-                    href="{{ ('/admin-dashboard') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Dashboard
-                </a>
-                <div class="sb-sidenav-menu-heading">Interface</div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
-                    aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Layouts
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                    data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                    </nav>
-                </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                    aria-expanded="false" aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                    Pages
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                    data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                            Authentication
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="login.html">Login</a>
-                                <a class="nav-link" href="register.html">Register</a>
-                                <a class="nav-link" href="password.html">Forgot Password</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#pagesCollapseError" aria-expanded="false"
-                            aria-controls="pagesCollapseError">
-                            Error
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="401.html">401 Page</a>
-                                <a class="nav-link" href="404.html">404 Page</a>
-                                <a class="nav-link" href="500.html">500 Page</a>
-                            </nav>
-                        </div>
-                    </nav>
-                </div>
-                <div class="sb-sidenav-menu-heading">Pages</div>
-                <a class="nav-link {{ request()->routeIs('home-settings.index') ? 'active' : '' }}"
-                    href="{{ route('home-settings.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Beranda
-                </a>
-                {{-- <a class="nav-link {{ request()->routeIs('manage-profil') ? 'active' : '' }}"
-                    href="{{ route('manage-profil') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Profil
-                </a>
-                <a class="nav-link {{ request()->routeIs('manage-publikasi') ? 'active' : '' }}"
-                    href="{{ route('manage-publikasi') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Publikasi
-                </a>
-                <a class="nav-link {{ request()->routeIs('manage-fasilitas') ? 'active' : '' }}"
-                    href="{{ route('manage-fasilitas') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Fasilitas
-                </a>
-                <a class="nav-link {{ request()->routeIs('manage-gtk') ? 'active' : '' }}"
-                    href="{{ route('manage-gtk') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    GTK
-                </a>
-                <a class="nav-link {{ request()->routeIs('manage-siswa') ? 'active' : '' }}"
-                    href="{{ route('manage-siswa') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Siswa
-                </a>
-                <a class="nav-link {{ request()->routeIs('manage-galeri') ? 'active' : '' }}"
-                    href="{{ route('manage-galeri') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Galeri
-                </a>
-                <a class="nav-link {{ request()->routeIs('manage-pengumuman') ? 'active' : '' }}"
-                    href="{{ route('manage-pengumuman') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Pengumuman
-                </a>
-                <a class="nav-link {{ request()->routeIs('manage-ppdb') ? 'active' : '' }}"
-                    href="{{ route('manage-ppdb') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    PPDB
-                </a> --}}
+<style>
+    [class*="sidebar-light-"] .nav-treeview>.nav-item>.nav-link.active,
+    [class*="sidebar-light-"] .nav-treeview>.nav-item>.nav-link.active:hover {
+        background-color: transparent !important;
+        color: #212529;
+        font-weight: bold;
+    }
 
-                <div class="sb-sidenav-menu-heading">Pengaturan</div>
+    .elevation-4 {
+        box-shadow: none !important;
+    }
 
-                {{-- <a class="nav-link" href="{{ route('pengelola-website') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Pengelola Website
-                </a>
-                <a class="nav-link" href="{{ route('role') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Role
-                </a> --}}
+    .content-wrapper {
+        background-color: transparent !important;
+    }
+
+    [class*="sidebar-light"] .brand-link,
+    .main-header {
+        border: transparent !important;
+    }
+</style>
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <a href="{{ url('/dashboard') }}" class="brand-link d-flex justify-content-center">
+        <img src="{{ asset('themes/frontend/assets/img/logos/logo-smk1.png') }}" alt="Logo SMK" class="img-fluid w-75"
+            style="opacity: .8">
+    </a>
+
+    <div class="sidebar">
+        <div class="form-inline mt-5 pb-3 mb-3">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            {{ Auth::user()->name }}
-        </div>
-    </nav>
-</div>
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item mb-1">
+                    <a href="{{ url('/dashboard') }}" class="nav-link">
+                        <i class="nav-icon bi bi-speedometer2"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.identity.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.identity.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-person-badge-fill"></i>
+                        <p>Identitas Sekolah</p>
+                    </a>
+                </li>
+
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.matapelajaran.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.matapelajaran.index') ? 'active' : '' }}">
+                        <i class="bi bi-bar-chart-fill nav-icon"></i>
+                        <p>Mata Pelajaran</p>
+                    </a>
+                </li>
+
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.siswa_siswi.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.siswa_siswi.index') ? 'active' : '' }}">
+                        <i class="bi bi-person-lines-fill nav-icon"></i>
+                        <p>Data Siswa</p>
+                    </a>
+                </li>
+
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.pengaturan.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.pengaturan.index') ? 'active' : '' }}">
+                        <i class="bi bi-globe-asia-australia nav-icon"></i>
+                        <p>Pengaturan Halaman</p>
+                    </a>
+                </li>
+
+                {{-- @php
+                $collapsePagesRoutes = [
+                'admin.home-settings.index',
+                'admin.profil-settings.index',
+                'admin.gtk-settings.index',
+                'admin.fasilitas-settings.index',
+                'admin.keahlian-settings.index',
+                'admin.pkl-settings.index',
+                'admin.informasi-settings.index',
+                ];
+                @endphp
+
+                <li class="nav-item {{ request()->routeIs(...$collapsePagesRoutes) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs(...$collapsePagesRoutes) ? 'active' : '' }}">
+                        <i class="bi bi-globe-asia-australia nav-icon"></i>
+                        <p>
+                            Pengaturan Halaman
+                            <i
+                                class="fas {{ request()->routeIs(...$collapsePagesRoutes) ? 'bi bi-caret-up-fill' : 'bi bi-caret-right-fill' }} right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3">
+                        <li class="nav-item mb-1">
+                            <a href="{{ route('admin.home-settings.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.home-settings.index') ? 'active' : '' }}">
+                                -
+                                <p>Beranda</p>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a href="{{ route('admin.profil-settings.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.profil-settings.index') ? 'active' : '' }}">
+                                -
+                                <p>Profil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a href="{{ route('admin.pkl-settings.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.pkl-settings.index') ? 'active' : '' }}">
+                                -
+                                <p>PKL</p>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a href="{{ route('admin.gtk-settings.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.gtk-settings.index') ? 'active' : '' }}">
+                                -
+                                <p>GTK</p>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a href="{{ route('admin.fasilitas-settings.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.fasilitas-settings.index') ? 'active' : '' }}">
+                                -
+                                <p>Fasilitas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a href="{{ route('admin.keahlian-settings.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.keahlian-settings.index') ? 'active' : '' }}">
+                                -
+                                <p>Keahlian</p>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-1">
+                            <a href="{{ route('admin.informasi-settings.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.informasi-settings.index') ? 'active' : '' }}">
+                                -
+                                <p>Informasi</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> --}}
+
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.galeri_sekolah.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.galeri_sekolah.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-images"></i>
+                        <p>Galeri</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.fasilitas_sekolah.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.fasilitas_sekolah.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-signpost-2-fill"></i>
+                        <p>Fasilitas</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.pen_informasi.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.pen_informasi.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-megaphone-fill"></i>
+                        <p>Informasi</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.gt_kependidikan.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.gt_kependidikan.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-mortarboard-fill"></i>
+                        <p>GTK</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.prog_keahlian.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.prog_keahlian.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-diagram-3-fill"></i>
+                        <p>Program Keahlian</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.spmb-settings.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.spmb-settings.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-person-vcard"></i>
+                        <p>SPMB</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.pk_lapangan.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.pk_lapangan.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-person-workspace"></i>
+                        <p>PKL</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

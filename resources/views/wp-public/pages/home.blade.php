@@ -8,17 +8,26 @@
     .students-life .life-categories .category-card .icon-container:hover {
         color: #fff !important;
     }
+
+    .btn-view-all {
+        display: inline-block;
+        background-color: #2b378f;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        transition: 0.3s;
+        border: 0;
+    }
+
+    .btn-view-all:hover {
+        background-color: #49549e;
+    }
 </style>
 <section id="hero" class="hero section dark-background">
     <div class="hero-container">
-        <img class="video-background"
-            src="https://smkn1manokwari.sch.id/wp-content/uploads/2022/06/cropped-cropped-20220413_082041-scaled-2-2.jpg"
-            alt="">
-        {{-- <video autoplay muted loop playsinline class="video-background">
-            <source src="{{ asset('themes/frontend/assets/img/education/video-2.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video> --}}
-        <div class="overlay"></div>
+        <img src="{{ asset('themes/frontend/assets/img/' . ($section1['button_link'] ?? 'default2.jpg')) }}"
+            alt="SMK Negeri 1 Manokwari" class="video-background">
         <div class="overlay"></div>
         <div class="container">
             <div class="row align-items-center">
@@ -42,7 +51,7 @@
             <div class="row gy-4">
                 <div class="col-lg-12 border-end border-start border-primary">
                     <marquee behavior="scroll" direction="left">
-                        {{ $identities['running_text'] ?? 'Text Berjalan' }}
+                        {{ $section1['running_text'] ?? 'Text Berjalan' }}
                     </marquee>
                 </div>
             </div>
@@ -54,45 +63,26 @@
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row mb-5">
             <div class="col-lg-6 pe-lg-5" data-aos="fade-right" data-aos-delay="200">
-                <h2 class="display-6 fw-bold mb-4">Selamat datang di, <span>SMK Negeri 1 Manokwari</span></h2>
-                <p class="mb-4"></p>Dengan bangga kami sambut seluruh siswa, orang tua, serta mitra pendidikan di SMK
-                Negeri 1 Manokwari, sekolah yang
-                berkomitmen mencetak generasi unggul di bidang manajemen, bisnis, dan teknologi.
-                <p class="mb-3"></p>
-                Mengusung tagline
-                "Smart, Professional,
-                Entrepreneurial", kami terus menghadirkan pendidikan yang relevan dengan kebutuhan dunia kerja dan
-                industri masa kini.
-                Kami percaya bahwa sinergi antara pendidikan dan dunia industri adalah kunci untuk menciptakan
-                lulusan yang siap
-                bersaing secara global, baik dari segi keterampilan teknis, jiwa kepemimpinan, maupun soft skill
-                yang mumpuni.
-
-                <p class="mb-3"></p>
-                SMK Negeri 1 Manokwari memiliki visi menjadi SMK unggulan di bidang manajemen dan bisnis yang
-                berbasis digital dan
-                berkarakter, dengan semangat profesionalisme, inovasi, dan kemitraan. Untuk mewujudkannya, kami
-                terus berupaya membekali
-                peserta didik dengan kompetensi sesuai program keahlian, membentuk karakter wirausaha, serta
-                menjalin kolaborasi
-                strategis dengan dunia usaha dan dunia industri.
+                <h2 class="display-6 fw-bold mb-4">{{ $section2['title'] ?? 'Selamat Datang' }} <span>{{
+                        $identities['nama'] ?? '' }}</span> </h2>
+                <p class="mb-4">{{ $section2['content'] ?? 'Subjudul' }}</p>
 
                 <div class="d-flex align-items-center mt-4 signature-block">
                     <div class="ms-0">
-                        <p class="mb-0 fw-bold">{{ $identities['kepsek'] ?? 'Kepala Sekolah' }}</p>
-                        <p class="mb-0 text-muted">Kepala SMKN 1 Manokwari</p>
+                        <p class="mb-0 fw-bold">{{ $identities['kepsek'] ?? 'Nama Kepala Sekolah' }}</p>
+                        <p class="mb-0 text-muted">{{ $section2['jabatan'] ?? 'Jabatan' }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                 <div class="image-stack">
                     <div class="image-stack-item image-stack-item-top" data-aos="zoom-in" data-aos-delay="400">
-                        <img src="https://smkn1manokwari.sch.id/wp-content/uploads/2022/06/cropped-cropped-20220413_082041-scaled-2-2.jpg"
+                        <img src="{{ asset('themes/frontend/assets/img/' . ($section2['picture_1'] ?? 'default1.jpg')) }}"
                             alt="Campus Life" class="img-fluid rounded-4 shadow-lg">
                     </div>
                     <div class="image-stack-item image-stack-item-bottom" data-aos="zoom-in" data-aos-delay="500">
-                        <img src="{{ asset('themes/frontend/assets/img/education/students-2.webp') }}" alt="Students"
-                            class="img-fluid rounded-4 shadow-lg">
+                        <img src="{{ asset('themes/frontend/assets/img/' . ($section2['picture_2'] ?? 'default2.jpg')) }}"
+                            alt="Students" class="img-fluid rounded-4 shadow-lg">
                     </div>
                 </div>
             </div>
@@ -103,59 +93,50 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="stats-overview" data-aos="fade-right" data-aos-delay="200">
-                            <h2 class="stats-title">Percayakan Masa Depan Anak Anda di Tangan Kami</h2>
-                            <p class="stats-description">Sekolah dengan fasilitas lengkap dan tenaga pendidik yang
-                                up-to-date dengan perkembangan teknologi siap mengantar Anda ke
-                                pintu gerbang kesuksesan.
-                            </p>
+                            <h2 class="stats-title">{{ $section3['title'] ?? 'Percayakan Masa Depan Anak Anda di Tangan
+                                Kami' }}</h2>
+                            <p class="stats-description">{{ $section3['subtitle']?? 'Subjudul' }}</p>
                             <div class="stats-cta">
-                                <a href="{{ ('/prodi') }}" class="btn btn-primary">LIHAT JURUSAN</a>
-                                <a href="{{ ('/ppdb') }}" class="btn btn-outline">INFO PPDB</a>
+                                <a href="{{ ('/prodi') }}" class="btn btn-primary">{{ $section3['button1_name']?? 'LIHAT
+                                    JURUSAN' }}</a>
+                                <a href="{{ ('/ppdb') }}" class="btn btn-outline">{{ $section3['button2_name']?? 'INFO
+                                    PPDB' }}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="stats-card" data-aos="zoom-in" data-aos-delay="300">
-                                    <div class="stats-icon">
-                                        <i class="bi bi-people-fill"></i>
-                                    </div>
-                                    <div class="stats-label">Fasilitas Lengkap</div>
-                                    <p class="stats-description">Penunjang belajar dengan kualitas premium.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="stats-card" data-aos="zoom-in" data-aos-delay="400">
-                                    <div class="stats-icon">
-                                        <i class="bi bi-person-workspace"></i>
-                                    </div>
-                                    <div class="stats-label">Lingkungan Nyaman</div>
-                                    <p class="stats-description">Berada di lingkungan yang asri, aman, dan kondusif.</p>
+                    @php
+                    $benefits = [];
+                    for ($i = 1; $i <= 4; $i++) { $benefits[]=[ 'icon'=> $section3["benefit{$i}_icon"] ?? 'bi
+                        bi-circle',
+                        'title' => $section3["benefit{$i}_title"] ?? '',
+                        'subtitle' => $section3["benefit{$i}_subtitle"] ?? '',
+                        ];
+                        }
+                        @endphp
 
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="stats-card" data-aos="zoom-in" data-aos-delay="500">
-                                    <div class="stats-icon">
-                                        <i class="bi bi-award"></i>
+                        <div class="col-lg-6">
+                            <div class="row g-4">
+                                @foreach($benefits as $index => $benefit)
+                                <div class="col-md-6">
+                                    <div class="stats-card" data-aos="zoom-in"
+                                        data-aos-delay="{{ 300 + ($index * 100) }}">
+                                        <div class="stats-icon">
+                                            {{-- Jika value adalah icon Bootstrap --}}
+                                            @if(Str::startsWith($benefit['icon'], 'bi '))
+                                            <i class="{{ $benefit['icon'] }}"></i>
+                                            {{-- Jika value adalah path gambar --}}
+                                            @else
+                                            <img src="{{ asset($benefit['icon']) }}" alt="icon"
+                                                style="width: 40px; height: 40px;">
+                                            @endif
+                                        </div>
+                                        <div class="stats-label">{{ $benefit['title'] }}</div>
+                                        <p class="stats-description">{{ $benefit['subtitle'] }}</p>
                                     </div>
-                                    <div class="stats-label">Pengajar Kompeten</div>
-                                    <div class="stats-description">Guru yangup-to-date dengan perkembangan industri.
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="stats-card" data-aos="zoom-in" data-aos-delay="600">
-                                    <div class="stats-icon">
-                                        <i class="bi bi-cash-stack"></i>
-                                    </div>
-                                    <div class="stats-label">Kerjasama Luas</div>
-                                    <div class="stats-description">Memperbesar kesempatan bekerja sebelum lulus.</div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -164,8 +145,8 @@
 
 <section id="featured-programs" class="featured-programs section">
     <div class="container section-title" data-aos="fade-up">
-        <h2>Program Keahlian</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>{{ $section4['title'] ?? 'Program Keahlian' }}</h2>
+        <p>{{ $section4['subtitle'] ?? 'Subjudul' }}</p>
     </div>
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -185,7 +166,7 @@
                                 <div class="program-content">
                                     <h3>{{ $item->nama }}</h3>
                                     <p>{{ $item->deskripsi }}</p>
-                                    <a href="#" class="program-btn"><span>Learn More</span> <i
+                                    <a href="#" class="program-btn"><span>Selengkapnya</span> <i
                                             class="bi bi-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -194,42 +175,48 @@
                 </div>
                 @endforeach
             </div>
+            <div class="text-center mt-5">
+                <a href="{{ ('/program-keahlian') }}" class="btn-view-all">{{ $section4['button_title'] ?? 'Lihat Semua
+                    Program
+                    Keahlian'
+                    }}</a>
+            </div>
         </div>
     </div>
 </section>
 
 <section id="students-life" class="students-life section bg-dark">
     <div class="container section-title" data-aos="fade-up">
-        <h2 class="text-light">Data Warga Sekolah</h2>
-        <p class="text-light">Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2 class="text-light">{{ $section5['title'] ?? 'Data Warga Sekolah' }}</h2>
+        <p class="text-light">{{ $section5['subtitle'] ?? 'Subjudul' }}</p>
     </div>
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="life-categories mt-5" data-aos="fade-up" data-aos-delay="200">
             <div class="row g-4">
                 <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="category-card">
-                        <p class="icon-container text-light fw-bold fs-2">561</p>
+                        <p class="icon-container text-light fw-bold fs-2">{{ $section5['murid'] ?? '-' }}</p>
                         <h4>Murid</h4>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="category-card">
-                        <p class="icon-container text-light fw-bold fs-2">50</p>
+                        <p class="icon-container text-light fw-bold fs-2">{{ $section5['guru'] ?? '-' }}</p>
                         <h4>Guru</h4>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="category-card">
-                        <p class="icon-container text-light fw-bold fs-2">7</p>
+                        <p class="icon-container text-light fw-bold fs-2">{{ $section5['tendik'] ?? '-' }}</p>
                         <h4>Tenaga Kependidikan</h4>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="category-card">
-                        <p class="icon-container text-light fw-bold fs-2">24</p>
+                        <p class="icon-container text-light fw-bold fs-2">{{ $section5['rombel'] ?? '-' }}</p>
                         <h4>Rombel</h4>
                     </div>
                 </div>
@@ -241,8 +228,8 @@
 
 <section id="students-life" class="students-life section">
     <div class="container section-title pb-2" data-aos="fade-up">
-        <h2>Galeri Sekolah</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>{{ $section6['title'] ?? 'Galeri Sekolah' }}</h2>
+        <p>{{ $section6['subtitle'] ?? 'Subjudul' }}</p>
     </div>
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="students-life-gallery mt-5" data-aos="fade-up" data-aos-delay="200">
@@ -261,13 +248,18 @@
                 @endforeach
             </div>
         </div>
+
+        <div class="text-center mt-5">
+            <a href="{{ ('/galeri') }}" class="btn-view-all">{{ $section5['button_title'] ?? 'Lihat Semua Galeri'
+                }}</a>
+        </div>
     </div>
 </section>
 
 <section id="events" class="events section">
     <div class="container section-title mb-0" data-aos="fade-up">
-        <h2>Informasi Terbaru</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>{{ $section7['title'] ?? 'Informasi Terbaru' }}</h2>
+        <p>{{ $section7['subtitle'] ?? 'Subjudul' }}</p>
     </div>
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row g-4">
@@ -318,7 +310,8 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="#" class="btn-view-all">View All Events</a>
+            <a href="{{ ('/informasi') }}" class="btn-view-all">{{ $section7['button_title'] ?? 'Lihat Semua Informasi'
+                }}</a>
         </div>
     </div>
 </section>

@@ -12,7 +12,7 @@ class GtkSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             Gtk::create([
                 'nama_lengkap' => $faker->name,
                 'jabatan' => $faker->randomElement([
@@ -26,12 +26,12 @@ class GtkSeeder extends Seeder
                     'Wakil Kepala Sekolah',
                     'Guru BK'
                 ]),
+                'jenis_kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'nip' => $faker->unique()->numerify('1980###########'),
                 'nuptk' => $faker->unique()->numerify('1234########'),
                 'no_hp' => $faker->phoneNumber,
                 'alamat' => $faker->address,
                 'foto' => 'person-f-8.webp',
-                'deskripsi' => $faker->sentence,
             ]);
         }
     }
