@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers\Public;
 
-use App\Http\Controllers\Controller;
+use App\Models\Spmb;
 use App\Models\Submission;
-use App\Models\SpmbSettings;
+use App\Models\PageSettings;
+use App\Http\Controllers\Controller;
 
 class SubmissionController extends Controller
 {
     public function index()
     {
         // Ambil semua data dari tabel spmb_settings dalam bentuk key-value
-        $spmb = SpmbSettings::pluck('value', 'key')->toArray();
+        $spmb = Spmb::pluck('value', 'key')->toArray();
+        $pages_settings = PageSettings::pluck('value', 'key')->toArray();
 
         // Buat array syarat dan filter yang tidak perlu ditampilkan
         $syarat = [];
 
-        for ($i = 1; $i <= 7; $i++) {
-            $judul = trim($spmb["syarat_$i"] ?? '');
-            $deskripsi = trim($spmb["syarat_{$i}_desk"] ?? '');
+        for ($i = 1; $i <= 10; $i++) {
+            $judulKey = "spmb_syarat_$i";
+            $deskripsiKey = "spmb_syarat_{$i}_desk";
 
-            // Jika judul atau deskripsi adalah '-' atau kosong, lewati
+            $judul = trim($pages_settings[$judulKey] ?? '');
+            $deskripsi = trim($pages_settings[$deskripsiKey] ?? '');
+
+            // Lewati jika kosong atau hanya berisi '-'
             if ($judul === '-' || $deskripsi === '-' || ($judul === '' && $deskripsi === '')) {
                 continue;
             }
@@ -32,15 +37,15 @@ class SubmissionController extends Controller
         }
 
         // Ambil data lain (opsional)
-        $subm_req = Submission::all()->map(function ($item) {
-            $value = json_decode($item->value);
-            return [
-                'key' => $item->key,
-                'name' => $value->name ?? '',
-                'description' => $value->description ?? '',
-            ];
-        });
+        // $subm_req = Submission::all()->map(function ($item) {
+        //     $value = json_decode($item->value);
+        //     return [
+        //         'key' => $item->key,
+        //         'name' => $value->name ?? '',
+        //         'description' => $value->description ?? '',
+        //     ];
+        // });
 
-        return view('wp-public.pages.spmb', compact('subm_req', 'spmb', 'syarat'));
+        return view('wp-public.pages.spmb', compact('spmb', 'syarat', 'pages_settings'));
     }
 }

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HomeSection7 extends Model
+class PageSettings extends Model
 {
-    protected $table = 'home_section7';
+    protected $table = 'pages_settings';
     protected $fillable = ['key', 'value'];
     public $timestamps = true;
 }

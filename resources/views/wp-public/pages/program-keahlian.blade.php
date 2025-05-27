@@ -1,11 +1,11 @@
 @extends('wp-public.layouts.app')
 @section('content')
 <section id="alumni" class="alumni section">
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container" data-aos="fade-down" data-aos-delay="100">
         <div class="notable-alumni">
             <div class="section-header text-center" data-aos="fade-up" data-aos-delay="200">
-                <h3>Program Keahlian</h3>
-                <p>Extraordinary graduates making an impact in their fields</p>
+                <h3>{{ $pages_settings['program_keahlian_title'] ?? '-' }}</h3>
+                <p class="mt-3">{{ $pages_settings['program_keahlian_short_desciption'] ?? '-' }}</p>
             </div>
 
             <div class="row">

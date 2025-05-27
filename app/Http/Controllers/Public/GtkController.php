@@ -12,14 +12,17 @@ class GtkController extends Controller
     {
         $jabatan = $request->query('jabatan');
 
-        // Ambil data GTK sesuai jabatan, atau semua jika tidak dipilih
-        $gtk = $jabatan ? Gtk::where('jabatan', $jabatan)->get() : Gtk::all();
+        // Ambil data GTK yang sesuai, dengan pagination
+        $gtk = Gtk::when($jabatan, function ($query) use ($jabatan) {
+            $query->where('jabatan', $jabatan);
+        })->paginate(12)->withQueryString();
 
-        // Ambil deskripsi dari GTK pertama (jika ada)
-        $deskripsi = $gtk->first()->deskripsi ?? null;
-        $nip = $gtk->first()->nip ?? null;
+        // Deskripsi berdasarkan jabatan
+        $deskripsi = null;
+        if ($jabatan) {
+            $deskripsi = "Berikut ini daftar" . $jabatan;
+        }
 
-        // Ambil daftar jabatan unik
         $daftarJabatan = Gtk::select('jabatan')->distinct()->pluck('jabatan');
 
         return view('wp-public.pages.gtk', compact('gtk', 'jabatan', 'daftarJabatan', 'deskripsi'));

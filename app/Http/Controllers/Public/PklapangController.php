@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Models\PklSettings;
-use App\Models\Pkl; // tambahkan ini di bagian atas
+use App\Models\PageSettings;
+use App\Models\Pkl;
 
 class PklapangController extends Controller
 {
     public function index()
     {
-        $identities = PklSettings::pluck('value', 'key');
-        $pklList = Pkl::latest()->get(); // ambil semua data PKL dari tabel
+        $pages_settings = PageSettings::pluck('value', 'key')->toArray();
+        $pklList = Pkl::latest()->get();
 
-        return view('wp-public.pages.ppl', compact('identities', 'pklList'));
+        return view('wp-public.pages.ppl', compact('pages_settings', 'pklList'));
     }
 }

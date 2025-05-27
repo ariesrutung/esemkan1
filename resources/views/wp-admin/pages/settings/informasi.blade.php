@@ -1,6 +1,3 @@
-@extends('wp-admin.layouts.app')
-@section('content')
-
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -36,5 +33,3 @@
         </div>
     </div>
 </section>
-
-@endsection

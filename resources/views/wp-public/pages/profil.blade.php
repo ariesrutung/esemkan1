@@ -1,14 +1,19 @@
 @extends('wp-public.layouts.app')
 @section('content')
+<style>
+    .text-left {
+        text-align: left;
+    }
+</style>
 <section id="history" class="history section mt-5">
     <div class="container mt-5" data-aos="fade-down" data-aos-delay="100">
         <div class="row align-items-top g-5">
             <div class="col-lg-6">
                 <div class="about-content card-profil" data-aos="fade-down" data-aos-delay="200">
-                    <h3>Profil</h3>
-                    <h2>{{ $identities['nama'] ?? 'Judul Sekolah' }}</h2>
+                    <h3>{{ $pages_settings['profil_title'] ?? '-' }}</h3>
+                    <h2>{{ $sch_identity['nama'] ?? '-' }}</h2>
                     <p>
-                        {{ $identities['short_desc'] ?? 'Deskripsi Singkat Sekolah' }}
+                        {{ $pages_settings['profil_short_desciption'] ?? '-' }}
                     </p>
 
                     <div class="row">
@@ -46,7 +51,7 @@
                                     <tr>
                                         <td class="w-35">{{ $label }}</td>
                                         <td>:</td>
-                                        <td>{!! $identities[$key] ?? '-' !!}</td>
+                                        <td>{!! $sch_identity[$key] ?? '-' !!}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -58,13 +63,13 @@
 
             <div class="col-lg-6">
                 <div class="about-image" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="{{ asset('themes/frontend/assets/img/education/' . $identities['dok_akreditasi']?? 'Akreditasi Sekolah') }}"
+                    <img src="{{ asset('themes/frontend/assets/img/files/' . $pages_settings['profil_dok_akreditasi']?? '-') }}"
                         alt="Akreditasi Sekolah" class="img-fluid rounded">
                     <div class="mission-vision" data-aos="fade-up" data-aos-delay="400">
                         <div class="mission">
                             <h3>SK Operasional</h3>
                             <p class="text-muted">Unduh file SK Operasional melalui tombol di bawah ini.</p>
-                            <a href="{{ asset('themes/frontend/assets/img/files/' . $identities['sk_op'] ?? 'SK Operasional') }}"
+                            <a href="{{ asset('themes/frontend/assets/img/files/' . $pages_settings['profil_link_skoperasional'] ?? '-') }}"
                                 class="btn btn-sm btn-outline-primary" target="_blank">Unduh</a>
                         </div>
 
@@ -75,7 +80,7 @@
                                 </p>
                             </div>
                             <div class="col-md-2">
-                                <a href="{{ asset('themes/frontend/assets/img/files/' . $identities['sert_akreditasi'] ?? 'Sertifikat Akreditasi Sekolah') }}"
+                                <a href="{{ asset('themes/frontend/assets/img/files/' . $pages_settings['profil_link_kreditasi'] ?? '-') }}"
                                     class="btn btn-sm btn-outline-primary" target="_blank">Unduh</a>
                             </div>
                         </div>
@@ -91,14 +96,14 @@
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
                         <div class="col">
                             <div class="value-card p-0">
-                                <img src="{{ asset('themes/frontend/assets/img/' . $identities['visi']?? 'Visi Sekolah') }}"
+                                <img src="{{ asset('themes/frontend/assets/img/files/' . $pages_settings['profil_dok_visimisi'] ?? '-') }}"
                                     alt="VisiMisi" class="img-fluid rounded">
                             </div>
                         </div>
 
                         <div class="col">
                             <div class="value-card">
-                                <div class="accordion" id="accordionPanelsStayOpenExample">
+                                <div class="accordion text-left" id="accordionPanelsStayOpenExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading1">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse"

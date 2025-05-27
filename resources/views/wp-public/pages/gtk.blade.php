@@ -28,12 +28,12 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="faculty--staff-tab-1">
                         <div class="department-info mb-4">
-                            <h3 class="mt-3">{{ $jabatan ?? 'Semua GTK' }}</h3>
-                            <p>{{ $deskripsi ?? 'Deskripsi GTK' }}</p>
+                            <h3 class="mt-3">{{ $jabatan ?? 'Semua Guru dan Tenaga Pendidik' }}</h3>
+                            <p>{{ $deskripsi ?? 'List Guru' }}</p>
                         </div>
                         <div class="row g-4">
                             @foreach($gtk as $item)
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-4 col-lg-3">
                                 <div class="faculty-card">
                                     <div class="faculty-image">
                                         <img src="{{ asset('themes/frontend/assets/img/person/' . $item->foto) }}"
@@ -47,6 +47,10 @@
                                 </div>
                             </div>
                             @endforeach
+                        </div>
+
+                        <div class="pagination-wrapper mt-4" data-aos="fade-up" data-aos-delay="100">
+                            {{ $gtk->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>

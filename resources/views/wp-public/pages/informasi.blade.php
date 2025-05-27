@@ -3,8 +3,8 @@
 
 <section id="events" class="events section mt-5">
     <div class="container section-title mt-5 mb-2" data-aos="fade-down">
-        <h2>Informasi</h2>
-        <p>Pengumuman, berita, kegiatan dapat Anda temukan di halaman ini.</p>
+        <h2>{{ $pages_settings['informasi_title'] ?? '-' }}</h2>
+        <p>{{ $pages_settings['informasi_short_desciption'] ?? '-' }}</p>
     </div>
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="event-filters mb-4">

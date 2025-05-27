@@ -7423,7 +7423,7 @@ section,
 .alumni .section-header p {
     font-size: 1.15rem;
     color: color-mix(in srgb, var(--default-color), transparent 30%);
-    max-width: 700px;
+    /* max-width: 700px; */
     margin: 0 auto;
     margin-top: 1.5rem;
 }
@@ -8495,7 +8495,7 @@ section,
 .terms-of-service .terms-hero p {
     font-size: 1.2rem;
     color: color-mix(in srgb, var(--default-color), transparent 20%);
-    max-width: 600px;
+    /* max-width: 600px; */
     margin: 0 auto 30px;
 }
 

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Public;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Informasi;
+use App\Models\PageSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 
 class InformasiController extends Controller
 {
     public function index(Request $request)
     {
+        $pages_settings = PageSettings::pluck('value', 'key')->toArray();
         $query = Informasi::query();
 
         // Filter berdasarkan kategori
@@ -38,6 +40,6 @@ class InformasiController extends Controller
                 return [$bulan => Carbon::create()->month($bulan)->locale('id')->isoFormat('MMMM')];
             });
 
-        return view('wp-public.pages.informasi', compact('prt_informasi', 'kategoriList', 'bulanList'));
+        return view('wp-public.pages.informasi', compact('prt_informasi', 'kategoriList', 'bulanList', 'pages_settings'));
     }
 }

@@ -18,10 +18,10 @@
                                 {{ session('success') }}
                             </div>
                             @endif
-                            @foreach ($identity->chunk(3) as $row)
+                            @foreach ($identity->chunk(4) as $row)
                             <div class="row">
                                 @foreach ($row as $key => $value)
-                                <div class="mb-3 col-md-4">
+                                <div class="mb-3 col-md-3">
                                     <label class="form-label">{{ ucfirst(str_replace('_', ' ', $key)) }}</label>
                                     <input type="text" name="identity[{{ $key }}]" value="{{ $value }}"
                                         class="form-control">

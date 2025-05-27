@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HomeSection5 extends Model
+class Spmb extends Model
 {
-    protected $table = 'home_section5';
+    protected $table = 'spmb_settings';
     protected $fillable = ['key', 'value'];
     public $timestamps = true;
 }

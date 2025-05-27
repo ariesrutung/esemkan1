@@ -18,33 +18,42 @@
     .main-header {
         border: transparent !important;
     }
+
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+    .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+        background-color: #3f474e;
+        border-radius: 10px;
+        box-shadow: none !important;
+        font-weight: normal;
+        color: #ecf0f6;
+    }
+
+    .sidebar-dark-primary li a:hover {
+        border-radius: 10px;
+    }
 </style>
-<aside class="main-sidebar sidebar-light-primary elevation-4">
-    <a href="{{ url('/dashboard') }}" class="brand-link d-flex justify-content-center">
-        <img src="{{ asset('themes/frontend/assets/img/logos/logo-smk1.png') }}" alt="Logo SMK" class="img-fluid w-75"
-            style="opacity: .8">
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="{{ route('admin.dashboard.index') }}" class="brand-link d-flex justify-content-center">
+        <img src="{{ asset('themes/frontend/assets/img/apple-touch-icon.jpg') }}" alt="Logo SMK"
+            class="img-fluid w-25 rounded" style="opacity: .8">
     </a>
 
     <div class="sidebar">
-        <div class="form-inline mt-5 pb-3 mb-3">
+        <div class="form-inline mt-4 pb-3 mb-3">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
             </div>
         </div>
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item mb-1">
-                    <a href="{{ url('/dashboard') }}" class="nav-link">
-                        <i class="nav-icon bi bi-speedometer2"></i>
+                    <a href="{{ route('admin.dashboard.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-bar-chart-fill"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li class="nav-header text-muted">MASTER DATA</li>
                 <li class="nav-item mb-1">
                     <a href="{{ route('admin.identity.index') }}"
                         class="nav-link {{ request()->routeIs('admin.identity.index') ? 'active' : '' }}">
@@ -69,88 +78,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item mb-1">
-                    <a href="{{ route('admin.pengaturan.index') }}"
-                        class="nav-link {{ request()->routeIs('admin.pengaturan.index') ? 'active' : '' }}">
-                        <i class="bi bi-globe-asia-australia nav-icon"></i>
-                        <p>Pengaturan Halaman</p>
-                    </a>
-                </li>
-
-                {{-- @php
-                $collapsePagesRoutes = [
-                'admin.home-settings.index',
-                'admin.profil-settings.index',
-                'admin.gtk-settings.index',
-                'admin.fasilitas-settings.index',
-                'admin.keahlian-settings.index',
-                'admin.pkl-settings.index',
-                'admin.informasi-settings.index',
-                ];
-                @endphp
-
-                <li class="nav-item {{ request()->routeIs(...$collapsePagesRoutes) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs(...$collapsePagesRoutes) ? 'active' : '' }}">
-                        <i class="bi bi-globe-asia-australia nav-icon"></i>
-                        <p>
-                            Pengaturan Halaman
-                            <i
-                                class="fas {{ request()->routeIs(...$collapsePagesRoutes) ? 'bi bi-caret-up-fill' : 'bi bi-caret-right-fill' }} right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ml-3">
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('admin.home-settings.index') }}"
-                                class="nav-link {{ request()->routeIs('admin.home-settings.index') ? 'active' : '' }}">
-                                -
-                                <p>Beranda</p>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('admin.profil-settings.index') }}"
-                                class="nav-link {{ request()->routeIs('admin.profil-settings.index') ? 'active' : '' }}">
-                                -
-                                <p>Profil</p>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('admin.pkl-settings.index') }}"
-                                class="nav-link {{ request()->routeIs('admin.pkl-settings.index') ? 'active' : '' }}">
-                                -
-                                <p>PKL</p>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('admin.gtk-settings.index') }}"
-                                class="nav-link {{ request()->routeIs('admin.gtk-settings.index') ? 'active' : '' }}">
-                                -
-                                <p>GTK</p>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('admin.fasilitas-settings.index') }}"
-                                class="nav-link {{ request()->routeIs('admin.fasilitas-settings.index') ? 'active' : '' }}">
-                                -
-                                <p>Fasilitas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('admin.keahlian-settings.index') }}"
-                                class="nav-link {{ request()->routeIs('admin.keahlian-settings.index') ? 'active' : '' }}">
-                                -
-                                <p>Keahlian</p>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-1">
-                            <a href="{{ route('admin.informasi-settings.index') }}"
-                                class="nav-link {{ request()->routeIs('admin.informasi-settings.index') ? 'active' : '' }}">
-                                -
-                                <p>Informasi</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
-
+                <li class="nav-header text-muted">MANAJEMEN KONTEN</li>
                 <li class="nav-item mb-1">
                     <a href="{{ route('admin.galeri_sekolah.index') }}"
                         class="nav-link {{ request()->routeIs('admin.galeri_sekolah.index') ? 'active' : '' }}">
@@ -187,8 +115,8 @@
                     </a>
                 </li>
                 <li class="nav-item mb-1">
-                    <a href="{{ route('admin.spmb-settings.index') }}"
-                        class="nav-link {{ request()->routeIs('admin.spmb-settings.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.spmb.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.spmb.index') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-person-vcard"></i>
                         <p>SPMB</p>
                     </a>
@@ -198,6 +126,15 @@
                         class="nav-link {{ request()->routeIs('admin.pk_lapangan.index') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-person-workspace"></i>
                         <p>PKL</p>
+                    </a>
+                </li>
+
+                <li class="nav-header text-muted">PENGATURAN</li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.pengaturan.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.pengaturan.index') ? 'active' : '' }}">
+                        <i class="bi bi-globe-asia-australia nav-icon"></i>
+                        <p>All Halaman</p>
                     </a>
                 </li>
             </ul>

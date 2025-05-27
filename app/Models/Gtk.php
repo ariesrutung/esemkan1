@@ -17,4 +17,9 @@ class Gtk extends Model
         'foto',
         'deskripsi',
     ];
+
+    public function mapel()
+    {
+        return $this->hasMany(Subject::class, 'gtk_id');
+    }
 }

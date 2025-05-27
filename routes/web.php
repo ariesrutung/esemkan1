@@ -21,7 +21,8 @@ use App\Http\Controllers\Admin\PklController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\PageSettingsController;
 use App\Http\Controllers\Admin\SubjectController;
-use App\Models\Informasi;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SpmbController;
 
 Route::get('/', [BerandaController::class, 'index']);
 Route::get('/profil', [ProfilController::class, 'index']);
@@ -34,29 +35,14 @@ Route::get('/pk_lapangan', [PklapangController::class, 'index']);
 
 Route::get('/galeri', fn() => view('wp-public.pages.galeri'));
 
-Route::get('/admin-dashboard', fn() => view('wp-admin.pages.dashboard'))
-    ->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    // Home setting
-    Route::get('/home-settings', [HomeSettingController::class, 'index'])->name('home-settings.index');
-    Route::get('/profil-settings', [HomeSettingController::class, 'profil_settings'])->name('profil-settings.index');
-    Route::get('/gtk-settings', [HomeSettingController::class, 'gtk_settings'])->name('gtk-settings.index');
-    Route::get('/fasilitas-settings', [HomeSettingController::class, 'fasilitas_settings'])->name('fasilitas-settings.index');
-    Route::get('/keahlian-settings', [HomeSettingController::class, 'keahlian_settings'])->name('keahlian-settings.index');
-    Route::get('/pkl-settings', [HomeSettingController::class, 'pkl_settings'])->name('pkl-settings.index');
-    Route::get('/informasi-settings', [HomeSettingController::class, 'informasi_settings'])->name('informasi-settings.index');
-    Route::get('/spmb-settings', [HomeSettingController::class, 'spmb_settings'])->name('spmb-settings.index');
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('dashboard', DashboardController::class);
     Route::resource('galeri_sekolah', GaleriController::class);
     Route::resource('pen_informasi', InfoController::class);
     Route::resource('fasilitas_sekolah', FacilityController::class);
@@ -68,31 +54,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('pengaturan', PageSettingsController::class);
     Route::resource('matapelajaran', SubjectController::class);
     Route::put('sch-identity-update', [IdentityController::class, 'update'])->name('sch.identity.update');
-
-
-    // Home
-    Route::post('/home-section1/update', [HomeSettingController::class, 'updateSection1'])->name('home-section1.update');
-    Route::post('/home-section1/update', [HomeSettingController::class, 'updateSection1'])->name('home-section1.update');
-    Route::post('/home-section2/update', [HomeSettingController::class, 'updateSection2'])->name('home-section2.update');
-    Route::post('/home-section3/update', [HomeSettingController::class, 'updateSection3'])->name('home-section3.update');
-    Route::post('/home-section4/update', [HomeSettingController::class, 'updateSection4'])->name('home-section4.update');
-    Route::post('/home-section5/update', [HomeSettingController::class, 'updateSection5'])->name('home-section5.update');
-    Route::post('/home-section6/update', [HomeSettingController::class, 'updateSection6'])->name('home-section6.update');
-    Route::post('/home-section7/update', [HomeSettingController::class, 'updateSection7'])->name('home-section7.update');
-
-    // Profil
-    Route::post('/profil/update', [HomeSettingController::class, 'profil_settings'])->name('profil.update');
-    Route::post('/gtk/update', [HomeSettingController::class, 'gtk_settings'])->name('gtk.update');
-    Route::post('/fasilitas/update', [HomeSettingController::class, 'fasilitas_settings'])->name('fasilitas.update');
-    Route::post('/keahlian/update', [HomeSettingController::class, 'keahlian_settings'])->name('keahlian.update');
-    Route::post('/informasi/update', [HomeSettingController::class, 'informasi_settings'])->name('informasi.update');
-    Route::post('/pkl/update', [HomeSettingController::class, 'pkl_settings'])->name('pkl.update');
-
-    Route::post('/spmb/update', [HomeSettingController::class, 'spmb_settings'])->name('spmb.update');
-    Route::post('/spmb/update', [HomeSettingController::class, 'updateSpmbSettings'])->name('spmb.update');
-
-    Route::get('/spmb/settings', [HomeSettingController::class, 'showSpmbSettings'])->name('spmb.settings');
-    Route::post('/spmb/update', [HomeSettingController::class, 'updateSpmbSettings'])->name('spmb.update');
+    Route::get('/get-kode-mapel', [SubjectController::class, 'getKodeMapel'])->name('get-kode-mapel');
+    Route::post('/pengaturan/update', [PageSettingsController::class, 'updateSection'])->name('pengaturan.update');
+    Route::get('/spmb/settings', [SpmbController::class, 'index'])->name('spmb.index');
+    Route::post('/spmb/update', [SpmbController::class, 'updateSpmbSettings'])->name('spmb.update');
 });
 
 require __DIR__ . '/auth.php';
