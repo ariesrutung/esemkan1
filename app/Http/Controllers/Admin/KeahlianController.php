@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class KeahlianController extends Controller
 {
@@ -32,8 +33,11 @@ class KeahlianController extends Controller
             $gambar->move(public_path('themes/frontend/assets/img/program-studi'), $gambarName);
         }
 
+        $slug = Str::slug($request->nama);
+
         Jurusan::create([
             'nama' => $request->nama,
+            'slug' => $slug,
             'kode' => $request->kode,
             'deskripsi' => $request->deskripsi,
             'gambar' => $gambarName,
@@ -51,8 +55,11 @@ class KeahlianController extends Controller
             'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
 
+        $slug = Str::slug($request->nama);
+
         $keahlian = Jurusan::findOrFail($id);
         $keahlian->nama = $request->nama;
+        $keahlian->slug = $slug;
         $keahlian->kode = $request->kode;
         $keahlian->deskripsi = $request->deskripsi;
 

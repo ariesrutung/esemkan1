@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('jurusan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('slug')->unique();
             $table->string('kode');
             $table->text('deskripsi');
             $table->string('gambar');

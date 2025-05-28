@@ -22,18 +22,6 @@ class DatabaseSeeder extends Seeder
             InformasiSeeder::class,
             GaleriSeeder::class,
 
-            HomeSection1Seeder::class,
-            HomeSection2Seeder::class,
-            HomeSection3Seeder::class,
-            HomeSection4Seeder::class,
-            HomeSection5Seeder::class,
-            HomeSection6Seeder::class,
-            HomeSection7Seeder::class,
-
-            ProfilSettingsSeeder::class,
-            KeahlianSettingsSeeder::class,
-            PklSettingsSeeder::class,
-            SpmbSettingsSeeder::class,
             SiswaSeeder::class,
             MapelSeeder::class,
         ]);

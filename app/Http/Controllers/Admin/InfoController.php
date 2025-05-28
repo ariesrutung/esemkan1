@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Informasi;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class InfoController extends Controller
 {
@@ -34,8 +35,11 @@ class InfoController extends Controller
             $gambar->move(public_path('themes/frontend/assets/img/education'), $gambarName);
         }
 
+        $slug = Str::slug($request->judul);
+
         Informasi::create([
             'judul' => $request->judul,
+            'slug' => $slug,
             'deskripsi' => $request->deskripsi,
             'gambar' => $gambarName,
             'tanggal' => $request->tanggal,
@@ -43,7 +47,7 @@ class InfoController extends Controller
             'tempat' => $request->tempat,
         ]);
 
-        return redirect()->route('admin.pen_informasi.index')->with('success', 'Data galeri berhasil ditambahkan.');
+        return redirect()->route('admin.pen_informasi.index')->with('success', 'Data informasi berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
@@ -57,8 +61,10 @@ class InfoController extends Controller
             'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $slug = Str::slug($request->judul);
         $informasi = Informasi::findOrFail($id);
         $informasi->judul = $request->judul;
+        $informasi->slug = $slug;
         $informasi->deskripsi = $request->deskripsi;
         $informasi->tanggal = $request->tanggal;
         $informasi->jam = $request->jam;
@@ -92,6 +98,6 @@ class InfoController extends Controller
 
         $informasi->delete();
 
-        return redirect()->route('admin.pen_informasi.index')->with('success', 'Data galeri berhasil dihapus.');
+        return redirect()->route('admin.pen_informasi.index')->with('success', 'Data informasi berhasil dihapus.');
     }
 }

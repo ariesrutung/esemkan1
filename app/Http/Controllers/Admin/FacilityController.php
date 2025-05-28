@@ -70,7 +70,7 @@ class FacilityController extends Controller
 
         $fasilitas->save();
 
-        return redirect()->route('admin.fasilitas_sekolah.index')->with('success', 'Data informasi berhasil diperbarui.');
+        return redirect()->route('admin.fasilitas_sekolah.index')->with('success', 'Data fasilitas berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -84,6 +84,6 @@ class FacilityController extends Controller
 
         $fasilitas->delete();
 
-        return redirect()->route('admin.fasilitas_sekolah.index')->with('success', 'Data galeri berhasil dihapus.');
+        return redirect()->route('admin.fasilitas_sekolah.index')->with('success', 'Data fasilitas berhasil dihapus.');
     }
 }

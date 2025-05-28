@@ -46,7 +46,7 @@ class PklController extends Controller
             'gambar' => $gambarName,
         ]);
 
-        return redirect()->route('admin.pk_lapangan.index')->with('success', 'Data pkl berhasil ditambahkan.');
+        return redirect()->route('admin.pk_lapangan.index')->with('success', 'Data PKL berhasil ditambahkan.');
     }
 
 
@@ -92,7 +92,7 @@ class PklController extends Controller
 
         $pkl->save();
 
-        return redirect()->route('admin.pk_lapangan.index')->with('success', 'Data informasi berhasil diperbarui.');
+        return redirect()->route('admin.pk_lapangan.index')->with('success', 'Data PKL berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -111,6 +111,6 @@ class PklController extends Controller
 
         $pkl->delete();
 
-        return redirect()->route('admin.pk_lapangan.index')->with('success', 'Data kegiatan berhasil dihapus.');
+        return redirect()->route('admin.pk_lapangan.index')->with('success', 'Data PKL berhasil dihapus.');
     }
 }

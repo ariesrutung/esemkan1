@@ -11,6 +11,7 @@ class Informasi extends Model
     protected $table = 'informasi';
     protected $fillable = [
         'judul',
+        'slug',
         'deskripsi',
         'gambar',
         'tanggal',

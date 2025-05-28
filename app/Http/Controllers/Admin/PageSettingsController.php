@@ -25,6 +25,6 @@ class PageSettingsController extends Controller
             PageSettings::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
-        return redirect()->back()->with('success', 'Identitas sekolah berhasil diperbarui.');
+        return redirect()->back()->with('success', 'Pengaturan halaman berhasil diperbarui.');
     }
 }

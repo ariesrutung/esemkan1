@@ -74,7 +74,8 @@
                             </div>
                         </div>
                         <div class="event-actions">
-                            <a href="#" class="btn-learn-more">Selengkapnya</a>
+                            <a href="{{ route('informasi.detail', $item->slug) }}" class="btn-learn-more">
+                                Selengkapnya </a>
                         </div>
                     </div>
                 </div>

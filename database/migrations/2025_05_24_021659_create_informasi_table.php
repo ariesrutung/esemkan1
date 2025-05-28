@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('informasi', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('slug')->unique();
             $table->text('deskripsi')->nullable();
             $table->string('gambar')->nullable();
             $table->date('tanggal')->nullable();

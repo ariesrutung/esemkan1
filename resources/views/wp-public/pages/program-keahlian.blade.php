@@ -15,13 +15,16 @@
                         <div class="profile-header">
                             <div class="profile-img">
                                 <img src="{{ asset('themes/frontend/assets/img/program-studi/' . $item->gambar) }}"
-                                    alt="Alumni" class="img-fluid">
+                                    alt="{{ $item->nama }}" class="img-fluid">
                             </div>
                         </div>
                         <div class="profile-body">
                             <h4>{{ $item->nama }}</h4>
                             <p>{{ $item->deskripsi }}</p>
-                            <a href="#" class="btn-view-profile">Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                            <a href="{{ route('jurusan.detail', $item->slug) }}" class="btn-view-profile">Detail {{
+                                $item->nama
+                                }}
+                                <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>

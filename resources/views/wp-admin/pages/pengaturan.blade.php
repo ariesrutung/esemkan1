@@ -12,6 +12,11 @@
                     <div class="card-body">
                         <form action="{{ route('admin.pengaturan.update') }}" method="POST">
                             @csrf
+                            @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                            @endif
                             <div class="row">
                                 @foreach ($pages_settings as $key => $value)
                                 <div class="col-md-6 mb-3">

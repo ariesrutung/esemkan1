@@ -24,14 +24,15 @@
                 </li>
                 <li>
                     <a href="{{ url('/program-keahlian') }}"
-                        class="{{ Request::is('program-keahlian') ? 'active' : '' }}">
+                        class="{{ Request::is('program-keahlian') || Request::is('program-keahlian/*') ? 'active' : '' }}">
                         Program Keahlian
                     </a>
                 </li>
                 <li><a href="{{ url('/pk_lapangan') }}" class="{{ Request::is('pk_lapangan') ? 'active' : '' }}">PKL</a>
                 </li>
                 <li><a href="{{ url('/informasi') }}"
-                        class="{{ Request::is('informasi') ? 'active' : '' }}">Informasi</a></li>
+                        class="{{ Request::is('informasi') || Request::is('informasi/*') ? 'active' : '' }}">Informasi</a>
+                </li>
                 <li>
                     <a href="{{ url('/spmb') }}" class="{{ Request::is('spmb') ? 'active' : '' }}">SPMB</a>
                 </li>

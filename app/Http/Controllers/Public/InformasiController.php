@@ -42,4 +42,14 @@ class InformasiController extends Controller
 
         return view('wp-public.pages.informasi', compact('prt_informasi', 'kategoriList', 'bulanList', 'pages_settings'));
     }
+
+    public function detail_informasi($slug)
+    {
+        $informasi = Informasi::where('slug', $slug)->firstOrFail();
+        $pages_settings = PageSettings::pluck('value', 'key')->toArray();
+
+        $related_informasi = Informasi::where('id', '!=', $informasi->id)->limit(10)->get();
+
+        return view('wp-public.pages.detail-informasi', compact('informasi', 'pages_settings', 'related_informasi'));
+    }
 }

@@ -47,7 +47,7 @@ class GuruTKController extends Controller
             'foto' => $fotoName,
         ]);
 
-        return redirect()->route('admin.gt_kependidikan.index')->with('success', 'Data gtk berhasil ditambahkan.');
+        return redirect()->route('admin.gt_kependidikan.index')->with('success', 'Data GTK berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
@@ -86,7 +86,7 @@ class GuruTKController extends Controller
 
         $gtk->save();
 
-        return redirect()->route('admin.gt_kependidikan.index')->with('success', 'Data informasi berhasil diperbarui.');
+        return redirect()->route('admin.gt_kependidikan.index')->with('success', 'Data GTK berhasil diperbarui.');
     }
 
 
@@ -101,6 +101,6 @@ class GuruTKController extends Controller
 
         $gtk->delete();
 
-        return redirect()->route('admin.gt_kependidikan.index')->with('success', 'Data galeri berhasil dihapus.');
+        return redirect()->route('admin.gt_kependidikan.index')->with('success', 'Data GTK berhasil dihapus.');
     }
 }

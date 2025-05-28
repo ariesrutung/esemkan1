@@ -39,6 +39,6 @@ class SpmbController extends Controller
             Spmb::updateOrCreate(['key' => 'gbr_brosur'], ['value' => $filename]);
         }
 
-        return back()->with('success', 'Pengaturan berhasil diperbarui.');
+        return back()->with('success', 'Data halaman SPMB berhasil diperbarui.');
     }
 }
