@@ -10,9 +10,18 @@ class GuruTKController extends Controller
 {
     public function index()
     {
+        $jabatanList = [
+            'Kepala Sekolah',
+            'Wakil Kepala Sekolah',
+            'Guru',
+            'Kepala Jurusan',
+            'Staf TU',
+            'Staf IT'
+        ];
+
         $gtk = Gtk::all();
         $pageTitle = 'Guru & Tenaga Kependidikan';
-        return view('wp-admin.pages.gtk', compact('gtk', 'pageTitle'));
+        return view('wp-admin.pages.gtk', compact('gtk', 'pageTitle', 'jabatanList'));
     }
 
     public function store(Request $request)

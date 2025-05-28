@@ -10,12 +10,12 @@ class Gtk extends Model
     protected $fillable = [
         'nama_lengkap',
         'jabatan',
+        'jenis_kelamin',
         'nip',
         'nuptk',
         'no_hp',
         'alamat',
         'foto',
-        'deskripsi',
     ];
 
     public function mapel()

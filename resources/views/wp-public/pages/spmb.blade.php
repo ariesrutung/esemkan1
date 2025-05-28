@@ -26,6 +26,7 @@
                         </div>
                     </div>
 
+
                     <div id="persyaratanRegistrasi" class="admissions-steps mt-5">
                         <h3>{{ $pages_settings['spmb_syarat_title'] ?? '' }}</h3>
                         <div class="steps-wrapper mt-4">
@@ -46,7 +47,18 @@
             <div class="col-lg-6">
                 <div class="admissions-requirements p-3" data-aos="fade-up">
                     <img class="img-fluid rounded"
-                        src="{{ asset('storage/spmb/brosur/'. $pages_settings['spmb_gbr_brosur']) }}" alt="" />
+                        src="{{ asset('themes/frontend/assets/img/spmb/'. $pages_settings['spmb_gbr_brosur']) }}"
+                        alt="" />
+
+                    <div class="mission-vision mt-5" data-aos="fade-up" data-aos-delay="100">
+                        <div class="mission">
+                            <span class="text-muted mx-3">Unduh brosur melalui tombol Unduh ini </span>
+                            <a href="{{ asset('themes/frontend/assets/img/spmb/' . ($pages_settings['spmb_gbr_brosur'] ?? '')) }}"
+                                class="btn btn-sm btn-outline-primary" download>
+                                Unduh
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

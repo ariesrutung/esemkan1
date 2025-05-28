@@ -43,7 +43,7 @@
                                         @if($item->foto)
                                         <img class="rounded-circle"
                                             src="{{ asset('themes/frontend/assets/img/gtk//' . $item->foto) }}"
-                                            alt="{{ $item->nama_lengkap }}" width="60">
+                                            alt="{{ $item->nama_lengkap }}" width="40">
                                         @else
                                         -
                                         @endif
@@ -95,7 +95,12 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="jabatan" class="form-label">Jabatan</label>
-                                <input type="text" class="form-control" name="jabatan" required>
+                                <select name="jabatan" class="form-control" required>
+                                    <option value="">-- Pilih Jabatan --</option>
+                                    @foreach ($jabatanList as $jabatan)
+                                    <option value="{{ $jabatan }}">{{ $jabatan }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
@@ -258,7 +263,14 @@
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="jabatan" class="form-label">Jabatan</label>
-                            <input type="text" class="form-control" name="jabatan" value="{{ $item->jabatan }}">
+                            <select name="jabatan" class="form-control" required>
+                                <option value="">-- Pilih Jabatan --</option>
+                                @foreach($jabatanList as $jabatan)
+                                <option value="{{ $jabatan }}" {{ $item->jabatan == $jabatan ? 'selected' : '' }}>
+                                    {{ $jabatan }}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
@@ -308,4 +320,5 @@
     </div>
 </div>
 @endforeach
+
 @endsection

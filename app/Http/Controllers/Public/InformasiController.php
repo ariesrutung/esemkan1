@@ -33,11 +33,15 @@ class InformasiController extends Controller
 
         // Ambil bulan dari data
         $bulanList = Informasi::selectRaw('MONTH(tanggal) as bulan')
+            ->whereNotNull('tanggal') // hindari NULL
             ->distinct()
             ->orderBy('bulan')
             ->pluck('bulan')
+            ->filter(fn($b) => is_numeric($b)) // tambahkan filter angka
             ->mapWithKeys(function ($bulan) {
-                return [$bulan => Carbon::create()->month($bulan)->locale('id')->isoFormat('MMMM')];
+                return [
+                    (int) $bulan => Carbon::create()->month((int) $bulan)->locale('id')->isoFormat('MMMM')
+                ];
             });
 
         return view('wp-public.pages.informasi', compact('prt_informasi', 'kategoriList', 'bulanList', 'pages_settings'));
