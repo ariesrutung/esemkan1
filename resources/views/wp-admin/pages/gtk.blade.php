@@ -28,6 +28,7 @@
                                     <th>Nama Lengkap</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Jabatan</th>
+                                    <th>Jurusan</th>
                                     <th>NIP</th>
                                     <th>NUPTK</th>
                                     <th>No. WA</th>
@@ -51,6 +52,7 @@
                                     <td>{{ $item->nama_lengkap }}</td>
                                     <td>{{ $item->jenis_kelamin }}</td>
                                     <td>{{ $item->jabatan }}</td>
+                                    <td>{{ $item->jurusan }}</td>
                                     <td>{{ $item->nip }}</td>
                                     <td>{{ $item->nuptk }}</td>
                                     <td>{{ $item->no_hp }}</td>
@@ -94,6 +96,14 @@
                                 <input type="text" class="form-control" name="nama_lengkap" required>
                             </div>
                             <div class="mb-3 col-md-6">
+                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                <select name="jenis_kelamin" class="form-control" required>
+                                    <option value="">-- Pilih --</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-6">
                                 <label for="jabatan" class="form-label">Jabatan</label>
                                 <select name="jabatan" class="form-control" required>
                                     <option value="">-- Pilih Jabatan --</option>
@@ -103,13 +113,15 @@
                                 </select>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                <select name="jenis_kelamin" class="form-control" required>
-                                    <option value="">-- Pilih --</option>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                <label for="jurusan" class="form-label">Jurusan</label>
+                                <select name="jurusan" class="form-control" required>
+                                    <option value="">-- Pilih Jurusan --</option>
+                                    @foreach ($jurusanList as $jurusan)
+                                    <option value="{{ $jabatan }}">{{ $jabatan }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
                             <div class="mb-3 col-md-6">
                                 <label for="no_hp" class="form-label">Nomor WA</label>
                                 <input type="text" class="form-control" name="no_hp" required>
@@ -262,6 +274,16 @@
                                 value="{{ $item->nama_lengkap }}">
                         </div>
                         <div class="mb-3 col-md-6">
+                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                            <select name="jenis_kelamin" class="form-control" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="Laki-laki" {{ $item->jenis_kelamin == 'Laki-laki' ? 'selected' : ''
+                                    }}>Laki-laki</option>
+                                <option value="Perempuan" {{ $item->jenis_kelamin == 'Perempuan' ? 'selected' : ''
+                                    }}>Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
                             <label for="jabatan" class="form-label">Jabatan</label>
                             <select name="jabatan" class="form-control" required>
                                 <option value="">-- Pilih Jabatan --</option>
@@ -273,13 +295,14 @@
                             </select>
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                            <select name="jenis_kelamin" class="form-control" required>
-                                <option value="">-- Pilih --</option>
-                                <option value="Laki-laki" {{ $item->jenis_kelamin == 'Laki-laki' ? 'selected' : ''
-                                    }}>Laki-laki</option>
-                                <option value="Perempuan" {{ $item->jenis_kelamin == 'Perempuan' ? 'selected' : ''
-                                    }}>Perempuan</option>
+                            <label for="jurusan" class="form-label">Jurusan</label>
+                            <select name="jurusan" class="form-control" required>
+                                <option value="">-- Pilih Jurusan --</option>
+                                @foreach($jurusanList as $jurusan)
+                                <option value="{{ $jurusan }}" {{ $item->jurusan == $jurusan ? 'selected' : '' }}>
+                                    {{ $jurusan }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3 col-md-6">

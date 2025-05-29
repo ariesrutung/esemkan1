@@ -137,6 +137,13 @@
                         <p>All Halaman</p>
                     </a>
                 </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.webadmin.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.webadmin.index') ? 'active' : '' }}">
+                        <i class="bi bi-people-fill nav-icon"></i>
+                        <p>Pengelola Web</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

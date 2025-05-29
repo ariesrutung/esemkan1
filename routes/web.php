@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\PageSettingsController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SpmbController;
+use App\Http\Controllers\Admin\WebAdminController;
 
 Route::get('/', [BerandaController::class, 'index']);
 Route::get('/profil', [ProfilController::class, 'index']);
@@ -55,6 +56,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('pk_lapangan', PklController::class);
     Route::resource('siswa_siswi', SiswaController::class);
     Route::resource('matapelajaran', SubjectController::class);
+    Route::resource('webadmin', WebAdminController::class);
+
     Route::put('sch-identity-update', [IdentityController::class, 'update'])->name('sch.identity.update');
     Route::get('/get-kode-mapel', [SubjectController::class, 'getKodeMapel'])->name('get-kode-mapel');
     Route::get('pengaturan', [PageSettingsController::class, 'index'])->name('pengaturan.index');

@@ -9,13 +9,13 @@
                     <h4 class="departments-title">Jurusan</h4>
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item">
-                            <a class="nav-link {{ request('jabatan') == null ? 'active' : '' }}" href="/gtk">Semua</a>
+                            <a class="nav-link {{ request('jurusan') == null ? 'active' : '' }}" href="/gtk">Semua</a>
                         </li>
 
-                        @foreach($daftarJabatan as $item)
+                        @foreach($daftarJurusan as $item)
                         <li class="nav-item">
-                            <a class="nav-link {{ request('jabatan') == $item ? 'active' : '' }}"
-                                href="{{ url('/gtk?jabatan=' . urlencode($item)) }}">
+                            <a class="nav-link {{ request('jurusan') == $item ? 'active' : '' }}"
+                                href="{{ url('/gtk?jurusan=' . urlencode($item)) }}">
                                 {{ $item }}
                             </a>
                         </li>
@@ -28,7 +28,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="faculty--staff-tab-1">
                         <div class="department-info mb-4">
-                            <h3 class="mt-3">{{ $jabatan ?? 'Semua Guru dan Tenaga Pendidik' }}</h3>
+                            <h3 class="mt-3">{{ $jurusan ?? 'Semua Guru dan Tenaga Pendidik' }}</h3>
                             <p>{{ $deskripsi ?? 'List Guru' }}</p>
                         </div>
                         <div class="row g-4">
@@ -36,12 +36,12 @@
                             <div class="col-md-4 col-lg-3">
                                 <div class="faculty-card">
                                     <div class="faculty-image">
-                                        <img src="{{ asset('themes/frontend/assets/img/person/' . $item->foto) }}"
+                                        <img src="{{ asset('themes/frontend/assets/img/gtk/' . $item->foto) }}"
                                             class="img-fluid" alt="{{ $item->nama }}">
                                     </div>
                                     <div class="faculty-info">
                                         <h4>{{ $item->nama_lengkap }}</h4>
-                                        <p class="faculty-title">{{ $item->jabatan }}</p>
+                                        <p class="faculty-title">{{ $item->jurusan }}</p>
                                         <p class="faculty-title">NIP: {{ $item->nip }}</p>
                                     </div>
                                 </div>

@@ -7428,6 +7428,19 @@ section,
     margin-top: 1.5rem;
 }
 
+@media (max-width: 576px) {
+    .alumni .notable-alumni {
+        padding: 2rem !important;
+        background-color: color-mix(
+            in srgb,
+            var(--default-color),
+            transparent 96%
+        );
+        border-radius: 20px;
+        margin: 4rem 0;
+    }
+}
+
 .alumni .notable-alumni {
     padding: 5rem;
     background-color: color-mix(in srgb, var(--default-color), transparent 96%);

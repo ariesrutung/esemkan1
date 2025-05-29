@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             GaleriSeeder::class,
 
             SiswaSeeder::class,
-            MapelSeeder::class,
+            SubjectSeeder::class,
         ]);
     }
 }

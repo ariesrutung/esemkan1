@@ -10,6 +10,7 @@ class Gtk extends Model
     protected $fillable = [
         'nama_lengkap',
         'jabatan',
+        'jurusan',
         'jenis_kelamin',
         'nip',
         'nuptk',
@@ -17,9 +18,4 @@ class Gtk extends Model
         'alamat',
         'foto',
     ];
-
-    public function mapel()
-    {
-        return $this->hasMany(Subject::class, 'gtk_id');
-    }
 }

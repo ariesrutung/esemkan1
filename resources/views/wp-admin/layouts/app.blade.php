@@ -50,21 +50,24 @@
         @include('wp-admin.partials.sidenavbar')
 
         <div class="content-wrapper">
+            @if(empty($isErrorPage) || !$isErrorPage)
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>{{ $pageTitle }}</h1>
+                            <h1>{{ $pageTitle ?? '' }}</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ ('/admin/dashboard') }}">Home</a></li>
-                                <li class="breadcrumb-item active">{{ $pageTitle }}</li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Home</a></li>
+                                <li class="breadcrumb-item active">{{ $pageTitle ?? '' }}</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </section>
+            @endif
+
             @yield('content')
             <aside class="control-sidebar control-sidebar-dark">
             </aside>
@@ -104,6 +107,7 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "stateSave": true, // <--- Tambahkan ini
                 });     
             });
 

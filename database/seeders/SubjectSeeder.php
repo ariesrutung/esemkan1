@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Subject;
 
-class MapelSeeder extends Seeder
+class SubjectSeeder extends Seeder
 {
     public function run(): void
     {
@@ -125,8 +125,8 @@ class MapelSeeder extends Seeder
         ];
 
 
-        foreach ($data as $mapel) {
-            Subject::create($mapel);
+        foreach ($data as $subject) {
+            Subject::create($subject);
         }
     }
 }

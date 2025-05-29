@@ -18,10 +18,19 @@ class GuruTKController extends Controller
             'Staf TU',
             'Staf IT'
         ];
+        $jurusanList = [
+            'Umum',
+            'Akuntansi',
+            'Layanan Perbankan',
+            'Manajemen Perkantoran',
+            'Manajemen Logistik',
+            'Bisnis Ritel',
+            'Usaha Layanan Pariwisata',
+        ];
 
         $gtk = Gtk::all();
         $pageTitle = 'Guru & Tenaga Kependidikan';
-        return view('wp-admin.pages.gtk', compact('gtk', 'pageTitle', 'jabatanList'));
+        return view('wp-admin.pages.gtk', compact('gtk', 'pageTitle', 'jabatanList', 'jurusanList'));
     }
 
     public function store(Request $request)
@@ -29,6 +38,7 @@ class GuruTKController extends Controller
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'jabatan' => 'required|string',
+            'jurusan' => 'required|string',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'nip' => 'required|string',
             'nuptk' => 'required|string',
@@ -48,6 +58,7 @@ class GuruTKController extends Controller
         Gtk::create([
             'nama_lengkap' => $request->nama_lengkap,
             'jabatan' => $request->jabatan,
+            'jurusan' => $request->jurusan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'nip' => $request->nip,
             'nuptk' => $request->nuptk,
@@ -64,6 +75,7 @@ class GuruTKController extends Controller
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'jabatan' => 'required|string',
+            'jurusan' => 'required|string',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'nip' => 'nullable|string',
             'nuptk' => 'nullable|string',
@@ -75,6 +87,7 @@ class GuruTKController extends Controller
         $gtk = Gtk::findOrFail($id);
         $gtk->nama_lengkap = $request->nama_lengkap;
         $gtk->jabatan = $request->jabatan;
+        $gtk->jurusan = $request->jurusan;
         $gtk->jenis_kelamin = $request->jenis_kelamin;
         $gtk->no_hp = $request->no_hp;
         $gtk->nip = $request->nip;

@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <i class="fas fa-table me-1"></i>
-                                Data Fasilitas SMK Negeri 1 Manokwari
+                                Data Mata Pelajaran
                             </div>
                             <div class="col-md-2 d-flex justify-content-end">
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
@@ -27,7 +27,6 @@
                                     <th>Nama</th>
                                     <th>Kode</th>
                                     <th>Deskripsi</th>
-                                    <th>Guru Pengampu</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -38,7 +37,6 @@
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->kode }}</td>
                                     <td>{{ $item->deskripsi }}</td>
-                                    <td>{{ $item->gtk ? $item->gtk->nama_lengkap : '-' }}</td>
                                     <td class="d-flex gap-2">
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#viewModal{{ $item->id }}">Lihat</button>
@@ -80,17 +78,6 @@
                         <div class="mb-3 col-md-4">
                             <label for="kode" class="form-label">Kode Mata Pelajaran</label>
                             <input type="text" id="kode" name="kode" class="form-control" readonly>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <div class="form-group">
-                                <label>Pilih Guru Pengampu</label>
-                                <select class="form-control select2" name="gtk_id" style="width: 100%;" required>
-                                    <option value="" disabled selected>Pilih Guru</option>
-                                    @foreach ($gtk as $guru)
-                                    <option value="{{ $guru->id }}">{{ $guru->nama_lengkap }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                         <div class="mb-3 col-md-12">
                             <label for="deskripsi" class="form-label">Deskripsi Mata Pelajaran</label>
@@ -158,10 +145,6 @@
                         <td>{{ $item->kode }}</td>
                     </tr>
                     <tr>
-                        <th>Guru</th>
-                        <td>{{ $item->gtk ? $item->gtk->nama_lengkap : '-' }}</td>
-                    </tr>
-                    <tr>
                         <th>Deskripsi</th>
                         <td>{{ $item->deskripsi }}</td>
                     </tr>
@@ -184,7 +167,6 @@
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <!-- pastikan method PUT untuk update -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Ubah Mata Pelajaran</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -202,20 +184,6 @@
                             <label for="kode{{ $item->id }}" class="form-label">Kode Mata Pelajaran</label>
                             <input type="text" id="kode{{ $item->id }}" name="kode" class="form-control"
                                 value="{{ old('kode', $item->kode) }}" readonly>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <div class="form-group">
-                                <label for="gtk_id{{ $item->id }}">Pilih Guru Pengampu</label>
-                                <select class="form-control select2" id="gtk_id{{ $item->id }}" name="gtk_id"
-                                    style="width: 100%;" required>
-                                    <option value="" disabled>Pilih Guru</option>
-                                    @foreach ($gtk as $guru)
-                                    <option value="{{ $guru->id }}" {{ $item->gtk_id == $guru->id ? 'selected' : '' }}>
-                                        {{ $guru->nama_lengkap }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                         <div class="mb-3 col-md-12">
                             <label for="deskripsi{{ $item->id }}" class="form-label">Deskripsi Mata Pelajaran</label>

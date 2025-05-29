@@ -26,9 +26,9 @@ class DashboardController extends Controller
         $jumlahPerempuan = Siswa::where('jenis_kelamin', 'Perempuan')->count();
 
         // Hitung jumlah guru per mata pelajaran
-        $guruPerMapel = Subject::select('nama')
-            ->groupBy('nama')
-            ->selectRaw('nama, COUNT(gtk_id) as total')
+        $guruPerJurusan = Gtk::select('jurusan')
+            ->groupBy('jurusan')
+            ->selectRaw('jurusan, COUNT(jurusan) as total')
             ->get();
 
 
@@ -41,7 +41,7 @@ class DashboardController extends Controller
             'jumlahFasilitas',
             'jumlahLaki',
             'jumlahPerempuan',
-            'guruPerMapel',
+            'guruPerJurusan',
         ));
     }
 }

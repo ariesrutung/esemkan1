@@ -7,35 +7,19 @@
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
                     <div class="intro-content">
-                        <h2 class="fw-bold">Experience Our Campus</h2>
-                        <p class="lead">Discover state-of-the-art facilities designed to inspire learning and growth</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin scelerisque magna vitae eros
-                            faucibus, vitae finibus massa pharetra. Nullam egestas dolor in condimentum faucibus.</p>
-                        <div class="stats-container">
-                            <div class="stat-item">
-                                <span class="stat-number">120+</span>
-                                <span class="stat-label">Acres</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">45</span>
-                                <span class="stat-label">Buildings</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">15k+</span>
-                                <span class="stat-label">Students</span>
-                            </div>
-                        </div>
+                        <h2 class="fw-bold">{{ $pages_settings['fasilitas_title'] }}</h2>
+                        <p class="lead mt-4">{{ $pages_settings['fasilitas_short_desciption'] }}</p>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                     <div class="intro-image-container">
                         <div class="intro-image main-image">
-                            <img src="{{ asset('themes/frontend/assets/img/fasilitas/campus-1.webp') }}"
-                                alt="Main Campus" class="img-fluid rounded">
+                            <img src="{{ asset('themes/frontend/assets/img/fasilitas/' . ($pages_settings['fasilitas_gambar_1'] ?? '-')) }}"
+                                alt="Tampak Depan Sekolah" class="img-fluid rounded">
                         </div>
                         <div class="intro-image accent-image">
-                            <img src="{{ asset('themes/frontend/assets/img/fasilitas/campus-2.webp') }}"
-                                alt="Campus Feature" class="img-fluid rounded">
+                            <img src="{{ asset('themes/frontend/assets/img/fasilitas/' . ($pages_settings['fasilitas_gambar_2'] ?? '-')) }}"
+                                alt="Halaman Tengah Sekolah" class="img-fluid rounded">
                         </div>
                         <div class="tour-button">
                             <a href="#" class="btn-tour"><i class="bi bi-play-circle-fill"></i> Virtual Tour</a>

@@ -12,7 +12,7 @@ class SubjectController extends Controller
     public function index()
     {
         $pageTitle = 'Mata Pelajaran';
-        $mapel = Subject::with('gtk')->get(); // load guru pengampu jika pakai relasi
+        $mapel = Subject::all();
         $gtk = Gtk::all();
 
         return view('wp-admin.pages.matapelajaran', compact('pageTitle', 'mapel', 'gtk'));
@@ -23,7 +23,6 @@ class SubjectController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'gtk_id' => 'nullable|exists:gtk,id',
         ]);
 
         $kode = $this->generateKodeMapel($request->nama);
@@ -32,7 +31,6 @@ class SubjectController extends Controller
             'nama' => $request->nama,
             'kode' => $kode,
             'deskripsi' => $request->deskripsi,
-            'gtk_id' => $request->gtk_id,
         ]);
 
         return redirect()->route('admin.matapelajaran.index')->with('success', 'Mata pelajaran berhasil ditambahkan.');
@@ -68,14 +66,12 @@ class SubjectController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'gtk_id' => 'nullable|exists:gtk,id',
         ]);
 
         $matapelajaran = Subject::findOrFail($id);
         $matapelajaran->update([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'gtk_id' => $request->gtk_id,
         ]);
 
         return redirect()->route('admin.matapelajaran.index')->with('success', 'Mata pelajaran berhasil diperbarui.');

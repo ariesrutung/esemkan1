@@ -7,18 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('mapel', function (Blueprint $table) {
+        Schema::create('subject', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('kode')->unique();
             $table->text('deskripsi')->nullable();
-            $table->foreignId('gtk_id')->nullable()->constrained('gtk')->nullOnDelete();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('mapel');
+        Schema::dropIfExists('subject');
     }
 };
