@@ -87,47 +87,6 @@
                 @endforeach
             </div>
         </div>
-
-        <div class="campus-gallery-section" data-aos="fade-up" data-aos-delay="300">
-
-            <div class="gallery-grid">
-                <div class="gallery-item large" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="{{ asset('themes/frontend/assets/img/education/campus-3.webp') }}" alt="Library"
-                        class="img-fluid" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Central Library</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="{{ asset('themes/frontend/assets/img/education/campus-8.webp') }}" alt="Student Center"
-                        class="img-fluid" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Student Center</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="{{ asset('themes/frontend/assets/img/education/campus-9.webp') }}" alt="Dormitory"
-                        class="img-fluid" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Dormitories</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="{{ asset('themes/frontend/assets/img/education/campus-10.webp') }}" alt="Study Areas"
-                        class="img-fluid" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Study Areas</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
-                    <img src="{{ asset('themes/frontend/assets/img/education/campus-5.webp') }}" alt="Sports Complex"
-                        class="img-fluid" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h4>Sports Complex</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 

@@ -254,7 +254,8 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ ('/galeri') }}" class="btn-view-all">{{ $pages_settings['home_section6_button_title'] ?? '-'
+            <a href="{{ ('/all_galeries') }}" class="btn-view-all">{{ $pages_settings['home_section6_button_title'] ??
+                '-'
                 }}</a>
         </div>
     </div>

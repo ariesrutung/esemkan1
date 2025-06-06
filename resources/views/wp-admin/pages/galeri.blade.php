@@ -24,9 +24,9 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
+                                    <th>Gambar</th>
                                     <th>Judul</th>
                                     <th>Deskripsi</th>
-                                    <th>Gambar</th>
                                     <th>Tanggal</th>
                                     <th>Jam</th>
                                     <th>Tempat</th>
@@ -87,6 +87,22 @@
                         <div class="mb-3 col-md-6">
                             <label for="judul" class="form-label">Judul</label>
                             <input type="text" class="form-control" name="judul" required>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="kategori" class="form-label">Kategori</label>
+                            <select class="form-control" name="kategori" required>
+                                <option selected>-- Pilih Kategori --</option>
+                                <option value="kbm">Kegiatan Belajar Mengajar</option>
+                                <option value="ekskul">Ekstrakurikuler</option>
+                                <option value="uhb">Upacara & Hari Besar</option>
+                                <option value="pp">Prestasi & Penghargaan</option>
+                                <option value="ks">Kegiatan Sekolah</option>
+                                <option value="kst">Kunjungan & Study Tour</option>
+                                <option value="fs">Fasilitas Sekolah</option>
+                                <option value="ekps">Event Khusus & Pentas Seni</option>
+                                <option value="pscsr">Program Sekolah & CSR</option>
+                                <option value="dokalumni">Dokumentasi Alumni</option>
+                            </select>
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="deskripsi" class="form-label">Deskripsi</label>

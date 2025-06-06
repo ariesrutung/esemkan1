@@ -20,7 +20,7 @@ class GtkController extends Controller
         // Deskripsi berdasarkan jurusan
         $deskripsi = null;
         if ($jurusan) {
-            $deskripsi = "Berikut ini daftar" . $jurusan;
+            $deskripsi = "Berikut ini daftar guru untuk Jurusan " . $jurusan;
         }
 
         $daftarJurusan = Gtk::select('jurusan')->distinct()->pluck('jurusan');

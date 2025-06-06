@@ -37,7 +37,8 @@ Route::get('/informasi/{slug}', [InformasiController::class, 'detail_informasi']
 Route::get('/spmb', [SubmissionController::class, 'index']);
 Route::get('/pk_lapangan', [PklapangController::class, 'index']);
 
-Route::get('/galeri', fn() => view('wp-public.pages.galeri'));
+
+Route::get('/all_galeries', [FasilitasController::class, 'all_galeries']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
