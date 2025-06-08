@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('themes/backend/dist/css/adminlte.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('themes/backend/plugins/select2/css/select2.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('themes/backend/plugins/summernote/summernote-bs4.min.css') }}">
     <style>
         .gap-2 {
             gap: 3px !important;
@@ -92,6 +94,8 @@
         <script src="{{ asset('themes/backend/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
         <script src="{{ asset('themes/backend/dist/js/adminlte.min.js') }}"></script>
         <script src="{{ asset('themes/backend/plugins/select2/js/select2.full.min.js') }}"></script>
+
+        <script src="{{ asset('themes/backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
         <script>
             $(function () {
                 $("#example1").DataTable({
@@ -118,6 +122,10 @@
                     dropdownParent: $('#modalTambahMapel'),
                     width: 'resolve'
                 });
+            });
+
+            $('#uraian_singkat').summernote({
+                height: 100
             });
         </script>
 </body>

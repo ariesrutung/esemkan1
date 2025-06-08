@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
             SiswaSeeder::class,
             SubjectSeeder::class,
+            JabatanSeeder::class,
         ]);
     }
 }

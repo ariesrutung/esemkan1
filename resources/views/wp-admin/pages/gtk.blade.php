@@ -24,6 +24,7 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
+                                    <th>ID</th>
                                     <th>Foto</th>
                                     <th>Nama Lengkap</th>
                                     <th>Jenis Kelamin</th>
@@ -40,6 +41,7 @@
                                 @foreach ($gtk as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->id }}</td>
                                     <td>
                                         @if($item->foto)
                                         <img class="rounded-circle"

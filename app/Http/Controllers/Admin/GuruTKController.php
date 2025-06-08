@@ -47,12 +47,12 @@ class GuruTKController extends Controller
             'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
 
-        $fotoName = null;
+        $fotoName = '6c757d.png'; // default jika tidak ada upload
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $fotoName = time() . '_' . $foto->getClientOriginalName();
-            $foto->move(public_path('themes/frontend/assets/img/gtk'), $fotoName);
+            $foto->move(public_path('themes/frontend/assets/img/gtk/'), $fotoName);
         }
 
         Gtk::create([
@@ -85,18 +85,21 @@ class GuruTKController extends Controller
         ]);
 
         $gtk = Gtk::findOrFail($id);
-        $gtk->nama_lengkap = $request->nama_lengkap;
-        $gtk->jabatan = $request->jabatan;
-        $gtk->jurusan = $request->jurusan;
-        $gtk->jenis_kelamin = $request->jenis_kelamin;
-        $gtk->no_hp = $request->no_hp;
-        $gtk->nip = $request->nip;
-        $gtk->nuptk = $request->nuptk;
-        $gtk->alamat = $request->alamat;
+
+        $gtk->fill($request->only([
+            'nama_lengkap',
+            'jabatan',
+            'jurusan',
+            'jenis_kelamin',
+            'nip',
+            'nuptk',
+            'no_hp',
+            'alamat'
+        ]));
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($gtk->foto && file_exists(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto))) {
+            // Hapus foto lama jika bukan 6c757d.png
+            if ($gtk->foto && $gtk->foto !== '6c757d.png' && file_exists(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto))) {
                 unlink(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto));
             }
 
@@ -111,13 +114,12 @@ class GuruTKController extends Controller
         return redirect()->route('admin.gt_kependidikan.index')->with('success', 'Data GTK berhasil diperbarui.');
     }
 
-
     public function destroy($id)
     {
         $gtk = Gtk::findOrFail($id);
 
-        // Hapus foto dari storage jika ada
-        if ($gtk->foto && file_exists(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto))) {
+        // Jangan hapus 6c757d.png
+        if ($gtk->foto && $gtk->foto !== '6c757d.png' && file_exists(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto))) {
             unlink(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto));
         }
 

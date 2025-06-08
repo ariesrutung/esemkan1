@@ -65,8 +65,22 @@
                 <li class="nav-item mb-1">
                     <a href="{{ route('admin.matapelajaran.index') }}"
                         class="nav-link {{ request()->routeIs('admin.matapelajaran.index') ? 'active' : '' }}">
-                        <i class="bi bi-bar-chart-fill nav-icon"></i>
+                        <i class="bi bi-book nav-icon"></i>
                         <p>Mata Pelajaran</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.courses.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.courses.index') ? 'active' : '' }}">
+                        <i class="bi bi-journal-album nv-icon"></i>
+                        <p>Materi Jurusan</p>
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.jabatan.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.jabatan.index') ? 'active' : '' }}">
+                        <i class="bi bi-bezier nav-icon"></i>
+                        <p>Jabatan</p>
                     </a>
                 </li>
 

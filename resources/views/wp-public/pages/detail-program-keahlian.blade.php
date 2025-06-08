@@ -40,99 +40,21 @@
 
                     <h3 class="mt-5">Materi Khusus</h3>
                     <div class="schedule-table">
+                        @foreach($courses->groupBy('kelas') as $kelas => $materiList)
                         <div class="schedule-row">
-                            <div class="schedule-time">Kelas 10 - Pengenalan Dasar Akuntansi</div>
+                            <div class="schedule-time">{{ 'Kelas ' . $kelas }}</div>
                             <div class="schedule-activity">
                                 <ul class="event-highlights">
+                                    @foreach($materiList as $materi)
                                     <li>
                                         <i class="bi bi-check-circle"></i>
-                                        <span>Pengantar Akuntansi dan Bisnis</span>
+                                        <span>{{ $materi->judul_materi }}</span>
                                     </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Pengenalan Siklus Akuntansi</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>K3 (Keselamatan, Kesehatan Kerja) dalam dunia kerja akuntansi</span>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
-                        <div class="schedule-row">
-                            <div class="schedule-time">Kelas XI - Pendalaman Akuntansi Perusahaan Dagang</div>
-                            <div class="schedule-activity">
-                                <ul class="event-highlights">
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Siklus Akuntansi Perusahaan Dagang</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Pencatatan dalam Jurnal Khusus</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Laporan Keuangan Perusahaan Dagang</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Penggunaan Aplikasi Akuntansi</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="schedule-row">
-                            <div class="schedule-time">Kelas XII - Akuntansi Lanjutan dan Kesiapan Kerja</div>
-                            <div class="schedule-activity">
-                                <ul class="event-highlights">
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Akuntansi Perusahaan Manufaktur</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Perpajakan dan Pengantar Akuntansi Pemerintahan</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Simulasi dan Praktik Kerja Lapangan (PKL)</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Proyek Akhir Akuntansi</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="event-gallery mt-5" data-aos="fade-up" data-aos-delay="300">
-                        <h3>Galeri {{ $jurusan->nama }}</h3>
-                        <p>Dokumentasi kegiatan Jurusan {{ $jurusan->nama }}</p>
-                        <div class="row g-4 mt-2">
-                            <div class="col-md-4">
-                                <a href="{{ asset('themes/frontend/assets/img/education/events-1.webp') }}"
-                                    class="glightbox">
-                                    <img src="{{ asset('themes/frontend/assets/img/education/events-1.webp') }}"
-                                        alt="Event Gallery" class="img-fluid rounded">
-                                </a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="{{ asset('themes/frontend/assets/img/education/events-2.webp') }}"
-                                    class="glightbox">
-                                    <img src="{{ asset('themes/frontend/assets/img/education/events-2.webp') }}"
-                                        alt="Event Gallery" class="img-fluid rounded">
-                                </a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="{{ asset('themes/frontend/assets/img/education/events-3.webp') }}"
-                                    class="glightbox">
-                                    <img src="{{ asset('themes/frontend/assets/img/education/events-3.webp') }}"
-                                        alt="Event Gallery" class="img-fluid rounded">
-                                </a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -143,11 +65,12 @@
                         <h3>Ketua Jurusan</h3>
                         <div class="organizer-details">
                             <div class="organizer-image">
-                                <img src="{{ asset('themes/frontend/assets/img/person/person-m-5.webp') }}"
-                                    class="img-fluid rounded" alt="Organizer">
+                                <img src="{{ asset('themes/frontend/assets/img/gtk/' . ($jurusan->ketuaJurusan->foto ?? 'default.jpg')) }}"
+                                    class="img-fluid rounded"
+                                    alt="{{ $jurusan->ketuaJurusan->nama_lengkap ?? 'Default' }}">
                             </div>
                             <div class="organizer-content">
-                                <h4>Mutifa Rahmawati, S.Pd.</h4>
+                                <h4>{{ $jurusan->ketuaJurusan->nama_lengkap ?? 'Belum Tersedia' }}</h4>
                             </div>
                         </div>
                     </div>
@@ -188,6 +111,25 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="event-gallery mt-5" data-aos="fade-up" data-aos-delay="300">
+                <h3>Galeri {{ $jurusan->nama }}</h3>
+                <p>Dokumentasi kegiatan Jurusan {{ $jurusan->nama }}</p>
+                <div class="row g-4 mt-2">
+                    @forelse($courses as $course)
+                    <div class="col-md-3">
+                        <a href="{{ asset('themes/frontend/assets/img/courses/' . ($course->gambar ?? 'default.webp')) }}"
+                            class="glightbox">
+                            <img src="{{ asset('themes/frontend/assets/img/courses/' . ($course->gambar ?? 'default.webp')) }}"
+                                alt="{{ $course->judul_materi }}" class="img-fluid rounded">
+                        </a>
+                    </div>
+                    @empty
+                    <p class="text-muted">Belum ada dokumentasi ditambahkan.</p>
+                    @endforelse
+                </div>
+            </div>
+        </div>
     </div>
 
 </section>

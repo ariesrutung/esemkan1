@@ -167,7 +167,8 @@
                                 <div class="program-content">
                                     <h3>{{ $item->nama }}</h3>
                                     <p>{{ $item->deskripsi }}</p>
-                                    <a href="#" class="program-btn"><span>Selengkapnya</span> <i
+                                    <a href="{{ route('jurusan.detail', $item->slug) }}"
+                                        class="program-btn"><span>Selengkapnya</span> <i
                                             class="bi bi-arrow-right"></i></a>
                                 </div>
                             </div>

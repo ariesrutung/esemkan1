@@ -17,5 +17,11 @@ class Gtk extends Model
         'no_hp',
         'alamat',
         'foto',
+        'gtk_id',
     ];
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan', 'nama');
+    }
 }
