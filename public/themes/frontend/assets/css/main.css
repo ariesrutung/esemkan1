@@ -1097,7 +1097,7 @@ section,
 
 .about .image-stack {
     position: relative;
-    height: 500px;
+    /* height: 500px; */
 }
 
 @media (max-width: 992px) {

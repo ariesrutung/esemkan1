@@ -92,59 +92,52 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <section id="stats" class="stats section">
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="stats-overview" data-aos="fade-right" data-aos-delay="200">
-                            <h2 class="stats-title">{{ $pages_settings['home_section3_title'] ?? '-' }}</h2>
-                            <p class="stats-description">{{ $pages_settings['home_section3_subtitle']?? '-' }}
-                            </p>
-                            <div class="stats-cta">
-                                <a href="{{ ('/program-keahlian') }}" class="btn btn-primary">{{
-                                    $pages_settings['home_section3_button1_name']?? '-' }}</a>
-                                <a href="{{ ('/spmb') }}" class="btn btn-outline">{{
-                                    $pages_settings['home_section3_button2_name']??
-                                    '-' }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    @php
-                    $benefits = [];
-                    for ($i = 1; $i <= 4; $i++) { $benefits[]=[ 'icon'=>
-                        $pages_settings["home_section3_benefit{$i}_icon"] ?? 'bi
-                        bi-circle',
-                        'title' => $pages_settings["home_section3_benefit{$i}_title"] ?? '-',
-                        'subtitle' => $pages_settings["home_section3_benefit{$i}_subtitle"] ?? '-',
-                        ];
-                        }
-                        @endphp
-
-                        <div class="col-lg-6">
-                            <div class="row g-4">
-                                @foreach($benefits as $index => $benefit)
-                                <div class="col-md-6">
-                                    <div class="stats-card" data-aos="zoom-in"
-                                        data-aos-delay="{{ 300 + ($index * 100) }}">
-                                        <div class="stats-icon">
-                                            @if(Str::startsWith($benefit['icon'], 'bi '))
-                                            <i class="{{ $benefit['icon'] }}"></i>
-                                            @else
-                                            <img src="{{ asset($benefit['icon']) }}" alt="icon"
-                                                style="width: 40px; height: 40px;">
-                                            @endif
-                                        </div>
-                                        <div class="stats-label">{{ $benefit['title'] }}</div>
-                                        <p class="stats-description">{{ $benefit['subtitle'] }}</p>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
+<section id="stats" class="bg-dark stats section pt-0">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+            <div class="col-lg-12 mt-4">
+                <div class="stats-overview" data-aos="fade-right" data-aos-delay="200">
+                    <h2 class="stats-title text-center text-white">{{ $pages_settings['home_section3_title'] ?? '-' }}</h2>
+                    <p class="stats-description text-center text-white">{{ $pages_settings['home_section3_subtitle']?? '-' }}
+                    </p>
                 </div>
             </div>
-        </section>
+            @php
+            $benefits = [];
+            for ($i = 1; $i <= 4; $i++) { $benefits[]=[ 'icon'=>
+                $pages_settings["home_section3_benefit{$i}_icon"] ?? 'bi
+                bi-circle',
+                'title' => $pages_settings["home_section3_benefit{$i}_title"] ?? '-',
+                'subtitle' => $pages_settings["home_section3_benefit{$i}_subtitle"] ?? '-',
+                ];
+                }
+                @endphp
+
+                <div class="col-lg-12">
+                    <div class="row g-4">
+                        @foreach($benefits as $index => $benefit)
+                        <div class="col-md-3">
+                            <div class="stats-card" data-aos="zoom-in"
+                                data-aos-delay="{{ 300 + ($index * 100) }}">
+                                <div class="stats-icon">
+                                    @if(Str::startsWith($benefit['icon'], 'bi '))
+                                    <i class="{{ $benefit['icon'] }}"></i>
+                                    @else
+                                    <img src="{{ asset($benefit['icon']) }}" alt="icon"
+                                        style="width: 40px; height: 40px;">
+                                    @endif
+                                </div>
+                                <div class="stats-label">{{ $benefit['title'] }}</div>
+                                <p class="stats-description">{{ $benefit['subtitle'] }}</p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+        </div>
     </div>
 </section>
 
