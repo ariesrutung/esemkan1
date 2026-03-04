@@ -38,8 +38,9 @@
                                     <td>
                                         @if($item->gambar)
                                         <img class="img-fluid"
-                                            src="{{ asset('themes/frontend/assets/img/program-studi//' . $item->gambar) }}"
-                                            alt="{{ $item->nama }}" width="60">
+                                            src="{{ asset('storage/' . $item->gambar) }}"
+                                            alt="{{ $item->nama }}"
+                                            width="60">
                                         @else
                                         -
                                         @endif
@@ -168,8 +169,7 @@
                         <th>Gambar</th>
                         <td>
                             @if($item->gambar)
-                            <img src="{{ asset('themes/frontend/assets/img/program-studi/' . $item->gambar) }}"
-                                width="200">
+                            <img src="{{ asset('storage/' . $item->gambar) }}" width="200">
                             @else
                             Tidak ada gambar
                             @endif
@@ -224,8 +224,7 @@
                         <div class="mb-3 col-md-6">
                             @if($item->gambar)
                             <div class="mt-2">
-                                <img src="{{ asset('themes/frontend/assets/img/program-studi/' . $item->gambar) }}"
-                                    width="100">
+                                <img src="{{ asset('storage/' . $item->gambar) }}" width="100">
                             </div>
                             @endif
                         </div>
