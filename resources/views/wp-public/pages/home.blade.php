@@ -73,15 +73,16 @@
             <div class="col-lg-6 pe-lg-5" data-aos="fade-right" data-aos-delay="200">
                 <h2 class="display-6 fw-bold mb-4">{{ $pages_settings['home_section2_title'] ?? '-' }} <span>{{
                         $identities['nama'] ?? '' }}</span> </h2>
-                <p class="mb-2 sambutan-collapse" id="sambutanText">{{ $pages_settings['home_section2_sambutan'] ?? '-' }}</p>
-                <button id="viewMoreBtn" class="btn btn-link p-0 text-decoration-none mb-4 fw-bold" style="color: #2b378f;" onclick="toggleSambutan()">Baca Selengkapnya <i class="bi bi-chevron-down"></i></button>
-
-                <div class="d-flex align-items-center mt-4 signature-block">
-                    <div class="ms-0">
-                        <p class="mb-0 fw-bold">{{ $pages_settings['home_section2_writer'] ?? '-' }}</p>
-                        <p class="mb-0 text-muted">{{ $pages_settings['home_section2_jabatan'] ?? '-' }}</p>
+                <div class="sambutan-collapse" id="sambutanText">
+                    <p class="mb-3">{{ $pages_settings['home_section2_sambutan'] ?? '-' }}</p>
+                    <div class="d-flex align-items-center mt-2 signature-block">
+                        <div class="ms-0">
+                            <p class="mb-0 fw-bold">{{ $pages_settings['home_section2_writer'] ?? '-' }}</p>
+                            <p class="mb-0 text-muted">{{ $pages_settings['home_section2_jabatan'] ?? '-' }}</p>
+                        </div>
                     </div>
                 </div>
+                <button id="viewMoreBtn" class="btn btn-link p-0 text-decoration-none mb-4 fw-bold" style="color: #2b378f;" onclick="toggleSambutan()">Baca Selengkapnya <i class="bi bi-chevron-down"></i></button>
             </div>
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                 <div class="image-stack">

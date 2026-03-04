@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class KeahlianController extends Controller
 {
@@ -29,8 +30,14 @@ class KeahlianController extends Controller
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
-            $gambarName = time() . '_' . $gambar->getClientOriginalName();
-            $gambar->move(public_path('themes/frontend/assets/img/program-studi'), $gambarName);
+            $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
+            $path = public_path('themes/frontend/assets/img/program-studi');
+            
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+            
+            $gambar->move($path, $gambarName);
         }
 
         $slug = Str::slug($request->nama);
@@ -71,7 +78,13 @@ class KeahlianController extends Controller
 
             $gambar = $request->file('gambar');
             $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
-            $gambar->move(public_path('themes/frontend/assets/img/program-studi'), $namaGambar);
+            $path = public_path('themes/frontend/assets/img/program-studi');
+
+            if (!File::isDirectory($path)) {
+                File::makeDirectory($path, 0777, true, true);
+            }
+
+            $gambar->move($path, $namaGambar);
             $keahlian->gambar = $namaGambar;
         }
 
