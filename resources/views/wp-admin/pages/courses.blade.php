@@ -108,6 +108,15 @@
                             </select>
                         </div>
                         <div class="mb-3 col-md-6">
+                            <label for="jurusan_id" class="form-label">Jurusan</label>
+                            <select class="form-control" name="jurusan_id" id="jurusan_id" required>
+                                <option selected value="">-- Pilih Jurusan --</option>
+                                @foreach($jurusan as $j)
+                                <option value="{{ $j->id }}">{{ $j->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
                             <label for="nama_ketua_jurusan" class="form-label">Ketua Jurusan</label>
                             <select class="form-control" name="nama_ketua_jurusan" id="nama_ketua_jurusan" required>
                                 <option selected>-- Pilih Ketua Jurusan --</option>
@@ -251,6 +260,17 @@
                                 <option selected>-- Pilih Semester --</option>
                                 <option value="1" {{ $item->semester == '1' ? 'selected' : '' }}>Semester 1</option>
                                 <option value="2" {{ $item->semester == '2' ? 'selected' : '' }}>Semester 2</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="jurusan_id_{{ $item->id }}" class="form-label">Jurusan</label>
+                            <select class="form-control" name="jurusan_id" id="jurusan_id_{{ $item->id }}" required>
+                                <option selected value="">-- Pilih Jurusan --</option>
+                                @foreach($jurusan as $j)
+                                <option value="{{ $j->id }}" {{ $item->jurusan_id == $j->id ? 'selected' : '' }}>
+                                    {{ $j->nama }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3 col-md-6">

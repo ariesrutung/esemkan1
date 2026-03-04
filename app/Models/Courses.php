@@ -11,10 +11,15 @@ class Courses extends Model
     protected $fillable = [
         'kelas',
         'semester',
+        'jurusan_id',
         'judul_materi',
         'uraian_singkat',
         'nama_ketua_jurusan',
         'gambar',
     ];
 
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id');
+    }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kelas');
             $table->string('semester');
+            $table->foreignId('jurusan_id')->constrained('jurusan')->cascadeOnDelete();
             $table->string('judul_materi');
             $table->text('uraian_singkat');
             $table->string('nama_ketua_jurusan');

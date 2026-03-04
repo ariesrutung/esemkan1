@@ -12,10 +12,11 @@ class CoursesController extends Controller
     public function index()
     {
         $pageTitle = 'Materi';
-        $courses = Courses::all();
+        $courses = Courses::with('jurusan')->get();
         $kepalaJurusan = Gtk::where('jabatan', 'Kepala Jurusan')->get();
+        $jurusan = \App\Models\Jurusan::all();
 
-        return view('wp-admin.pages.courses', compact('pageTitle', 'courses', 'kepalaJurusan'));
+        return view('wp-admin.pages.courses', compact('pageTitle', 'courses', 'kepalaJurusan', 'jurusan'));
     }
 
     public function store(Request $request)
@@ -43,6 +44,7 @@ class CoursesController extends Controller
             'uraian_singkat' => $request->uraian_singkat,
             'kelas' => $request->kelas,
             'semester' => $request->semester,
+            'jurusan_id' => $request->jurusan_id,
             'nama_ketua_jurusan' => $request->nama_ketua_jurusan,
             'gambar' => $gambarName,
         ]);
@@ -58,6 +60,7 @@ class CoursesController extends Controller
             'uraian_singkat' => 'required|string',
             'kelas' => 'required|string',
             'semester' => 'required|string',
+            'jurusan_id' => 'required|exists:jurusan,id',
             'nama_ketua_jurusan' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
@@ -67,6 +70,7 @@ class CoursesController extends Controller
         $courses->uraian_singkat = $request->uraian_singkat;
         $courses->kelas = $request->kelas;
         $courses->semester = $request->semester;
+        $courses->jurusan_id = $request->jurusan_id;
         $courses->nama_ketua_jurusan = $request->nama_ketua_jurusan;
 
         if ($request->hasFile('gambar')) {
