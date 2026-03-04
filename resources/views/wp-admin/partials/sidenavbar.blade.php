@@ -72,7 +72,7 @@
                 <li class="nav-item mb-1">
                     <a href="{{ route('admin.courses.index') }}"
                         class="nav-link {{ request()->routeIs('admin.courses.index') ? 'active' : '' }}">
-                        <i class="bi bi-journal-album nv-icon"></i>
+                        <i class="bi bi-journal-album nav-icon"></i>
                         <p>Materi Jurusan</p>
                     </a>
                 </li>
