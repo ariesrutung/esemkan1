@@ -36,6 +36,11 @@
                 <li>
                     <a href="{{ url('/spmb') }}" class="{{ Request::is('spmb') ? 'active' : '' }}">SPMB</a>
                 </li>
+                @auth
+                    <li>
+                        <a class="text-primary fw-bold" href="{{ route('admin.dashboard.index') }}">Panel</a>
+                    </li>
+                @endauth
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list text-dark"></i>
         </nav>
