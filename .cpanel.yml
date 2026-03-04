@@ -1,0 +1,10 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/smknmano/public_html/
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp favicon.ico $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp robot.txt $DEPLOYPATH
+    - /bin/cp -R themes $DEPLOYPATH
+    - /bin/cp -R uploads $DEPLOYPATH
