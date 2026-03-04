@@ -7,6 +7,7 @@ use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class KeahlianController extends Controller
 {
@@ -31,13 +32,10 @@ class KeahlianController extends Controller
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
             $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
-            $path = public_path('themes/frontend/assets/img/program-studi');
-            
-            if (!File::isDirectory($path)) {
-                File::makeDirectory($path, 0777, true, true);
-            }
-            
-            $gambar->move($path, $gambarName);
+
+            $path = $gambar->storeAs('program-studi', $gambarName, 'public');
+
+            $gambarName = $path; // simpan path lengkap ke database
         }
 
         $slug = Str::slug($request->nama);
@@ -71,22 +69,19 @@ class KeahlianController extends Controller
         $keahlian->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
-            if ($keahlian->gambar && file_exists(public_path('themes/frontend/assets/img/program-studi/' . $keahlian->gambar))) {
-                unlink(public_path('themes/frontend/assets/img/program-studi/' . $keahlian->gambar));
-            }
 
-            $gambar = $request->file('gambar');
-            $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
-            $path = public_path('themes/frontend/assets/img/program-studi');
-
-            if (!File::isDirectory($path)) {
-                File::makeDirectory($path, 0777, true, true);
-            }
-
-            $gambar->move($path, $namaGambar);
-            $keahlian->gambar = $namaGambar;
+    // hapus gambar lama dari storage
+        if ($keahlian->gambar && Storage::disk('public')->exists($keahlian->gambar)) {
+            Storage::disk('public')->delete($keahlian->gambar);
         }
+
+        $gambar = $request->file('gambar');
+        $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
+
+        $path = $gambar->storeAs('program-studi', $gambarName, 'public');
+
+        $keahlian->gambar = $path;
+    }
 
         $keahlian->save();
 
@@ -98,8 +93,8 @@ class KeahlianController extends Controller
         $keahlian = Jurusan::findOrFail($id);
 
         // Hapus gambar dari storage jika ada
-        if ($keahlian->gambar && file_exists(public_path('themes/frontend/assets/img/program-studi/' . $keahlian->gambar))) {
-            unlink(public_path('themes/frontend/assets/img/program-studi/' . $keahlian->gambar));
+        if ($keahlian->gambar && Storage::disk('public')->exists($keahlian->gambar)) {
+            Storage::disk('public')->delete($keahlian->gambar);
         }
 
         $keahlian->delete();
