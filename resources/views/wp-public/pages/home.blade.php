@@ -23,6 +23,13 @@
     .btn-view-all:hover {
         background-color: #49549e;
     }
+
+    .sambutan-collapse {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 </style>
 <section id="hero" class="hero section dark-background">
     <div class="hero-container">
@@ -62,11 +69,12 @@
 
 <section id="about" class="about section">
     <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row mb-5">
+        <div class="row align-items-start mb-5">
             <div class="col-lg-6 pe-lg-5" data-aos="fade-right" data-aos-delay="200">
                 <h2 class="display-6 fw-bold mb-4">{{ $pages_settings['home_section2_title'] ?? '-' }} <span>{{
                         $identities['nama'] ?? '' }}</span> </h2>
-                <p class="mb-4">{{ $pages_settings['home_section2_sambutan'] ?? '-' }}</p>
+                <p class="mb-2 sambutan-collapse" id="sambutanText">{{ $pages_settings['home_section2_sambutan'] ?? '-' }}</p>
+                <button id="viewMoreBtn" class="btn btn-link p-0 text-decoration-none mb-4 fw-bold" style="color: #2b378f;" onclick="toggleSambutan()">Baca Selengkapnya <i class="bi bi-chevron-down"></i></button>
 
                 <div class="d-flex align-items-center mt-4 signature-block">
                     <div class="ms-0">
@@ -80,10 +88,6 @@
                     <div class="image-stack-item image-stack-item-top" data-aos="zoom-in" data-aos-delay="400">
                         <img src="{{ asset('themes/frontend/assets/img/' . ($pages_settings['home_section2_picture_1'] ?? '-')) }}"
                             alt="Campus Life" class="img-fluid rounded-4 shadow-lg">
-                    </div>
-                    <div class="image-stack-item image-stack-item-bottom" data-aos="zoom-in" data-aos-delay="500">
-                        <img src="{{ asset('themes/frontend/assets/img/' . ($pages_settings['home_section2_picture_2'] ?? '-')) }}"
-                            alt="Students" class="img-fluid rounded-4 shadow-lg">
                     </div>
                 </div>
             </div>
@@ -322,4 +326,17 @@
         </div>
     </div>
 </section>
+
+<script>
+function toggleSambutan() {
+    var text = document.getElementById('sambutanText');
+    var btn = document.getElementById('viewMoreBtn');
+    text.classList.toggle('sambutan-collapse');
+    if (text.classList.contains('sambutan-collapse')) {
+        btn.innerHTML = 'Baca Selengkapnya <i class="bi bi-chevron-down"></i>';
+    } else {
+        btn.innerHTML = 'Lebih Sedikit <i class="bi bi-chevron-up"></i>';
+    }
+}
+</script>
 @endsection

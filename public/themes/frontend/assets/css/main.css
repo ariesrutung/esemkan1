@@ -733,7 +733,7 @@ section,
     position: relative;
 }
 
-.section-title h2:before,
+/* .section-title h2:before,
 .section-title h2:after {
     content: "";
     width: 50px;
@@ -748,7 +748,7 @@ section,
 
 .section-title h2:after {
     margin: 0 0 10px 15px;
-}
+} */
 
 .section-title p {
     margin-bottom: 0;
@@ -1115,7 +1115,7 @@ section,
 
 .about .image-stack .image-stack-item {
     position: absolute;
-    width: 80%;
+    width: 100%;
     height: auto;
     transition: transform 0.5s ease;
 }
