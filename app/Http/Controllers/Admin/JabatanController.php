@@ -44,7 +44,7 @@ class JabatanController extends Controller
         $jabatan = Jabatan::findOrFail($id);
         $jabatan->update([
             'nama_lengkap' => $request->nama_lengkap,
-            'nama_jababtan' => $request->nama_jabatan,
+            'nama_jabatan' => $request->nama_jabatan,
             'kategori' => $request->kategori,
         ]);
 

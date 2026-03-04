@@ -74,7 +74,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="nama_lengkap" class="form-label">Nama Jabatan</label>
+                                <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="nama_lengkap" required>
                             </div>
                             <div class="mb-3 col-md-6">
@@ -187,7 +187,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="mb-3 col-md-6">
-                            <label for="nama_lengkap" class="form-label">Nama Jabatan</label>
+                            <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                             <input type="text" class="form-control" name="nama_lengkap"
                                 value="{{ $item->nama_lengkap }}" required>
                         </div>

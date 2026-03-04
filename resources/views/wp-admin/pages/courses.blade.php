@@ -289,6 +289,10 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        $('#uraian_singkat').summernote({
+            height: 100
+        });
+
         @foreach ($courses as $item)
             $('#edit_uraian_singkat_{{ $item->id }}').summernote({
                 height: 100
