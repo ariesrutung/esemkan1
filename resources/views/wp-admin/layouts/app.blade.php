@@ -21,8 +21,6 @@
     <link rel="stylesheet" href="{{ asset('themes/backend/dist/css/adminlte.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('themes/backend/plugins/select2/css/select2.min.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('themes/backend/plugins/summernote/summernote-bs4.min.css') }}">
     <style>
         .gap-2 {
             gap: 3px !important;
@@ -96,7 +94,30 @@
         <script src="{{ asset('themes/backend/dist/js/adminlte.min.js') }}"></script>
         <script src="{{ asset('themes/backend/plugins/select2/js/select2.full.min.js') }}"></script>
 
-        <script src="{{ asset('themes/backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
+        <!-- TinyMCE -->
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                height: 250,
+                menubar: false,
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        tinymce.triggerSave();
+                    });
+                }
+            });
+        </script>
         
         <!-- SweetAlert2 -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -131,6 +152,10 @@
 
                 // Validasi Client Side untuk mencegah loading lama & pesan lebih spesifik
                 $('form').on('submit', function(e) {
+                    if (typeof tinymce !== 'undefined') {
+                        tinymce.triggerSave();
+                    }
+
                     let isValid = true;
                     let errorMsg = '';
 
@@ -206,10 +231,6 @@
                     dropdownParent: $('#modalTambahMapel'),
                     width: 'resolve'
                 });
-            });
-
-            $('#uraian_singkat').summernote({
-                height: 100
             });
         </script>
 </body>
