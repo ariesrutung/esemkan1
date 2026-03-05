@@ -37,7 +37,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         @if($item->gambar)
-                                       <img class="img-fluid"
+                                        <img class="img-fluid"
                                             src="{{ asset('public/themes/' . $item->gambar) }}"
                                             alt="{{ $item->nama }}"
                                             width="60">
@@ -67,6 +67,7 @@
     </div>
 </section>
 
+<!-- Modal Tambah -->
 <div class="modal fade" id="modalTambahKeahlian" data-backdrop="static" data-keyboard="false" tabindex="-1"
     role="dialog" aria-labelledby="modalTambahKeahlianLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -74,30 +75,28 @@
             <form action="{{ route('admin.prog_keahlian.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTambahKeahlianLabel">Tambah GTK</h5>
+                    <h5 class="modal-title" id="modalTambahKeahlianLabel">Tambah Program Keahlian</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="mb-3 col-md-8">
-                                <label for="nama" class="form-label">Nama Program Keahlian</label>
-                                <input type="text" class="form-control" name="nama" required>
-                            </div>
-                            <div class="mb-3 col-md-4">
-                                <label for="kode" class="form-label">Kode Program Keahlian</label>
-                                <input type="text" class="form-control" name="kode" required>
-                            </div>
-                            <div class="mb-3 col-md-12">
-                                <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <input type="text" class="form-control" name="deskripsi" required>
-                            </div>
-                            <div class="mb-3 col-md-12">
-                                <label for="gambar">Unggah Gambar</label>
-                                <input type="file" class="form-control-file" name="gambar" id="gambar" accept="image/*">
-                            </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-8">
+                            <label for="nama" class="form-label">Nama Program Keahlian</label>
+                            <input type="text" class="form-control" name="nama" required>
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label for="kode" class="form-label">Kode Program Keahlian</label>
+                            <input type="text" class="form-control" name="kode" required>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="deskripsi" class="form-label">Deskripsi</label>
+                            <input type="text" class="form-control" name="deskripsi" required>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="gambar">Unggah Gambar</label>
+                            <input type="file" class="form-control-file" name="gambar" id="gambar" accept="image/*">
                         </div>
                     </div>
                 </div>
@@ -110,43 +109,14 @@
     </div>
 </div>
 
-@foreach ($keahlian as $item)
-<div class="modal fade" id="hapusModal{{ $item->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="hapusModalLabel{{ $item->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="{{ route('admin.prog_keahlian.destroy', $item->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <div class="modal-header">
-                    <h5 class="modal-title" id="hapusModalLabel{{ $item->id }}">Konfirmasi Hapus</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus data program keahlian dengan nama <strong>{{ $item->nama
-                        }}</strong>?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@endforeach
-
-
-<!-- Modal View -->
+<!-- Modal View (DIPERBAIKI) -->
 @foreach ($keahlian as $item)
 <div class="modal fade" id="viewModal{{ $item->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
     aria-labelledby="viewModalLabel{{ $item->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="viewModalLabel{{ $item->id }}">Detail GTK</h5>
+                <h5 class="modal-title" id="viewModalLabel{{ $item->id }}">Detail Program Keahlian</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -169,7 +139,7 @@
                         <th>Gambar</th>
                         <td>
                             @if($item->gambar)
-                            <img src="{{ asset('storage/' . $item->gambar) }}" width="200">
+                            <img src="{{ asset('public/themes/' . $item->gambar) }}" width="200" alt="{{ $item->nama }}">
                             @else
                             Tidak ada gambar
                             @endif
@@ -185,7 +155,7 @@
 </div>
 @endforeach
 
-<!-- Modal Edit -->
+<!-- Modal Edit (DIPERBAIKI) -->
 @foreach ($keahlian as $item)
 <div class="modal fade" id="editModal{{ $item->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
     aria-labelledby="editModalLabel{{ $item->id }}" aria-hidden="true">
@@ -196,7 +166,7 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Ubah GTK</h5>
+                    <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Ubah Program Keahlian</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -220,11 +190,13 @@
                         <div class="mb-3 col-md-6">
                             <label for="gambar">Unggah Gambar</label>
                             <input type="file" class="form-control-file" name="gambar" id="gambar" accept="image/*">
+                            <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
                         </div>
                         <div class="mb-3 col-md-6">
                             @if($item->gambar)
                             <div class="mt-2">
-                                <img src="{{ asset('storage/' . $item->gambar) }}" width="100">
+                                <p>Gambar Saat Ini:</p>
+                                <img src="{{ asset('public/themes/' . $item->gambar) }}" width="100" alt="{{ $item->nama }}">
                             </div>
                             @endif
                         </div>
@@ -239,4 +211,33 @@
     </div>
 </div>
 @endforeach
+
+<!-- Modal Hapus -->
+@foreach ($keahlian as $item)
+<div class="modal fade" id="hapusModal{{ $item->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="hapusModalLabel{{ $item->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="{{ route('admin.prog_keahlian.destroy', $item->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hapusModalLabel{{ $item->id }}">Konfirmasi Hapus</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus data program keahlian <strong>{{ $item->nama }}</strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
 @endsection
