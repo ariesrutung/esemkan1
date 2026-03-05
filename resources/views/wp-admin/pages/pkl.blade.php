@@ -38,7 +38,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         @if($item->gambar)
-                                        <img src="{{ asset('public/themes/' . $item->gambar) }}"
+                                        <img src="{{ str_contains($item->gambar, '/') ? asset('public/themes/' . $item->gambar) : asset('themes/frontend/assets/img/pkl/' . $item->gambar) }}"
                                             alt="{{ $item->judul }}" width="60">
                                         @else
                                         -
@@ -167,7 +167,7 @@
                         <th>Gambar</th>
                         <td>
                             @if($item->gambar)
-                            <img src="{{ asset('public/themes/' . $item->gambar) }}" width="200">
+                            <img src="{{ str_contains($item->gambar, '/') ? asset('public/themes/' . $item->gambar) : asset('themes/frontend/assets/img/pkl/' . $item->gambar) }}" width="200">
                             @else
                             Tidak ada gambar
                             @endif
@@ -228,7 +228,7 @@
                         <div class="mb-3 col-md-6">
                             @if($item->gambar)
                             <div class="mt-2">
-                                <img src="{{ asset('public/themes/' . $item->gambar) }}" width="100">
+                                <img src="{{ str_contains($item->gambar, '/') ? asset('public/themes/' . $item->gambar) : asset('themes/frontend/assets/img/pkl/' . $item->gambar) }}" width="100">
                             </div>
                             @endif
                         </div>

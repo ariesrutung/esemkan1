@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="event-image mb-4" data-aos="fade-up">
-                    <img src="{{ $jurusan->gambar ? asset('public/themes/' . $jurusan->gambar) : asset('public/themes/default.png') }}"
+                    <img src="{{ $jurusan->gambar ? (str_contains($jurusan->gambar, '/') ? asset('public/themes/' . $jurusan->gambar) : asset('themes/frontend/assets/img/program-studi/' . $jurusan->gambar)) : asset('public/themes/default.png') }}"
                         alt="{{ $jurusan->nama }}" class="img-fluid">
                 </div>
                 <div class="event-meta mb-4" data-aos="fade-up" data-aos-delay="100">
@@ -65,7 +65,7 @@
                         <h3>Ketua Jurusan</h3>
                         <div class="organizer-details">
                             <div class="organizer-image">
-                                <img src="{{ $jurusan->ketuaJurusan && $jurusan->ketuaJurusan->foto ? asset('public/themes/' . $jurusan->ketuaJurusan->foto) : asset('public/themes/default.png') }}"
+                                <img src="{{ $jurusan->ketuaJurusan && $jurusan->ketuaJurusan->foto ? (str_contains($jurusan->ketuaJurusan->foto, '/') ? asset('public/themes/' . $jurusan->ketuaJurusan->foto) : asset('themes/frontend/assets/img/gtk/' . $jurusan->ketuaJurusan->foto)) : asset('public/themes/default.png') }}"
                                     class="img-fluid rounded"
                                     alt="{{ $jurusan->ketuaJurusan->nama_lengkap ?? 'Default' }}">
                             </div>
@@ -118,9 +118,14 @@
                 <div class="row g-4 mt-2">
                     @forelse($courses as $course)
                     <div class="col-md-3">
-                        <a href="{{ $course->gambar ? asset('public/themes/' . $course->gambar) : asset('public/themes/default.png') }}"
+                        @php
+                            $courseGambarUrl = $course->gambar
+                                ? (str_contains($course->gambar, '/') ? asset('public/themes/' . $course->gambar) : asset('themes/frontend/assets/img/courses/' . $course->gambar))
+                                : asset('public/themes/default.png');
+                        @endphp
+                        <a href="{{ $courseGambarUrl }}"
                             class="glightbox">
-                            <img src="{{ $course->gambar ? asset('public/themes/' . $course->gambar) : asset('public/themes/default.png') }}"
+                            <img src="{{ $courseGambarUrl }}"
                                 alt="{{ $course->judul_materi }}" class="img-fluid rounded">
                         </a>
                     </div>

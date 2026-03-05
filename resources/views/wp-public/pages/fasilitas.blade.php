@@ -55,7 +55,7 @@
                             <div class="facility-highlight">
                                 <div class="facility-slider">
                                     <div class="facility-slide">
-                                        <img src="{{ asset('public/themes/' . $item->foto) }}"
+                                        <img src="{{ $item->foto ? (str_contains($item->foto, '/') ? asset('public/themes/' . $item->foto) : asset('themes/frontend/assets/img/fasilitas/' . $item->foto)) : asset('public/themes/default.png') }}"
                                             alt="{{ $item->nama }}" class="img-fluid rounded">
                                         <div class="slide-caption">{{ $item->nama }}</div>
                                     </div>

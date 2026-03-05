@@ -43,7 +43,7 @@
                                     <td>
                                         @if($item->foto)
                                         <img class="rounded-circle"
-                                            src="{{ asset('public/themes/' . $item->foto) }}"
+                                            src="{{ str_contains($item->foto, '/') ? asset('public/themes/' . $item->foto) : asset('themes/frontend/assets/img/siswa/' . $item->foto) }}"
                                             alt="{{ $item->nama_lengkap }}" width="60">
                                         @else
                                         -
@@ -213,7 +213,7 @@
                         <th>Foto</th>
                         <td>
                             @if($item->foto)
-                            <img src="{{ asset('public/themes/' . $item->foto) }}" width="200">
+                            <img src="{{ str_contains($item->foto, '/') ? asset('public/themes/' . $item->foto) : asset('themes/frontend/assets/img/siswa/' . $item->foto) }}" width="200">
                             @else
                             Tidak ada foto
                             @endif
@@ -285,7 +285,7 @@
                         <div class="mb-3 col-md-6">
                             @if($item->foto)
                             <div class="mt-2">
-                                <img src="{{ asset('public/themes/' . $item->foto) }}" width="100">
+                                <img src="{{ str_contains($item->foto, '/') ? asset('public/themes/' . $item->foto) : asset('themes/frontend/assets/img/siswa/' . $item->foto) }}" width="100">
                             </div>
                             @endif
                         </div>

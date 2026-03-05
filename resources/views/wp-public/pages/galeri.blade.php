@@ -21,10 +21,13 @@
             <div class="row g-3">
                 @foreach ($galeri as $item)
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ 100 + ($loop->index % 6) * 100 }}">
-                    <a href="{{ asset('public/themes/' . $item->gambar) }}"
-                        class="gallery-item glightbox">
-                        <img src="{{ $item->gambar ? asset('public/themes/' . $item->gambar) : asset('public/themes/default.png') }}"
-                            class="img-fluid" loading="lazy" alt="{{ $item->judul ?? 'Galeri Sekolah' }}">
+                    @php
+                        $gambarUrl = $item->gambar
+                            ? (str_contains($item->gambar, '/') ? asset('public/themes/' . $item->gambar) : asset('themes/frontend/assets/img/galeri/' . $item->gambar))
+                            : asset('public/themes/default.png');
+                    @endphp
+                    <a href="{{ $gambarUrl }}" class="gallery-item glightbox">
+                        <img src="{{ $gambarUrl }}" class="img-fluid" loading="lazy" alt="{{ $item->judul ?? 'Galeri Sekolah' }}">
                         <div class="gallery-overlay">
                             <span>{{ $item->kategori ?? 'Galeri' }}</span>
                         </div>

@@ -31,7 +31,7 @@
             @foreach($pklList as $index => $pkl)
             <div class="terms-card" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
                 <div class="card-header p-0">
-                    <img class="img-fluid" src="{{ $pkl->gambar ? asset('public/themes/' . $pkl->gambar) : asset('public/themes/default.png') }}" alt="{{ $pkl->judul }}">
+                    <img class="img-fluid" src="{{ $pkl->gambar ? (str_contains($pkl->gambar, '/') ? asset('public/themes/' . $pkl->gambar) : asset('themes/frontend/assets/img/pkl/' . $pkl->gambar)) : asset('public/themes/default.png') }}" alt="{{ $pkl->judul }}">
                 </div>
                 <div class="card-content">
                     <h5 class="fw-bold">{{ $pkl->judul }}</h5>
