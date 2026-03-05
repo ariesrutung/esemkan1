@@ -95,7 +95,7 @@
         <script src="{{ asset('themes/backend/plugins/select2/js/select2.full.min.js') }}"></script>
 
         <!-- TinyMCE -->
-        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="https://cdn.tiny.cloud/1/2onuugfnc4zd46qg4zym8s946ezny033scq014mxt4usgs1q/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
             tinymce.init({
                 selector: 'textarea',

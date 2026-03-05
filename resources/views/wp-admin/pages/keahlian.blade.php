@@ -91,12 +91,12 @@
                             <input type="text" class="form-control" name="kode" required>
                         </div>
                         <div class="mb-3 col-md-12">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input type="text" class="form-control" name="deskripsi" required>
+                            <label for="deskripsi_create" class="form-label">Deskripsi</label>
+                            <textarea id="deskripsi_create" class="form-control" name="deskripsi" required></textarea>
                         </div>
                         <div class="mb-3 col-md-12">
-                            <label for="gambar">Unggah Gambar</label>
-                            <input type="file" class="form-control-file" name="gambar" id="gambar" accept="image/*">
+                            <label for="gambar_create">Unggah Gambar</label>
+                            <input type="file" class="form-control-file" name="gambar" id="gambar_create" accept="image/*">
                         </div>
                     </div>
                 </div>
@@ -182,14 +182,13 @@
                             <input type="text" class="form-control" name="kode" value="{{ $item->kode }}" required>
                         </div>
                         <div class="mb-3 col-md-12">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input type="text" class="form-control" name="deskripsi" value="{{ $item->deskripsi }}"
-                                required>
+                            <label for="deskripsi_{{ $item->id }}" class="form-label">Deskripsi</label>
+                            <textarea id="deskripsi_{{ $item->id }}" class="form-control" name="deskripsi" required>{{ $item->deskripsi }}</textarea>
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="gambar">Unggah Gambar</label>
-                            <input type="file" class="form-control-file" name="gambar" id="gambar" accept="image/*">
+                            <label for="gambar_{{ $item->id }}">Unggah Gambar</label>
+                            <input type="file" class="form-control-file" name="gambar" id="gambar_{{ $item->id }}" accept="image/*">
                             <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
                         </div>
                         <div class="mb-3 col-md-6">
