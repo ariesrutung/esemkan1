@@ -14,7 +14,7 @@
                     <div class="alumni-profile">
                         <div class="profile-header">
                             <div class="profile-img">
-                                <img src="{{ $item->gambar ? asset('public/themes/' . $item->gambar) : asset('themes/frontend/assets/img/default.png') }}"
+                                <img src="{{ $item->gambar ? asset('public/themes/' . $item->gambar) : asset('public/themes/default.png') }}"
                                     alt="{{ $item->nama }}" class="img-fluid">
                             </div>
                         </div>

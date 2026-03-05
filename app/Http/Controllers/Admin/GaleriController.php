@@ -74,8 +74,8 @@ class GaleriController extends Controller
         $galeri->tempat = $request->tempat;
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($galeri->gambar) {
+            // Hapus gambar lama jika ada dan bukan file default
+            if ($galeri->gambar && !str_starts_with(basename($galeri->gambar), 'default')) {
                 $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $galeri->gambar;
                 if (File::exists($oldPath)) {
                     File::delete($oldPath);
@@ -104,7 +104,8 @@ class GaleriController extends Controller
     {
         $galeri = Galeri::findOrFail($id);
 
-        if ($galeri->gambar) {
+        // Hapus gambar jika ada dan bukan file default
+        if ($galeri->gambar && !str_starts_with(basename($galeri->gambar), 'default')) {
             $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $galeri->gambar;
             if (File::exists($path)) {
                 File::delete($path);

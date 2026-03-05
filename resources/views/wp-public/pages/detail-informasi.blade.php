@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="event-image mb-4" data-aos="fade-up">
-                    <img src="{{ $informasi->gambar ? asset('public/themes/' . $informasi->gambar) : asset('themes/frontend/assets/img/default.png') }}"
+                    <img src="{{ $informasi->gambar ? asset('public/themes/' . $informasi->gambar) : asset('public/themes/default.png') }}"
                         alt="{{ $informasi->judul }}" class="img-fluid">
                 </div>
                 <div class="event-meta mb-4" data-aos="fade-up" data-aos-delay="100">

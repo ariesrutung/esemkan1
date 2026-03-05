@@ -94,8 +94,8 @@ class PklController extends Controller
 
         // Handle gambar baru
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($pkl->gambar) {
+            // Hapus gambar lama jika ada dan bukan file default
+            if ($pkl->gambar && !str_starts_with(basename($pkl->gambar), 'default')) {
                 $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $pkl->gambar;
                 if (File::exists($oldPath)) {
                     File::delete($oldPath);
@@ -124,8 +124,8 @@ class PklController extends Controller
     {
         $pkl = Pkl::findOrFail($id);
 
-        // Hapus gambar jika ada
-        if ($pkl->gambar) {
+        // Hapus gambar jika ada dan bukan file default
+        if ($pkl->gambar && !str_starts_with(basename($pkl->gambar), 'default')) {
             $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $pkl->gambar;
             if (File::exists($path)) {
                 File::delete($path);

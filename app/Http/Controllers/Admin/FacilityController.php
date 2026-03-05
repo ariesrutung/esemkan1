@@ -66,8 +66,8 @@ class FacilityController extends Controller
         $fasilitas->jumlah = $request->jumlah;
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($fasilitas->foto) {
+            // Hapus foto lama jika ada dan bukan file default
+            if ($fasilitas->foto && !str_starts_with(basename($fasilitas->foto), 'default')) {
                 $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $fasilitas->foto;
                 if (File::exists($oldPath)) {
                     File::delete($oldPath);
@@ -96,7 +96,8 @@ class FacilityController extends Controller
     {
         $fasilitas = Fasilitas::findOrFail($id);
 
-        if ($fasilitas->foto) {
+        // Hapus foto jika ada dan bukan file default
+        if ($fasilitas->foto && !str_starts_with(basename($fasilitas->foto), 'default')) {
             $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $fasilitas->foto;
             if (File::exists($path)) {
                 File::delete($path);

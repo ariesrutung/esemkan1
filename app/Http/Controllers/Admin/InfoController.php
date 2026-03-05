@@ -80,8 +80,8 @@ class InfoController extends Controller
         $informasi->tempat = $request->tempat;
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($informasi->gambar) {
+            // Hapus gambar lama jika ada dan bukan file default
+            if ($informasi->gambar && !str_starts_with(basename($informasi->gambar), 'default')) {
                 $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $informasi->gambar;
                 if (File::exists($oldPath)) {
                     File::delete($oldPath);
@@ -110,7 +110,8 @@ class InfoController extends Controller
     {
         $informasi = Informasi::findOrFail($id);
 
-        if ($informasi->gambar) {
+        // Hapus gambar jika ada dan bukan file default
+        if ($informasi->gambar && !str_starts_with(basename($informasi->gambar), 'default')) {
             $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $informasi->gambar;
             if (File::exists($path)) {
                 File::delete($path);

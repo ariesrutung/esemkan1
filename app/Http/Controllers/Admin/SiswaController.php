@@ -87,8 +87,8 @@ class SiswaController extends Controller
         $siswa->no_hp         = $request->no_hp;
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($siswa->foto) {
+            // Hapus foto lama jika ada dan bukan file default
+            if ($siswa->foto && !str_starts_with(basename($siswa->foto), 'default')) {
                 $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $siswa->foto;
                 if (File::exists($oldPath)) {
                     File::delete($oldPath);
@@ -117,7 +117,8 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
 
-        if ($siswa->foto) {
+        // Hapus foto jika ada dan bukan file default
+        if ($siswa->foto && !str_starts_with(basename($siswa->foto), 'default')) {
             $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $siswa->foto;
             if (File::exists($path)) {
                 File::delete($path);

@@ -82,8 +82,8 @@ class CoursesController extends Controller
         $courses->nama_ketua_jurusan = $request->nama_ketua_jurusan;
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($courses->gambar) {
+            // Hapus gambar lama jika ada dan bukan file default
+            if ($courses->gambar && !str_starts_with(basename($courses->gambar), 'default')) {
                 $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $courses->gambar;
                 if (File::exists($oldPath)) {
                     File::delete($oldPath);
@@ -113,7 +113,8 @@ class CoursesController extends Controller
     {
         $courses = Courses::findOrFail($id);
 
-        if ($courses->gambar) {
+        // Hapus gambar jika ada dan bukan file default
+        if ($courses->gambar && !str_starts_with(basename($courses->gambar), 'default')) {
             $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $courses->gambar;
             if (File::exists($path)) {
                 File::delete($path);

@@ -107,8 +107,8 @@ class GuruTKController extends Controller
         ]));
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($gtk->foto) {
+            // Hapus foto lama jika ada dan bukan file default
+            if ($gtk->foto && !str_starts_with(basename($gtk->foto), 'default')) {
                 $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $gtk->foto;
                 if (File::exists($oldPath)) {
                     File::delete($oldPath);
@@ -137,7 +137,8 @@ class GuruTKController extends Controller
     {
         $gtk = Gtk::findOrFail($id);
 
-        if ($gtk->foto) {
+        // Hapus foto jika ada dan bukan file default
+        if ($gtk->foto && !str_starts_with(basename($gtk->foto), 'default')) {
             $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $gtk->foto;
             if (File::exists($path)) {
                 File::delete($path);

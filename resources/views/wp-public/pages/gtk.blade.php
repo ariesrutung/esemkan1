@@ -36,7 +36,7 @@
                             <div class="col-md-4 col-lg-3">
                                 <div class="faculty-card">
                                     <div class="faculty-image">
-                                        <img src="{{ $item->foto ? asset('public/themes/' . $item->foto) : asset('themes/frontend/assets/img/default.png') }}"
+                                        <img src="{{ $item->foto ? asset('public/themes/' . $item->foto) : asset('public/themes/default.png') }}"
                                             class="img-fluid" alt="{{ $item->nama_lengkap }}">
                                     </div>
                                     <div class="faculty-info">
