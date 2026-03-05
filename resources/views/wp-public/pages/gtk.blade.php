@@ -36,8 +36,8 @@
                             <div class="col-md-4 col-lg-3">
                                 <div class="faculty-card">
                                     <div class="faculty-image">
-                                        <img src="{{ asset('themes/frontend/assets/img/gtk/' . $item->foto) }}"
-                                            class="img-fluid" alt="{{ $item->nama }}">
+                                        <img src="{{ $item->foto ? asset('public/themes/' . $item->foto) : asset('themes/frontend/assets/img/default.png') }}"
+                                            class="img-fluid" alt="{{ $item->nama_lengkap }}">
                                     </div>
                                     <div class="faculty-info">
                                         <h4>{{ $item->nama_lengkap }}</h4>

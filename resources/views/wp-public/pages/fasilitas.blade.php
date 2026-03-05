@@ -55,7 +55,7 @@
                             <div class="facility-highlight">
                                 <div class="facility-slider">
                                     <div class="facility-slide">
-                                        <img src="{{ asset('themes/frontend/assets/img/fasilitas/' . $item->foto) }}"
+                                        <img src="{{ asset('public/themes/' . $item->foto) }}"
                                             alt="{{ $item->nama }}" class="img-fluid rounded">
                                         <div class="slide-caption">{{ $item->nama }}</div>
                                     </div>

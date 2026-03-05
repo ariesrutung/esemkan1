@@ -21,9 +21,9 @@
             <div class="row g-3">
                 @foreach ($galeri as $item)
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ 100 + ($loop->index % 6) * 100 }}">
-                    <a href="{{ asset('themes/frontend/assets/img/galeri/' . $item->gambar) }}"
+                    <a href="{{ asset('public/themes/' . $item->gambar) }}"
                         class="gallery-item glightbox">
-                        <img src="{{ asset('themes/frontend/assets/img/galeri/' . ($item->gambar && file_exists(public_path('themes/frontend/assets/img/galeri/' . $item->gambar)) ? $item->gambar : 'default.png')) }}"
+                        <img src="{{ $item->gambar ? asset('public/themes/' . $item->gambar) : asset('themes/frontend/assets/img/default.png') }}"
                             class="img-fluid" loading="lazy" alt="{{ $item->judul ?? 'Galeri Sekolah' }}">
                         <div class="gallery-overlay">
                             <span>{{ $item->kategori ?? 'Galeri' }}</span>

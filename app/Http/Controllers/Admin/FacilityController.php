@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Fasilitas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class FacilityController extends Controller
 {
@@ -28,8 +29,16 @@ class FacilityController extends Controller
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $fotoName = time() . '_' . $foto->getClientOriginalName();
-            $foto->move(public_path('themes/frontend/assets/img/fasilitas'), $fotoName);
+            $namaFile = time() . '.' . $foto->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/fasilitas';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $foto->move($uploadPath, $namaFile);
+            $fotoName = 'fasilitas/' . $namaFile;
         }
 
         Fasilitas::create([
@@ -57,15 +66,25 @@ class FacilityController extends Controller
         $fasilitas->jumlah = $request->jumlah;
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama
-            if ($fasilitas->foto && file_exists(public_path('themes/frontend/assets/img/fasilitas/' . $fasilitas->foto))) {
-                unlink(public_path('themes/frontend/assets/img/fasilitas/' . $fasilitas->foto));
+            // Hapus foto lama jika ada
+            if ($fasilitas->foto) {
+                $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $fasilitas->foto;
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
             }
 
             $foto = $request->file('foto');
-            $namaFoto = time() . '.' . $foto->getClientOriginalExtension();
-            $foto->move(public_path('themes/frontend/assets/img/fasilitas'), $namaFoto);
-            $fasilitas->foto = $namaFoto;
+            $namaFile = time() . '.' . $foto->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/fasilitas';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $foto->move($uploadPath, $namaFile);
+            $fasilitas->foto = 'fasilitas/' . $namaFile;
         }
 
         $fasilitas->save();
@@ -77,9 +96,11 @@ class FacilityController extends Controller
     {
         $fasilitas = Fasilitas::findOrFail($id);
 
-        // Hapus gambar dari storage jika ada
-        if ($fasilitas->gambar && file_exists(public_path('themes/frontend/assets/img/education/' . $fasilitas->gambar))) {
-            unlink(public_path('themes/frontend/assets/img/education/' . $fasilitas->gambar));
+        if ($fasilitas->foto) {
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $fasilitas->foto;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
         }
 
         $fasilitas->delete();

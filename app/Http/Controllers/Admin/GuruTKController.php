@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Gtk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class GuruTKController extends Controller
 {
@@ -47,12 +48,20 @@ class GuruTKController extends Controller
             'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
 
-        $fotoName = '6c757d.png'; // default jika tidak ada upload
+        $fotoName = null;
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $fotoName = time() . '_' . $foto->getClientOriginalName();
-            $foto->move(public_path('themes/frontend/assets/img/gtk/'), $fotoName);
+            $namaFile = time() . '.' . $foto->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/gtk';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $foto->move($uploadPath, $namaFile);
+            $fotoName = 'gtk/' . $namaFile;
         }
 
         Gtk::create([
@@ -98,15 +107,25 @@ class GuruTKController extends Controller
         ]));
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika bukan 6c757d.png
-            if ($gtk->foto && $gtk->foto !== '6c757d.png' && file_exists(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto))) {
-                unlink(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto));
+            // Hapus foto lama jika ada
+            if ($gtk->foto) {
+                $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $gtk->foto;
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
             }
 
             $foto = $request->file('foto');
-            $namaFoto = time() . '.' . $foto->getClientOriginalExtension();
-            $foto->move(public_path('themes/frontend/assets/img/gtk'), $namaFoto);
-            $gtk->foto = $namaFoto;
+            $namaFile = time() . '.' . $foto->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/gtk';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $foto->move($uploadPath, $namaFile);
+            $gtk->foto = 'gtk/' . $namaFile;
         }
 
         $gtk->save();
@@ -118,9 +137,11 @@ class GuruTKController extends Controller
     {
         $gtk = Gtk::findOrFail($id);
 
-        // Jangan hapus 6c757d.png
-        if ($gtk->foto && $gtk->foto !== '6c757d.png' && file_exists(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto))) {
-            unlink(public_path('themes/frontend/assets/img/gtk/' . $gtk->foto));
+        if ($gtk->foto) {
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $gtk->foto;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
         }
 
         $gtk->delete();

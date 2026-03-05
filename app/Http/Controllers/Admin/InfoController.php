@@ -6,6 +6,7 @@ use App\Models\Informasi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class InfoController extends Controller
 {
@@ -31,8 +32,16 @@ class InfoController extends Controller
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
-            $gambarName = time() . '_' . $gambar->getClientOriginalName();
-            $gambar->move(public_path('themes/frontend/assets/img/education'), $gambarName);
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/informasi';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $gambarName = 'informasi/' . $namaFile;
         }
 
         $slug = Str::slug($request->judul);
@@ -58,7 +67,7 @@ class InfoController extends Controller
             'tanggal' => 'required|date',
             'jam' => 'required',
             'tempat' => 'required|string|max:255',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
 
         $slug = Str::slug($request->judul);
@@ -71,15 +80,25 @@ class InfoController extends Controller
         $informasi->tempat = $request->tempat;
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
-            if ($informasi->gambar && file_exists(public_path('themes/frontend/assets/img/informasi/' . $informasi->gambar))) {
-                unlink(public_path('themes/frontend/assets/img/informasi/' . $informasi->gambar));
+            // Hapus gambar lama jika ada
+            if ($informasi->gambar) {
+                $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $informasi->gambar;
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
             }
 
             $gambar = $request->file('gambar');
-            $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
-            $gambar->move(public_path('themes/frontend/assets/img/informasi'), $namaGambar);
-            $informasi->gambar = $namaGambar;
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/informasi';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $informasi->gambar = 'informasi/' . $namaFile;
         }
 
         $informasi->save();
@@ -91,9 +110,11 @@ class InfoController extends Controller
     {
         $informasi = Informasi::findOrFail($id);
 
-        // Hapus gambar dari storage jika ada
-        if ($informasi->gambar && file_exists(public_path('themes/frontend/assets/img/informasi/' . $informasi->gambar))) {
-            unlink(public_path('themes/frontend/assets/img/informasi/' . $informasi->gambar));
+        if ($informasi->gambar) {
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $informasi->gambar;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
         }
 
         $informasi->delete();

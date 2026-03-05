@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Pkl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PklController extends Controller
 {
@@ -29,14 +30,28 @@ class PklController extends Controller
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
-            $gambarName = time() . '_' . $gambar->getClientOriginalName();
-            $gambar->move(public_path('themes/frontend/assets/img/pkl'), $gambarName);
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/pkl';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $gambarName = 'pkl/' . $namaFile;
         }
 
         if ($request->hasFile('link')) {
             $pdf = $request->file('link');
             $pdfName = time() . '_' . $pdf->getClientOriginalName();
-            $pdf->move(public_path('uploads/pdf'), $pdfName);
+
+            $pdfPath = public_path('uploads/pdf');
+            if (!File::exists($pdfPath)) {
+                File::makeDirectory($pdfPath, 0755, true);
+            }
+
+            $pdf->move($pdfPath, $pdfName);
         }
 
         Pkl::create([
@@ -61,7 +76,6 @@ class PklController extends Controller
 
         $pkl = Pkl::findOrFail($id);
 
-        // Update teks
         $pkl->judul = $request->judul;
         $pkl->deskripsi = $request->deskripsi;
 
@@ -80,14 +94,25 @@ class PklController extends Controller
 
         // Handle gambar baru
         if ($request->hasFile('gambar')) {
-            if ($pkl->gambar && file_exists(public_path('themes/frontend/assets/img/pkl/' . $pkl->gambar))) {
-                unlink(public_path('themes/frontend/assets/img/pkl/' . $pkl->gambar));
+            // Hapus gambar lama jika ada
+            if ($pkl->gambar) {
+                $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $pkl->gambar;
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
             }
 
             $gambar = $request->file('gambar');
-            $gambarName = time() . '_' . $gambar->getClientOriginalName();
-            $gambar->move(public_path('themes/frontend/assets/img/pkl'), $gambarName);
-            $pkl->gambar = $gambarName;
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/pkl';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $pkl->gambar = 'pkl/' . $namaFile;
         }
 
         $pkl->save();
@@ -100,8 +125,11 @@ class PklController extends Controller
         $pkl = Pkl::findOrFail($id);
 
         // Hapus gambar jika ada
-        if ($pkl->gambar && file_exists(public_path('themes/frontend/assets/img/pkl/' . $pkl->gambar))) {
-            unlink(public_path('themes/frontend/assets/img/pkl/' . $pkl->gambar));
+        if ($pkl->gambar) {
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $pkl->gambar;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
         }
 
         // Hapus file PDF jika ada

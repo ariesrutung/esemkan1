@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Galeri;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class GaleriController extends Controller
 {
@@ -30,8 +31,16 @@ class GaleriController extends Controller
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
-            $gambarName = time() . '_' . $gambar->getClientOriginalName();
-            $gambar->move(public_path('themes/frontend/assets/img/galeri'), $gambarName);
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/galeri';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $gambarName = 'galeri/' . $namaFile;
         }
 
         Galeri::create([
@@ -54,7 +63,7 @@ class GaleriController extends Controller
             'tanggal' => 'required|date',
             'jam' => 'required',
             'tempat' => 'required|string|max:255',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
 
         $galeri = Galeri::findOrFail($id);
@@ -65,15 +74,25 @@ class GaleriController extends Controller
         $galeri->tempat = $request->tempat;
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
-            if ($galeri->gambar && file_exists(public_path('themes/frontend/assets/img/galeri/' . $galeri->gambar))) {
-                unlink(public_path('themes/frontend/assets/img/galeri/' . $galeri->gambar));
+            // Hapus gambar lama jika ada
+            if ($galeri->gambar) {
+                $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $galeri->gambar;
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
             }
 
             $gambar = $request->file('gambar');
-            $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
-            $gambar->move(public_path('themes/frontend/assets/img/galeri'), $namaGambar);
-            $galeri->gambar = $namaGambar;
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/galeri';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $galeri->gambar = 'galeri/' . $namaFile;
         }
 
         $galeri->save();
@@ -85,9 +104,11 @@ class GaleriController extends Controller
     {
         $galeri = Galeri::findOrFail($id);
 
-        // Hapus gambar dari storage jika ada
-        if ($galeri->gambar && file_exists(public_path('themes/frontend/assets/img/galeri/' . $galeri->gambar))) {
-            unlink(public_path('themes/frontend/assets/img/galeri/' . $galeri->gambar));
+        if ($galeri->gambar) {
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $galeri->gambar;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
         }
 
         $galeri->delete();

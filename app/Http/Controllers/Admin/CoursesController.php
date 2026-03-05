@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Courses;
 use App\Models\Gtk;
+use Illuminate\Support\Facades\File;
 
 class CoursesController extends Controller
 {
@@ -30,13 +31,20 @@ class CoursesController extends Controller
             'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
 
-        // Default value
-        $gambarName = 'default.png';
+        $gambarName = null;
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
-            $gambarName = time() . '_' . $gambar->getClientOriginalName();
-            $gambar->move(public_path('themes/frontend/assets/img/courses'), $gambarName);
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/courses';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $gambarName = 'courses/' . $namaFile;
         }
 
         Courses::create([
@@ -74,19 +82,25 @@ class CoursesController extends Controller
         $courses->nama_ketua_jurusan = $request->nama_ketua_jurusan;
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika bukan default.png
-            if (
-                $courses->gambar &&
-                $courses->gambar !== 'default.png' &&
-                file_exists(public_path('themes/frontend/assets/img/courses/' . $courses->gambar))
-            ) {
-                unlink(public_path('themes/frontend/assets/img/courses/' . $courses->gambar));
+            // Hapus gambar lama jika ada
+            if ($courses->gambar) {
+                $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $courses->gambar;
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
             }
 
             $gambar = $request->file('gambar');
-            $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
-            $gambar->move(public_path('themes/frontend/assets/img/courses'), $namaGambar);
-            $courses->gambar = $namaGambar;
+            $namaFile = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/courses';
+
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+
+            $gambar->move($uploadPath, $namaFile);
+            $courses->gambar = 'courses/' . $namaFile;
         }
 
         $courses->save();
@@ -99,13 +113,11 @@ class CoursesController extends Controller
     {
         $courses = Courses::findOrFail($id);
 
-        // Hapus gambar jika bukan default.png
-        if (
-            $courses->gambar &&
-            $courses->gambar !== 'default.png' &&
-            file_exists(public_path('themes/frontend/assets/img/courses/' . $courses->gambar))
-        ) {
-            unlink(public_path('themes/frontend/assets/img/courses/' . $courses->gambar));
+        if ($courses->gambar) {
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $courses->gambar;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
         }
 
         $courses->delete();

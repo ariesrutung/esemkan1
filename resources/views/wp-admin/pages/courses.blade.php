@@ -38,8 +38,12 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="{{ asset('themes/frontend/assets/img/courses/' . ($item->gambar ?? 'default.png')) }}"
+                                        @if($item->gambar)
+                                        <img src="{{ asset('public/themes/' . $item->gambar) }}"
                                             alt="{{ $item->judul_materi }}" width="60">
+                                        @else
+                                        -
+                                        @endif
                                     </td>
                                     <td>{{ $item->kelas }}</td>
                                     <td>{{ $item->semester }}</td>
@@ -187,8 +191,12 @@
                     <tr>
                         <th>Gambar</th>
                         <td>
-                            <img src="{{ asset('themes/frontend/assets/img/courses/' . ($item->gambar ?? 'default.png')) }}"
+                            @if($item->gambar)
+                            <img src="{{ asset('public/themes/' . $item->gambar) }}"
                                 alt="{{ $item->judul_materi }}" width="60">
+                            @else
+                            -
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -290,10 +298,11 @@
                             <input type="file" class="form-control-file" name="gambar" id="gambar" accept="image/*">
                         </div>
                         <div class="mb-3 col-md-6">
+                            @if($item->gambar)
                             <div class="mt-2">
-                                <img src="{{ asset('themes/frontend/assets/img/courses/' . ($item->gambar ?? 'default.png')) }}"
-                                    width="100">
+                                <img src="{{ asset('public/themes/' . $item->gambar) }}" width="100">
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
