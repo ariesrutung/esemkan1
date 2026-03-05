@@ -12,11 +12,7 @@
                     <div class="card-body">
                         <form action="{{ route('admin.pengaturan.update') }}" method="POST">
                             @csrf
-                            @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                            @endif
+
 
                             <div class="card card-primary card-outline card-outline-tabs">
                                 <div class="card-header p-0 border-bottom-0">

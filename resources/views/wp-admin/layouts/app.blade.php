@@ -70,23 +70,6 @@
             </section>
             @endif
 
-            @if ($errors->any())
-            <section class="content-header pb-0">
-                <div class="container-fluid">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Terdapat kesalahan!</strong> Pastikan semua form terisi dengan benar (termasuk ukuran gambar max 1MB).
-                        <ul class="mb-0 mt-2">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-            @endif
 
             @yield('content')
             <aside class="control-sidebar control-sidebar-dark">
@@ -114,6 +97,38 @@
         <script src="{{ asset('themes/backend/plugins/select2/js/select2.full.min.js') }}"></script>
 
         <script src="{{ asset('themes/backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
+        
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            $(document).ready(function() {
+                @if (session('success'))
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: '{!! session('success') !!}',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                @endif
+
+                @if ($errors->any())
+                    let errorMessages = '';
+                    @foreach ($errors->all() as $error)
+                        errorMessages += '<li>{{ $error }}</li>';
+                    @endforeach
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terdapat Kesalahan!',
+                        html: '<ul style="text-align: left; margin-bottom: 0;">' + errorMessages + '</ul>',
+                        confirmButtonText: 'Tutup',
+                        confirmButtonColor: '#d33'
+                    });
+                @endif
+            });
+        </script>
+        
         <script>
             $(function () {
                 $("#example1").DataTable({

@@ -13,11 +13,7 @@
                         <form action="{{ route('admin.sch.identity.update') }}" method="POST">
                             @csrf
                             @method('PUT')
-                            @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                            @endif
+
                             @foreach ($identity->chunk(4) as $row)
                             <div class="row">
                                 @foreach ($row as $key => $value)
