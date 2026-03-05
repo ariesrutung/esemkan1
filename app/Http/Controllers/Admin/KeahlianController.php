@@ -23,7 +23,7 @@ class KeahlianController extends Controller
             'nama' => 'required|string|max:255',
             'kode' => 'required|string',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $gambarName = null;
@@ -66,7 +66,7 @@ class KeahlianController extends Controller
             'nama' => 'required|string|max:255',
             'kode' => 'required|string',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $keahlian = Jurusan::findOrFail($id);

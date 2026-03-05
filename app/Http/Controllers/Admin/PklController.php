@@ -22,7 +22,7 @@ class PklController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'link' => 'required|file|mimes:pdf|max:5120',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $gambarName = null;
@@ -71,7 +71,7 @@ class PklController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'link' => 'nullable|file|mimes:pdf|max:5120',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $pkl = Pkl::findOrFail($id);

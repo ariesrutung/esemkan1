@@ -45,7 +45,7 @@ class GuruTKController extends Controller
             'nuptk' => 'required|string',
             'no_hp' => 'required|string',
             'alamat' => 'required|string',
-            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $fotoName = null;
@@ -90,7 +90,7 @@ class GuruTKController extends Controller
             'nuptk' => 'nullable|string',
             'no_hp' => 'required|string',
             'alamat' => 'required|string',
-            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $gtk = Gtk::findOrFail($id);

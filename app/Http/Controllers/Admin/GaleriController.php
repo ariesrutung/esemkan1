@@ -21,9 +21,10 @@ class GaleriController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
+            'kategori' => 'nullable|string|in:berita,event,pengumuman',
             'tanggal' => 'required|date',
-            'jam' => 'required',
+            'jam' => 'required|date_format:H:i',
             'tempat' => 'required|string|max:255',
         ]);
 
@@ -61,9 +62,10 @@ class GaleriController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tanggal' => 'required|date',
-            'jam' => 'required',
+            'jam' => 'required|date_format:H:i',
             'tempat' => 'required|string|max:255',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'kategori' => 'nullable|string|in:berita,event,pengumuman',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $galeri = Galeri::findOrFail($id);

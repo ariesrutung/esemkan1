@@ -22,7 +22,7 @@ class FacilityController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'jumlah' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $fotoName = null;
@@ -57,7 +57,7 @@ class FacilityController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'jumlah' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'foto' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $fasilitas = Fasilitas::findOrFail($id);

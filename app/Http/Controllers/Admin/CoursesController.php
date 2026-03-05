@@ -25,10 +25,11 @@ class CoursesController extends Controller
         $request->validate([
             'judul_materi' => 'required|string|max:255',
             'uraian_singkat' => 'required|string',
-            'kelas' => 'required|string',
-            'semester' => 'required|string',
+            'kelas' => 'required|string|max:10',
+            'semester' => 'required|string|max:50',
+            'jurusan_id' => 'required|exists:jurusan,id',
             'nama_ketua_jurusan' => 'required|string|max:255',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $gambarName = null;
@@ -66,11 +67,11 @@ class CoursesController extends Controller
         $request->validate([
             'judul_materi' => 'required|string|max:255',
             'uraian_singkat' => 'required|string',
-            'kelas' => 'required|string',
-            'semester' => 'required|string',
+            'kelas' => 'required|string|max:10',
+            'semester' => 'required|string|max:50',
             'jurusan_id' => 'required|exists:jurusan,id',
             'nama_ketua_jurusan' => 'required|string|max:255',
-            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $courses = Courses::findOrFail($id);

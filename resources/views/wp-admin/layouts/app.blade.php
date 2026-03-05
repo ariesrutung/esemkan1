@@ -70,6 +70,24 @@
             </section>
             @endif
 
+            @if ($errors->any())
+            <section class="content-header pb-0">
+                <div class="container-fluid">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Terdapat kesalahan!</strong> Pastikan semua form terisi dengan benar (termasuk ukuran gambar max 1MB).
+                        <ul class="mb-0 mt-2">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            @endif
+
             @yield('content')
             <aside class="control-sidebar control-sidebar-dark">
             </aside>

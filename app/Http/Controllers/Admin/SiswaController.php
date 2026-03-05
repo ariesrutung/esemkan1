@@ -20,14 +20,14 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nama_lengkap'   => 'required|string|max:255',
-            'nisn'           => 'string|max:16',
-            'kelas'          => 'string|max:10',
+            'nisn'           => 'nullable|string|max:16',
+            'kelas'          => 'nullable|string|max:10',
             'jenis_kelamin'  => 'required|in:Laki-laki,Perempuan',
-            'tempat_lahir'   => 'required|string',
+            'tempat_lahir'   => 'required|string|max:255',
             'tanggal_lahir'  => 'required|date',
             'alamat'         => 'required|string',
-            'no_hp'          => 'required|string',
-            'foto'           => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'no_hp'          => 'required|string|max:20',
+            'foto'           => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $fotoName = null;
@@ -65,14 +65,14 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nama_lengkap'   => 'required|string|max:255',
-            'nisn'           => 'string|max:16',
-            'kelas'          => 'string|max:10',
+            'nisn'           => 'nullable|string|max:16',
+            'kelas'          => 'nullable|string|max:10',
             'jenis_kelamin'  => 'required|in:Laki-laki,Perempuan',
-            'tempat_lahir'   => 'required|string',
+            'tempat_lahir'   => 'required|string|max:255',
             'tanggal_lahir'  => 'required|date',
             'alamat'         => 'required|string',
-            'no_hp'          => 'required|string',
-            'foto'           => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
+            'no_hp'          => 'required|string|max:20',
+            'foto'           => 'nullable|image|mimes:webp,jpeg,png,jpg|max:1024',
         ]);
 
         $siswa = Siswa::findOrFail($id);
