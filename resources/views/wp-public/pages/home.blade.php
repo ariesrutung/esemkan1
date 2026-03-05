@@ -31,9 +31,10 @@
         overflow: hidden;
     }
 </style>
+
 <section id="hero" class="hero section dark-background">
     <div class="hero-container">
-        <img src="{{ asset('themes/frontend/assets/img/' . ($pages_settings['home_section2_picture_1'] ?? '-')) }}"
+        <img src="{{ asset('public/themes/' . ($pages_settings['home_section2_picture_1'] ?? 'default-hero.jpg')) }}"
             alt="SMK Negeri 1 Manokwari" class="video-background">
         <div class="overlay"></div>
         <div class="container">
@@ -45,7 +46,7 @@
                         <h5></h5>
                         <p>{{ $pages_settings['home_section1_tagline'] ?? '-' }}</p>
                         <div class="cta-buttons d-flex justify-content-center">
-                            <a href="{{ ('/spmb') }}" class="btn-primary">{{
+                            <a href="{{ url('/spmb') }}" class="btn-primary">{{
                                 $pages_settings['home_section1_button_name'] ?? '-' }}</a>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                 <div class="image-stack">
                     <div class="image-stack-item image-stack-item-top" data-aos="zoom-in" data-aos-delay="400">
-                        <img src="{{ asset('themes/frontend/assets/img/' . ($pages_settings['home_section2_picture_1'] ?? '-')) }}"
+                        <img src="{{ asset('public/themes/' . ($pages_settings['home_section2_picture_1'] ?? 'default-about.jpg')) }}"
                             alt="Campus Life" class="img-fluid rounded-4 shadow-lg">
                     </div>
                 </div>
@@ -108,36 +109,35 @@
             </div>
             @php
             $benefits = [];
-            for ($i = 1; $i <= 4; $i++) { $benefits[]=[ 'icon'=>
-                $pages_settings["home_section3_benefit{$i}_icon"] ?? 'bi
-                bi-circle',
-                'title' => $pages_settings["home_section3_benefit{$i}_title"] ?? '-',
-                'subtitle' => $pages_settings["home_section3_benefit{$i}_subtitle"] ?? '-',
+            for ($i = 1; $i <= 4; $i++) { 
+                $benefits[]=[
+                    'icon' => $pages_settings["home_section3_benefit{$i}_icon"] ?? 'bi bi-circle',
+                    'title' => $pages_settings["home_section3_benefit{$i}_title"] ?? '-',
+                    'subtitle' => $pages_settings["home_section3_benefit{$i}_subtitle"] ?? '-',
                 ];
-                }
-                @endphp
+            }
+            @endphp
 
-                <div class="col-lg-12">
-                    <div class="row g-4">
-                        @foreach($benefits as $index => $benefit)
-                        <div class="col-md-3">
-                            <div class="stats-card" data-aos="zoom-in"
-                                data-aos-delay="{{ 300 + ($index * 100) }}">
-                                <div class="stats-icon">
-                                    @if(Str::startsWith($benefit['icon'], 'bi '))
-                                    <i class="{{ $benefit['icon'] }}"></i>
-                                    @else
-                                    <img src="{{ asset($benefit['icon']) }}" alt="icon"
-                                        style="width: 40px; height: 40px;">
-                                    @endif
-                                </div>
-                                <div class="stats-label">{{ $benefit['title'] }}</div>
-                                <p class="stats-description">{{ $benefit['subtitle'] }}</p>
+            <div class="col-lg-12">
+                <div class="row g-4">
+                    @foreach($benefits as $index => $benefit)
+                    <div class="col-md-3">
+                        <div class="stats-card" data-aos="zoom-in" data-aos-delay="{{ 300 + ($index * 100) }}">
+                            <div class="stats-icon">
+                                @if(Str::startsWith($benefit['icon'], 'bi '))
+                                <i class="{{ $benefit['icon'] }}"></i>
+                                @else
+                                <img src="{{ asset('public/themes/' . $benefit['icon']) }}" alt="icon"
+                                    style="width: 40px; height: 40px;" onerror="this.src='{{ asset('public/themes/default-icon.png') }}'">
+                                @endif
                             </div>
+                            <div class="stats-label">{{ $benefit['title'] }}</div>
+                            <p class="stats-description">{{ $benefit['subtitle'] }}</p>
                         </div>
-                        @endforeach
                     </div>
+                    @endforeach
                 </div>
+            </div>
         </div>
     </div>
 </section>
@@ -157,8 +157,14 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 <div class="program-image-wrapper">
-                                    <img src="{{ asset('themes/frontend/assets/img/program-studi/' . $item->gambar) }}"
+                                    @if($item->gambar)
+                                    <img src="{{ asset('public/themes/' . $item->gambar) }}"
+                                        alt="{{ $item->nama }}" class="img-fluid" loading="lazy"
+                                        onerror="this.src='{{ asset('public/themes/default-program.jpg') }}'">
+                                    @else
+                                    <img src="{{ asset('public/themes/default-program.jpg') }}"
                                         alt="{{ $item->nama }}" class="img-fluid" loading="lazy">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -176,7 +182,7 @@
                 @endforeach
             </div>
             <div class="text-center mt-5">
-                <a href="{{ ('/program-keahlian') }}" class="btn-view-all">{{
+                <a href="{{ url('/program-keahlian') }}" class="btn-view-all">{{
                     $pages_settings['home_section4_button_title'] ?? '-'
                     }}</a>
             </div>
@@ -226,7 +232,6 @@
             </div>
         </div>
     </div>
-
 </section>
 
 <section id="students-life" class="students-life section">
@@ -239,10 +244,16 @@
             <div class="row g-3">
                 @foreach($galeri as $item)
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                    <a href="{{ asset('themes/frontend/assets/img/education/' . $item->gambar) }}"
+                    <a href="{{ asset('public/themes/' . $item->gambar) }}"
                         class="gallery-item glightbox">
-                        <img src="{{ asset('themes/frontend/assets/img/education/' . $item->gambar) }}"
+                        @if($item->gambar)
+                        <img src="{{ asset('public/themes/' . $item->gambar) }}"
+                            alt="{{ $item->judul }}" class="img-fluid rounded" loading="lazy"
+                            onerror="this.src='{{ asset('public/themes/default-gallery.jpg') }}'">
+                        @else
+                        <img src="{{ asset('public/themes/default-gallery.jpg') }}"
                             alt="{{ $item->judul }}" class="img-fluid rounded" loading="lazy">
+                        @endif
                         <div class="gallery-overlay">
                             <span>{{ $item->judul }}</span>
                         </div>
@@ -253,7 +264,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ ('/all_galeries') }}" class="btn-view-all">{{ $pages_settings['home_section6_button_title'] ??
+            <a href="{{ url('/all_galeries') }}" class="btn-view-all">{{ $pages_settings['home_section6_button_title'] ??
                 '-'
                 }}</a>
         </div>
@@ -314,7 +325,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="{{ ('/informasi') }}" class="btn-view-all">{{ $pages_settings['home_section7_button_title'] ??
+            <a href="{{ url('/informasi') }}" class="btn-view-all">{{ $pages_settings['home_section7_button_title'] ??
                 '-'
                 }}</a>
         </div>
