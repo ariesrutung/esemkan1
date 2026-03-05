@@ -126,6 +126,57 @@
                         confirmButtonColor: '#d33'
                     });
                 @endif
+                // Disable default HTML5 validation tooltip agar swal selalu muncul
+                $('form').attr('novalidate', 'novalidate');
+
+                // Validasi Client Side untuk mencegah loading lama & pesan lebih spesifik
+                $('form').on('submit', function(e) {
+                    let isValid = true;
+                    let errorMsg = '';
+
+                    // Cek input required
+                    $(this).find('input, textarea, select').filter('[required]').each(function() {
+                        if (!$(this).val()) {
+                            isValid = false;
+                            // Cari label terdekat
+                            let label = $(this).closest('div').find('label').first().text().replace('*', '').trim();
+                            if (!label) label = $(this).attr('name');
+                            
+                            errorMsg += '<li>Field <b>' + label + '</b> harus diisi.</li>';
+                        }
+                    });
+
+                    // Cek ukuran file (1MB untuk gambar, 5MB untuk PDF)
+                    $(this).find('input[type="file"]').each(function() {
+                        if (this.files && this.files[0]) {
+                            let file = this.files[0];
+                            let fileSize = file.size / 1024; // Dalam KB
+                            
+                            // Deteksi form input name atau mime type pdf
+                            let isPdf = file.type === 'application/pdf' || $(this).attr('accept') === 'application/pdf';
+                            let maxLimit = isPdf ? 5120 : 1024; // 5MB jika PDF, 1MB jika gambar
+
+                            if (fileSize > maxLimit) {
+                                isValid = false;
+                                let label = $(this).closest('div').find('label').first().text().replace('*', '').trim();
+                                if (!label) label = 'File';
+                                let maxText = isPdf ? '5 MB' : '1 MB';
+                                errorMsg += '<li>Ukuran <b>' + label + '</b> tidak boleh lebih dari ' + maxText + '.</li>';
+                            }
+                        }
+                    });
+
+                    if (!isValid) {
+                        e.preventDefault(); // Stop submit ke server
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Terdapat Kesalahan!',
+                            html: '<ul style="text-align: left; margin-bottom: 0;">' + errorMsg + '</ul>',
+                            confirmButtonText: 'Tutup',
+                            confirmButtonColor: '#d33'
+                        });
+                    }
+                });
             });
         </script>
         
