@@ -7,7 +7,6 @@ use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class KeahlianController extends Controller
 {
@@ -32,10 +31,20 @@ class KeahlianController extends Controller
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
             $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
-
-            $path = $gambar->storeAs('program-studi', $gambarName, 'public');
-
-            $gambarName = $path; // simpan path lengkap ke database
+            
+            // Tentukan path tujuan di public_html/public/themes/program-studi
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/program-studi';
+            
+            // Buat folder jika belum ada
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+            
+            // Pindahkan file ke folder tujuan
+            $gambar->move($uploadPath, $gambarName);
+            
+            // Simpan path relatif ke database
+            $gambarName = 'program-studi/' . $gambarName;
         }
 
         $slug = Str::slug($request->nama);
@@ -60,28 +69,41 @@ class KeahlianController extends Controller
             'gambar' => 'nullable|image|mimes:webp,jpeg,png,jpg|max:2048',
         ]);
 
-        $slug = Str::slug($request->nama);
-
         $keahlian = Jurusan::findOrFail($id);
+        
+        $slug = Str::slug($request->nama);
         $keahlian->nama = $request->nama;
         $keahlian->slug = $slug;
         $keahlian->kode = $request->kode;
         $keahlian->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama jika ada
+            if ($keahlian->gambar) {
+                $oldPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $keahlian->gambar;
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
+            }
 
-    // hapus gambar lama dari storage
-        if ($keahlian->gambar && Storage::disk('public')->exists($keahlian->gambar)) {
-            Storage::disk('public')->delete($keahlian->gambar);
+            // Upload gambar baru
+            $gambar = $request->file('gambar');
+            $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
+            
+            // Tentukan path tujuan
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/program-studi';
+            
+            // Buat folder jika belum ada
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0755, true);
+            }
+            
+            // Pindahkan file
+            $gambar->move($uploadPath, $gambarName);
+            
+            // Simpan path ke database
+            $keahlian->gambar = 'program-studi/' . $gambarName;
         }
-
-        $gambar = $request->file('gambar');
-        $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
-
-        $path = $gambar->storeAs('program-studi', $gambarName, 'public');
-
-        $keahlian->gambar = $path;
-    }
 
         $keahlian->save();
 
@@ -92,9 +114,12 @@ class KeahlianController extends Controller
     {
         $keahlian = Jurusan::findOrFail($id);
 
-        // Hapus gambar dari storage jika ada
-        if ($keahlian->gambar && Storage::disk('public')->exists($keahlian->gambar)) {
-            Storage::disk('public')->delete($keahlian->gambar);
+        // Hapus gambar dari folder jika ada
+        if ($keahlian->gambar) {
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/public/themes/' . $keahlian->gambar;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
         }
 
         $keahlian->delete();

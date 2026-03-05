@@ -37,8 +37,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         @if($item->gambar)
-                                        <img class="img-fluid"
-                                            src="{{ asset('storage/' . $item->gambar) }}"
+                                       <img class="img-fluid"
+                                            src="{{ asset('public/themes/' . $item->gambar) }}"
                                             alt="{{ $item->nama }}"
                                             width="60">
                                         @else

@@ -38,14 +38,16 @@ return [
             'report' => false,
         ],
 
-        'public' => [
+       'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => $_SERVER['DOCUMENT_ROOT'] . '/public/themes', // Langsung ke folder themes di public_html
+            'url' => env('APP_URL') . '/public/themes',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
         ],
+
+        
 
         's3' => [
             'driver' => 's3',
